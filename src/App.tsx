@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
+import style from './App.module.css';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="app-wrapper">
+    <div className={style.app_wrapper}>
       <Header/>
       <Navbar/>
       <Profile/>

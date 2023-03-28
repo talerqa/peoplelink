@@ -1,13 +1,13 @@
 import React from 'react';
 import avatar from '../img/avatar.png';
-import './../Profile.css';
+import style from './Profile.module.css'
 
 function Profile(props: any) {
   return (
-    <div className="Profile">
+    <div className={style.Profile}>
       Main content
       <div>
-        <img className="avatar" src={avatar} alt="avatar"/>
+        <img className={style.avatar} src={avatar} alt="avatar"/>
       </div>
       <div>
         description
@@ -17,17 +17,17 @@ function Profile(props: any) {
         <div>
           New Post
         </div>
-        <div>
-          <div>
+        <nav className={style.nav}>
+          <div className={style.item}>
             Post 1
           </div>
-          <div>
+          <div className={style.item}>
             Post 2
           </div>
-          <div>
+          <div className={style.item}>
             Post 3
           </div>
-        </div>
+        </nav>
       </div>
     </div>
   );
