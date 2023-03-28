@@ -1,0 +1,12 @@
+
+.Profile {
+  background-color: aqua;
+  grid-area: content;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+
+

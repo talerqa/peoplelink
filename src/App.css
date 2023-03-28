@@ -37,7 +37,6 @@
   }
 }
 
-
 .app-wrapper {
   display: grid;
   margin: 0 auto;
@@ -49,35 +48,3 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
-
-.logo {
-  width: 50px;
-  height: 50px;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-}
-
-.Header {
-  background-color: darkorchid;
-  grid-area: header;
-}
-
-.Navbar {
-  background-color: springgreen;
-  grid-area: nav;
-}
-
-.Page {
-  background-color: aqua;
-  grid-area: content;
-}
-
-.Footer {
-  background: darkblue;
-  grid-area: footer;
-}
-
-

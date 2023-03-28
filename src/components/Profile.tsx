@@ -1,9 +1,10 @@
 import React from 'react';
 import avatar from '../img/avatar.png';
+import './../Profile.css';
 
-function Page(props: any) {
+function Profile(props: any) {
   return (
-    <div className="Page">
+    <div className="Profile">
       Main content
       <div>
         <img className="avatar" src={avatar} alt="avatar"/>
@@ -32,4 +33,4 @@ function Page(props: any) {
   );
 }
 
-export default Page;
+export default Profile;
