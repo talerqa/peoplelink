@@ -47,6 +47,7 @@
     'nav content';
   grid-template-rows: 100px 1fr;
   grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
 }
 
 .logo {
@@ -59,17 +60,17 @@
   height: 40px;
 }
 
-.header {
+.Header {
   background-color: darkorchid;
   grid-area: header;
 }
 
-.hav {
+.Navbar {
   background-color: springgreen;
   grid-area: nav;
 }
 
-.content {
+.Page {
   background-color: aqua;
   grid-area: content;
 }
