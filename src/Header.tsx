@@ -1,8 +1,9 @@
 import React from 'react';
+import logo from './img/logo.webp'
 
 function Header(props: any) {
   return <div className="Header">
-    {props.name}
+    <img src={logo}/>
   </div>
 }
 

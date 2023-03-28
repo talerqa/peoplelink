@@ -3,6 +3,7 @@ import './App.css';
 
 function Footer(props: any) {
   return (<div className="Footer">
+      3
     </div>
   )
 }

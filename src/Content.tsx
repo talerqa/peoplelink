@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Technologies(props: any) {
+function Content(props: any) {
   return (
-    <div className="Technologies">
+    <div className="Content">
       2
     </div>
   );
 }
 
-export default Technologies;
+export default Content;
