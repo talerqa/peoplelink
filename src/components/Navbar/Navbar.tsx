@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Navbar.module.css';
 
-function Navbar() {
+const Navbar: React.FC = (props:any) => {
   return (<div>
     <nav className={style.Navbar}>
       <div>
