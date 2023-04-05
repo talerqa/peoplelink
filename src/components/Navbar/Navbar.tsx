@@ -5,19 +5,22 @@ const Navbar: React.FC = (props:any) => {
   return (<div>
     <nav className={style.Navbar}>
       <div>
-        Profile
+        <a href={'/profile'}>Profile</a>
       </div>
       <div>
-        Message
+        <a href={'/dialogs'}>Dialogs</a>
       </div>
       <div>
-        Music
+        <a href={'/message'}>Message</a>
       </div>
       <div>
-        Setting
+        <a href={'/music'}>Music</a>
       </div>
       <div>
-        News
+        <a href={'/setting'}>Setting</a>
+      </div>
+      <div>
+        <a href={'/news'}>News</a>
       </div>
     </nav>
   </div>)
