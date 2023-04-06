@@ -1,13 +1,18 @@
 import React from 'react';
-import avatar from '../../../img/avatar.png';
 import s from './MyPost.module.css'
+import Post from './Post/Post';
+import ProfileInfo from '../ProfileInfo/ProfileInfo';
 
-const MyPost: React.FC = (props:any) => {
+const MyPost: React.FC = (props: any) => {
   return (
     <div className={s.item}>
-      <img className={s.avatar} src={avatar} alt="avatar"/>
+      <ProfileInfo/>
       <textarea></textarea>
-      <button>Add post</button>
+      <div className={s.posts}>
+        <Post message="Hi how are you" likesCount={1}/>
+        <Post message="Its my first project" likesCount={2}/>
+        <Post message="Its my second project" likesCount={3}/>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import avatar from '../../../img/avatar.png';
 import s from './Post.module.css'
+import ProfileInfo from '../../ProfileInfo/ProfileInfo';
 
 type PostPropsType = {
   likesCount: number,
@@ -8,10 +8,8 @@ type PostPropsType = {
 }
 
 const Post = (props: PostPropsType) => {
-  console.log(props.message);
-  return (
-    <div className={s.item}>
-      <img className={s.avatar} src={avatar} alt=""/>
+  return (<div className={s.item}>
+      <ProfileInfo/>
       <span>{props.message}</span>
       <div>Like</div>
       <span>{props.likesCount}</span>
