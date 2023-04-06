@@ -1,29 +1,30 @@
 import React from 'react';
-import style from './Navbar.module.css';
+import s from './Navbar.module.css';
+import {NavLink} from 'react-router-dom';
 
 const Navbar: React.FC = (props:any) => {
-  return (<div>
-    <nav className={style.Navbar}>
+  return (
+    <nav className={s.navbar}>
       <div>
-        <a href={'/profile'}>Profile</a>
+        <NavLink className={isActive => isActive ? s.active : s.link} to={'/profile'}>Profile</NavLink>
       </div>
       <div>
-        <a href={'/dialogs'}>Dialogs</a>
+        <NavLink className={isActive => isActive ? s.active : s.link} to={'/dialogs'}>Dialogs</NavLink>
       </div>
       <div>
-        <a href={'/message'}>Message</a>
+        <NavLink className={isActive => isActive ? s.active : s.link} to={'/message'}>Message</NavLink>
       </div>
       <div>
-        <a href={'/music'}>Music</a>
+        <NavLink className={isActive => isActive ? s.active : s.link} to={'/music'}>Music</NavLink>
       </div>
       <div>
-        <a href={'/setting'}>Setting</a>
+        <NavLink className={isActive => isActive ? s.active : s.link} to={'/setting'}>Setting</NavLink>
       </div>
       <div>
-        <a href={'/news'}>News</a>
+        <NavLink className={isActive => isActive ? s.active : s.link} to={'/news'}>News</NavLink>
       </div>
     </nav>
-  </div>)
+  )
 }
 
 export default Navbar;

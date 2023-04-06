@@ -1,4 +1,23 @@
 .dialogs {
-
+  display: flex;
 }
+
+.dialogsItem {
+  min-width: 300px;
+}
+
+.dialog {
+  color: aqua;
+}
+
+.active {
+  color: darkorchid;
+}
+
+.messages {
+}
+
+.message {
+}
+
 

@@ -1,6 +1,17 @@
-.Navbar {
+a {
+  text-decoration: none;
+}
+
+.navbar {
   background-color: springgreen;
   grid-area: nav;
 }
 
+.active {
+  color: red;
+}
+
+.link {
+  color: darkorchid;
+}
 
