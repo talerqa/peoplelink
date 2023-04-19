@@ -2,19 +2,20 @@ import React from 'react';
 import s from './Post.module.css'
 import ProfileInfo from '../../ProfileInfo/ProfileInfo';
 
-type PostPropsType = {
-  likesCount: number,
-  message: string,
-}
+const Post = (props: any) => {
+  console.log(props.postData)
 
-const Post = (props: PostPropsType) => {
   return (<div className={s.item}>
-      <ProfileInfo/>
-      <span>{props.message}</span>
-      <div>Like</div>
-      <span>{props.likesCount}</span>
-    </div>
-  )
-}
+    <ProfileInfo/>
+    {props.postData.map((m: any) => {
+      return (
+        <div>
+          <div>{m.message}</div>
+          <div>{m.likesCount}</div>
+        </div>
+      )
+    })}
 
-export default Post;
+  </div>)
+}
+  export default Post;
