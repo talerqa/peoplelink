@@ -2,29 +2,21 @@ import React from 'react';
 import s from './MyPost.module.css'
 import Post from './Post/Post';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
+import {postDataProps} from '../Profile';
 
-
-type postDataProps = {
-  id: number
-  message: string
-  likesCount: number
+type MyPostProps = {
+  posts: Array<postDataProps>;
 }
 
-const MyPost: React.FC = (props: any) => {
-
-  const postData: Array<postDataProps> = [
-    {id: 1, message: 'Hi how are you', likesCount: 7},
-    {id: 2, message: 'It\'s my first project', likesCount: 4},
-    {id: 3, message: 'Its my second project', likesCount: 1},
-  ]
-
+const MyPost: (props: MyPostProps) => JSX.Element = (props: MyPostProps) => {
+  const postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>)
 
   return (
     <div className={s.item}>
       <ProfileInfo/>
       <textarea></textarea>
       <div className={s.posts}>
-        <Post postData={postData}/>
+        {postsElement}
       </div>
     </div>
   );
