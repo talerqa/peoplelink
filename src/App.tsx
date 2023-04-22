@@ -9,6 +9,7 @@ import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
 import {stateType} from './redux/state';
+import Friends from './components/Friends/Friends';
 
 
 type AppPropsType = {
@@ -16,6 +17,7 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
+  console.log(props.state)
   return (<div className="app-wrapper">
       <BrowserRouter>
         <Header/>
@@ -23,6 +25,7 @@ function App(props: AppPropsType) {
         <div className={'app-wrapper-content'}>
           <Route path={'/profile*/'} render={() => <Profile state={props.state.profilePage}/>}/>
           <Route path={'/dialogs*/'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+          <Route path={'/friends*/'} render={() => <Friends state={props.state.myFriendsPage}/>}/>
           <Route path={'/music*/'} component={Music}/>
           <Route path={'/setting*/'} component={Setting}/>
           <Route path={'/news*/'} component={News}/>

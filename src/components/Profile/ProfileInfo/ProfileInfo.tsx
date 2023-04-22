@@ -1,5 +1,5 @@
 import React from 'react';
-import avatar from '../../../img/avatar.png';
+import avatar from '../../../redux/img/avatar.png';
 import s from './ProfileInfo.module.css'
 
 const ProfileInfo = (props: any) => {
