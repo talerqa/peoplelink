@@ -25,7 +25,6 @@ function App(props: AppPropsType) {
         <div className={'app-wrapper-content'}>
           <Route path={'/profile*/'} render={() => <Profile posts={props.posts}/>}/>
           <Route path={'/dialogs*/'} render={() => <Dialogs dialogsData={props.dialogsData} message={props.message}/>}/>
-
           <Route path={'/music*/'} component={Music}/>
           <Route path={'/setting*/'} component={Setting}/>
           <Route path={'/news*/'} component={News}/>
