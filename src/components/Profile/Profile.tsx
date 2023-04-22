@@ -1,24 +1,16 @@
 import React from 'react';
 import s from './Profile.module.css'
 import MyPost from './MyPost/MyPost';
+import {postData} from '../../index';
 
-export type postDataProps = {
-  id: number
-  message: string
-  likesCount: number
+type ProfilePropsType = {
+  posts: Array<postData>
 }
 
-
-const Profile = (props: any) => {
-  const posts: Array<postDataProps> = [
-    {id: 1, message: 'Hi how are you', likesCount: 7},
-    {id: 2, message: 'It\'s my first project', likesCount: 4},
-    {id: 3, message: 'Its my second project', likesCount: 1},
-  ]
-
+const Profile = (props: ProfilePropsType) => {
   return (
     <div className={s.Profile}>
-      <MyPost posts={posts}/>
+      <MyPost posts={props.posts}/>
     </div>
   );
 }
