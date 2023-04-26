@@ -17,11 +17,11 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
-  console.log(props.state)
+
   return (<div className="app-wrapper">
       <BrowserRouter>
         <Header/>
-        <Navbar/>
+        <Navbar state={props.state.myFriendsPage} />
         <div className={'app-wrapper-content'}>
           <Route path={'/profile*/'} render={() => <Profile state={props.state.profilePage}/>}/>
           <Route path={'/dialogs*/'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>

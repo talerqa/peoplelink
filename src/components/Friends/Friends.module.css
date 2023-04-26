@@ -18,3 +18,11 @@
   height: 50px;
   border-radius: 50%;
 }
+
+.statusOnline {
+  color: #b3ffb3;
+}
+
+.statusOffline {
+  color: red;
+}

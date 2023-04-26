@@ -10,6 +10,7 @@ type DialogItemType = {
 const DialogItem: React.FC<DialogItemType> = (props) => {
   return (<div className={s.dialog}>
     <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
+
   </div>)
 }
 

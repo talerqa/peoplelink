@@ -38,7 +38,7 @@ export type friendsType = {
 export type myFriendsPageType = {
   friends: friendsType[]
 }
-
+//Тип State
 export type stateType = {
   profilePage: profilePageType
   dialogsPage: dialogsPageType

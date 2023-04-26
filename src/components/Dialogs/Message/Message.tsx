@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import s from './Message.module.css';
 
 type MessageType = {
@@ -6,11 +6,19 @@ type MessageType = {
 }
 
 const Message: React.FC<MessageType> = (props) => {
-  return(
+
+
+  return (
+    <div>
     <div className={s.message}>
       {props.message}
+    </div>
+      <div>
+
+      </div>
+
     </div>
   )
 }
 
-export default Message
+export default Message;
