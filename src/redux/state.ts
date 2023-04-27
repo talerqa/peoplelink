@@ -43,6 +43,7 @@ export type stateType = {
   profilePage: profilePageType
   dialogsPage: dialogsPageType
   myFriendsPage: myFriendsPageType
+  addPost?: any
 }
 
 export const state: stateType = {
@@ -79,3 +80,10 @@ export const state: stateType = {
     ]
   }
 }
+
+export const addPost = (title: string) => {
+  const newPost =  {id: 5, message: title, likesCount: 0};
+  state.profilePage.posts.push(newPost)
+  console.log(state.profilePage.posts)
+}
+

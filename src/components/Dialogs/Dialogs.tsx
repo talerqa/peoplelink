@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {ChangeEvent, useRef, useState} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -6,17 +6,28 @@ import {dialogsPageType} from './../../redux/state';
 
 type DialogsPropsType = {
   state: dialogsPageType
+  addPost: (title: string) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-  ///UseRef = переписать на контролируемый инпут
+
+  //useState
+  const [title, setTitle] = useState('')
+
+  ///UseRef = переписать на контролируемый инпут через useState
   const newPostEl = useRef<HTMLTextAreaElement>(null)
   console.log(newPostEl.current)
 
   //Добавляем новый пост
   const addPost = () => {
     if (newPostEl.current !== null) {
-      console.log(newPostEl.current.value)
+      props.addPost(title)
+    }
+  }
+
+  const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.currentTarget) {
+      setTitle(e.currentTarget.value)
     }
   }
 
@@ -28,7 +39,7 @@ const Dialogs = (props: DialogsPropsType) => {
       {props.state.message.map((message: any) => <Message message={message.message}/>)}
     </div>
     <div>
-      <textarea ref={newPostEl}></textarea>
+      <textarea ref={newPostEl} onChange={changeTextArea} value={title}></textarea>
       <button onClick={addPost}>Add post</button>
     </div>
   </div>)

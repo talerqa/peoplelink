@@ -11,9 +11,9 @@ import Music from './components/Music/Music';
 import {stateType} from './redux/state';
 import Friends from './components/Friends/Friends';
 
-
 type AppPropsType = {
   state: stateType
+  addPost: (title: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -24,7 +24,7 @@ function App(props: AppPropsType) {
         <Navbar state={props.state.myFriendsPage} />
         <div className={'app-wrapper-content'}>
           <Route path={'/profile*/'} render={() => <Profile state={props.state.profilePage}/>}/>
-          <Route path={'/dialogs*/'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+          <Route path={'/dialogs*/'} render={() => <Dialogs state={props.state.dialogsPage} addPost={props.addPost}/>}/>
           <Route path={'/friends*/'} render={() => <Friends state={props.state.myFriendsPage}/>}/>
           <Route path={'/music*/'} component={Music}/>
           <Route path={'/setting*/'} component={Setting}/>
