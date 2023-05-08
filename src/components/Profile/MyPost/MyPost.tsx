@@ -6,26 +6,43 @@ import {postData} from '../../../redux/state';
 
 type MyPostProps = {
   posts: Array<postData>
+  newPostText: string
+  addPost: (title: string) => void
+  updateNewPostText: (newPostText: string) => void
+
 }
 
 const MyPost = (props: MyPostProps) => {
 
+
   ///UseRef = переписать на контролируемый инпут
   const newPostEl = useRef<HTMLTextAreaElement>(null)
-  console.log(newPostEl.current)
 
   //Добавляем новый пост
   const addPost = () => {
     if (newPostEl.current !== null) {
-      console.log(newPostEl.current.value)
+      if (newPostEl.current.value.length > 0) {
+        props.addPost(newPostEl.current.value)
+
+      }
     }
+  }
+
+  const onPostChange = () => {
+    if (newPostEl.current !== null) {
+      let newPost = newPostEl.current.value
+      props.updateNewPostText(newPost)
+    }
+
   }
 
   const postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>)
   return (
     <div className={s.item}>
       <ProfileInfo/>
-      <textarea ref={newPostEl}></textarea>
+      <textarea ref={newPostEl} value={props.newPostText}
+                onChange={onPostChange}
+      ></textarea>
       <button onClick={addPost}>Add post</button>
       <div className={s.posts}>
         {postsElement}
