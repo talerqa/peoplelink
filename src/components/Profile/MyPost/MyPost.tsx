@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './MyPost.module.css'
 import Post from './Post/Post';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
@@ -13,24 +13,19 @@ type MyPostProps = {
 }
 
 const MyPost = (props: MyPostProps) => {
-
-
   ///UseRef = переписать на контролируемый инпут
-  const newPostEl = useRef<HTMLTextAreaElement>(null)
+  const [title, setTitle] = useState('')
 
   //Добавляем новый пост
   const addPost = () => {
-    if (newPostEl.current !== null) {
-      if (newPostEl.current.value.length > 0) {
-        props.addPost(newPostEl.current.value)
-
-      }
-    }
+    props.addPost(title)
+    setTitle('')
   }
 
-  const onPostChange = () => {
-    if (newPostEl.current !== null) {
-      let newPost = newPostEl.current.value
+  const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.currentTarget.value !== null) {
+      let newPost = e.currentTarget.value
+      setTitle(newPost)
       props.updateNewPostText(newPost)
     }
 
@@ -40,7 +35,7 @@ const MyPost = (props: MyPostProps) => {
   return (
     <div className={s.item}>
       <ProfileInfo/>
-      <textarea ref={newPostEl} value={props.newPostText}
+      <textarea value={title}
                 onChange={onPostChange}
       ></textarea>
       <button onClick={addPost}>Add post</button>

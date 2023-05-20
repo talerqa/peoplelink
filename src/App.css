@@ -40,16 +40,17 @@
 .app-wrapper {
   display: grid;
   margin: 0 auto;
-  width: 1200px;
+  max-width: 80vw;
+  min-height: 100vh;
   grid-template-areas:
     'header header'
-    'nav content';
+    'nav content  ';
   grid-template-rows: 100px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+  grid-template-columns: 200px 10fr;
+  grid-gap: 5px;
 }
 
-.app-wrapper-content {
-  background-color: green;
+.content {
+  background-color: rgba(23, 62, 166, 0.76);
   grid-area: content;
 }

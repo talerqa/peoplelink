@@ -10,7 +10,6 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
-
   return (
     <div className={s.Profile}>
       <MyPost

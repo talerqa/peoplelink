@@ -3,7 +3,9 @@ import letov from './img/letov.webp'
 import kafka from './img/kafka.jpg'
 import chekhov from './img/chekhov.jpg'
 import karatkevich from './img/karatkevich.jpg'
-import {rerenderEntireTree} from '../render';
+
+let rerenderEntireTree = (state: StateType) => {
+}
 
 //Типы Post
 export type postData = {
@@ -44,14 +46,14 @@ export type myFriendsPageType = {
 }
 
 //Тип State
-export type stateType = {
+export type StateType = {
   profilePage: profilePageType
   dialogsPage: dialogsPageType
   myFriendsPage: myFriendsPageType
   addPost?: any
 }
 
-export const state: stateType = {
+export const state: StateType = {
   profilePage: {
     posts: [
       {id: 1, message: 'Hi how are you', likesCount: 7},
@@ -89,9 +91,8 @@ export const state: stateType = {
 }
 
 export const addPost = (title: string) => {
-  const newPost = {id: 5, message: title, likesCount: 0};
-  state.profilePage.posts.push(newPost)
-  state.profilePage.newPostText = '';
+  const newPost: postData = {id: 5, message: title, likesCount: 0};
+  state.profilePage.posts.push(newPost);
   rerenderEntireTree(state)
 }
 
@@ -100,16 +101,18 @@ export const updateNewPostText = (newPostText: string) => {
   rerenderEntireTree(state)
 }
 
-
 export const addMessage = (title: string) => {
-  const newPost =  {id: 6, message: title}
+  const newPost: messageType = {id: 6, message: title}
   state.dialogsPage.message.push(newPost);
   state.dialogsPage.newMessage = '';
   rerenderEntireTree(state)
 }
+
 export const updateMessageText = (title: string) => {
   state.dialogsPage.newMessage = title
-  console.log(state.dialogsPage.newMessage)
-  console.log(state)
   rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: (state: StateType) => void) => {
+  rerenderEntireTree = observer
 }

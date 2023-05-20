@@ -8,8 +8,6 @@ type MessageType = {
 const Message: React.FC<MessageType> = (props) => {
 
 
-
-
   return (
     <div>
     <div className={s.message}>

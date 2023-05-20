@@ -8,11 +8,11 @@ import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
-import {stateType} from './redux/state';
+import {StateType} from './redux/state';
 import Friends from './components/Friends/Friends';
 
 type AppPropsType = {
-  state: stateType
+  state: StateType
   addPost: (title: string) => void
   updateNewPostText: (newPostText: string) => void
   addMessage: (title: string) => void
@@ -22,16 +22,15 @@ type AppPropsType = {
 function App(props: AppPropsType) {
 
   return (<div className="app-wrapper">
-
       <Header/>
+
       <Navbar state={props.state.myFriendsPage}/>
-      <div className={'app-wrapper-content'}>
-        <Route path={'/profile*/'} render={() =>
+      <div className={'content'}>
+        <Route  path={'/profile*/'} render={() =>
           <Profile
             state={props.state.profilePage}
             updateNewPostText={props.updateNewPostText}
             addPost={props.addPost}
-
           />
 
         }/>
@@ -40,8 +39,6 @@ function App(props: AppPropsType) {
             state={props.state.dialogsPage}
             addMessage={props.addMessage}
             updateMessageText={props.updateMessageText}/>}
-
-
         />
         <Route path={'/friends*/'} render={() => <Friends state={props.state.myFriendsPage}/>}/>
         <Route path={'/music*/'} component={Music}/>
