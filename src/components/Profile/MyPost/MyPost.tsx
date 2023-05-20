@@ -35,10 +35,18 @@ const MyPost = (props: MyPostProps) => {
   return (
     <div className={s.item}>
       <ProfileInfo/>
-      <textarea value={title}
-                onChange={onPostChange}
-      ></textarea>
-      <button onClick={addPost}>Add post</button>
+      <div className={s.formPost}>
+        <textarea
+
+          className={s.textarea}
+          value={title}
+          onChange={onPostChange}></textarea>
+        <button
+          onClick={addPost}
+          className={s.buttonAddPost}
+        >Add post</button>
+      </div>
+
       <div className={s.posts}>
         {postsElement}
       </div>

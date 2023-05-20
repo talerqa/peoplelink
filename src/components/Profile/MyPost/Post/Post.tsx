@@ -12,9 +12,12 @@ const Post = (props: PostPropsType) => {
 
   return (<div className={s.item}>
       <ProfileInfo/>
-      <div>{props.message}</div>
-      <div>Like</div>
-      <span>{props.likesCount}</span>
+      <div className={s.post}>
+        <div>{props.message}</div>
+        <div>Like</div>
+        <span>{props.likesCount}</span>
+      </div>
+
     </div>
   )
 }

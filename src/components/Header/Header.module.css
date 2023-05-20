@@ -1,5 +1,7 @@
 .header {
-  background-color: rgba(23, 62, 166, 0.76);
+  margin-top: 5px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.9);
   grid-area: header;
 }
 

@@ -4,5 +4,11 @@
 }
 
 .item {
-  color: red;
+  color: #000;
+  font-weight: 600;
+}
+
+.post {
+  color: rgba(86, 81, 81, 0.82);
+  font-weight: 600;
 }

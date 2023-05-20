@@ -1,7 +1,16 @@
 .item {
-  color: red;
+  color: black;
 }
-.avatar {
-  width: 40px;
-  height: 40px;
+
+.formPost {
+  display: flex;
+}
+
+.textarea {
+width: 200px;
+height: 100px;
+}
+
+.buttonAddPost {
+
 }
