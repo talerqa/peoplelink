@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/samurai-way-main/static/css/main.eb9eadf4.css",
-    "main.js": "/samurai-way-main/static/js/main.411501d9.js",
+    "main.css": "/samurai-way-main/static/css/main.f51de5f0.css",
+    "main.js": "/samurai-way-main/static/js/main.13b92cbd.js",
     "static/media/chekhov.jpg": "/samurai-way-main/static/media/chekhov.fb72474b5fdeaaa52cff.jpg",
     "static/media/avatar.png": "/samurai-way-main/static/media/avatar.cb914cf6b249edde4e0a.png",
     "static/media/letov.webp": "/samurai-way-main/static/media/letov.b24ef22cd4f881bad010.webp",
@@ -9,11 +9,11 @@
     "static/media/logo.png": "/samurai-way-main/static/media/logo.1cbadb400250c6f508f0.png",
     "static/media/karatkevich.jpg": "/samurai-way-main/static/media/karatkevich.b597e411b6ba941afa32.jpg",
     "index.html": "/samurai-way-main/index.html",
-    "main.eb9eadf4.css.map": "/samurai-way-main/static/css/main.eb9eadf4.css.map",
-    "main.411501d9.js.map": "/samurai-way-main/static/js/main.411501d9.js.map"
+    "main.f51de5f0.css.map": "/samurai-way-main/static/css/main.f51de5f0.css.map",
+    "main.13b92cbd.js.map": "/samurai-way-main/static/js/main.13b92cbd.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb9eadf4.css",
-    "static/js/main.411501d9.js"
+    "static/css/main.f51de5f0.css",
+    "static/js/main.13b92cbd.js"
   ]
 }
