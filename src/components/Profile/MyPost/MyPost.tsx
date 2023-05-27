@@ -9,11 +9,10 @@ type MyPostProps = {
   newPostText: string
   addPost: (title: string) => void
   updateNewPostText: (newPostText: string) => void
-
 }
 
 const MyPost = (props: MyPostProps) => {
-  ///UseRef = переписать на контролируемый инпут
+
   const [title, setTitle] = useState('')
 
   //Добавляем новый пост

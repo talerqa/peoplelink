@@ -23,7 +23,6 @@ function App(props: AppPropsType) {
 
   return (<div className="app-wrapper">
       <Header/>
-
       <Navbar state={props.state.myFriendsPage}/>
       <div className={'content'}>
         <Route  path={'/profile*/'} render={() =>
@@ -44,9 +43,7 @@ function App(props: AppPropsType) {
         <Route path={'/music*/'} component={Music}/>
         <Route path={'/setting*/'} component={Setting}/>
         <Route path={'/news*/'} component={News}/>
-
       </div>
-
     </div>
   )
 }

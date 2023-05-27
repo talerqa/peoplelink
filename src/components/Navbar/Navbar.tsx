@@ -9,18 +9,6 @@ type NavbarPropsType = {
 
 const Navbar = (props: NavbarPropsType) => {
 
-  // const [show, setShow] = useState(false)
-  // const showFriend = props.state.friends.map(f => {
-  //   return (<div key={f.id}>
-  //     <img style={{height: '50px', width: '50px', borderRadius: '20px', display: 'block'}} src={f.img}
-  //          alt="avatar"/>
-  //     <div>
-  //       <a href="#">{f.name + ' ' + f.lastName}</a>
-  //       <div></div>
-  //     </div>
-  //   </div>)
-  // })
-
   const conditionChangeColorLink = (isActive: boolean) => isActive ? s.active + ' ' + s.link : s.link
 
   return (<div className={s.navbarWrapper}>
