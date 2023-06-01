@@ -6,18 +6,15 @@ import {postData} from '../../../redux/state';
 
 type MyPostProps = {
   posts: Array<postData>
-  newPostText: string
-  addPost: (title: string) => void
-  updateNewPostText: (newPostText: string) => void
+  dispatch: any
 }
 
 const MyPost = (props: MyPostProps) => {
 
   const [title, setTitle] = useState('')
-
   //Добавляем новый пост
   const addPost = () => {
-    props.addPost(title)
+    props.dispatch({type: 'ADD-POST', title})
     setTitle('')
   }
 
@@ -25,7 +22,7 @@ const MyPost = (props: MyPostProps) => {
     if (e.currentTarget.value !== null) {
       let newPost = e.currentTarget.value
       setTitle(newPost)
-      props.updateNewPostText(newPost)
+      props.dispatch({type: 'UPDATE-NEWPOST-TEXT', newPost})
     }
 
   }

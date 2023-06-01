@@ -8,17 +8,20 @@ import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
-import {StateType} from './redux/state';
+import {
+  AddMessageType,
+  AddPostType,
+  StateType,
+  UpdateNewMessageType,
+  UpdateNewPostTextType
+} from './redux/state';
 import Friends from './components/Friends/Friends';
 
 type AppPropsType = {
   state: StateType
-  addPost: (title: string) => void
-  updateNewPostText: (newPostText: string) => void
-  addMessage: (title: string) => void
-  updateMessageText: (title: string) => void
-}
+  dispatch: (action: AddPostType | UpdateNewPostTextType | AddMessageType | UpdateNewMessageType) => void
 
+}
 function App(props: AppPropsType) {
 
   return (<div className="app-wrapper">
@@ -28,16 +31,14 @@ function App(props: AppPropsType) {
         <Route  path={'/profile*/'} render={() =>
           <Profile
             state={props.state.profilePage}
-            updateNewPostText={props.updateNewPostText}
-            addPost={props.addPost}
+            dispatch={props.dispatch}
           />
 
         }/>
         <Route path={'/dialogs*/'} render={() =>
           <Dialogs
             state={props.state.dialogsPage}
-            addMessage={props.addMessage}
-            updateMessageText={props.updateMessageText}/>}
+            dispatch={props.dispatch}/>}
         />
         <Route path={'/friends*/'} render={() => <Friends state={props.state.myFriendsPage}/>}/>
         <Route path={'/music*/'} component={Music}/>
