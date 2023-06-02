@@ -2,19 +2,20 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './MyPost.module.css'
 import Post from './Post/Post';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
-import {postData} from '../../../redux/state';
+import {addPostAC, AddPostType, postData, updateNewPostText, UpdateNewPostTextType} from '../../../redux/state';
 
 type MyPostProps = {
   posts: Array<postData>
-  dispatch: any
+  dispatch: (action: AddPostType | UpdateNewPostTextType) => void
 }
 
 const MyPost = (props: MyPostProps) => {
-
+  console.log(props.dispatch)
   const [title, setTitle] = useState('')
   //Добавляем новый пост
   const addPost = () => {
-    props.dispatch({type: 'ADD-POST', title})
+    let action = addPostAC(title)
+    props.dispatch(action)
     setTitle('')
   }
 
@@ -22,9 +23,9 @@ const MyPost = (props: MyPostProps) => {
     if (e.currentTarget.value !== null) {
       let newPost = e.currentTarget.value
       setTitle(newPost)
-      props.dispatch({type: 'UPDATE-NEWPOST-TEXT', newPost})
+      const action = updateNewPostText(newPost)
+      props.dispatch(action)
     }
-
   }
 
   const postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>)

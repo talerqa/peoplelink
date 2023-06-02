@@ -1,8 +1,14 @@
-import React, {ChangeEvent, useRef} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {AddMessageType, dialogsPageType, UpdateNewMessageType} from './../../redux/state';
+import {
+  AddMessageType,
+  addMessageAC,
+  dialogsPageType,
+  updateNewMessageText,
+  UpdateNewMessageType
+} from './../../redux/state';
 
 type DialogsPropsType = {
   state: dialogsPageType
@@ -10,26 +16,20 @@ type DialogsPropsType = {
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-
-  //useState
-  //const [title, setTitle] = useState('')
-
-  ///UseRef = переписать на контролируемый инпут через useState
-  const newPostEl = useRef<HTMLTextAreaElement>(null)
-
+  const [title, setTitle] = useState('')
 
   //Добавляем новый пост
   const addPost = () => {
-    if (newPostEl.current !== null) {
-
-      props.dispatch({type: 'ADD-MESSAGE', title: newPostEl.current.value})
-    }
+    const action = addMessageAC(title)
+    props.dispatch(action)
+    setTitle('')
   }
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (e.currentTarget) {
-
-      props.dispatch({type: 'UPDATE-MESSAGE-TEXT', title: e.currentTarget.value})
+      setTitle(e.currentTarget.value)
+      const action = updateNewMessageText(e.currentTarget.value)
+      props.dispatch(action)
     }
   }
 
@@ -41,7 +41,7 @@ const Dialogs = (props: DialogsPropsType) => {
       {props.state.message.map((message: any) => <Message message={message.message}/>)}
     </div>
     <div>
-      <textarea ref={newPostEl} onChange={changeTextArea} value={props.state.newMessage}></textarea>
+      <textarea onChange={changeTextArea} value={props.state.newMessage}></textarea>
       <button onClick={addPost}>Add post</button>
     </div>
   </div>)
