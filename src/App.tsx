@@ -9,17 +9,16 @@ import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
 import {
-  AddMessageType,
-  AddPostType,
-  StateType,
-  UpdateNewMessageType,
-  UpdateNewPostTextType
+    StateType,
+
 } from './redux/state';
 import Friends from './components/Friends/Friends';
+import {AddPostACType, UpdateNewPostTextACType} from './redux/profileReducer';
+import {SendMessageACType, UpdateNewMessageTextACType} from './redux/dialogsReducer';
 
 type AppPropsType = {
   state: StateType
-  dispatch: (action: AddPostType | UpdateNewPostTextType | AddMessageType | UpdateNewMessageType) => void
+  dispatch: (action: UpdateNewPostTextACType | AddPostACType | SendMessageACType | UpdateNewMessageTextACType) => void
 
 }
 function App(props: AppPropsType) {

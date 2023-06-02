@@ -3,6 +3,8 @@ import letov from './img/letov.webp'
 import kafka from './img/kafka.jpg'
 import chekhov from './img/chekhov.jpg'
 import karatkevich from './img/karatkevich.jpg'
+import {AddPostACType, profileReducer, UpdateNewPostTextACType} from './profileReducer';
+import {SendMessageACType, dialogsReducer, UpdateNewMessageTextACType} from './dialogsReducer';
 
 let rerenderEntireTree = (state: StateType) => {
 }
@@ -62,43 +64,23 @@ type StoreType = {
   updateNewPostText: (newPostText: string) => void
   addMessage: (title: string) => void
   updateMessageText: (title: string) => void
-  dispatch: (action: AddPostType | UpdateNewPostTextType | AddMessageType | UpdateNewMessageType) => void
+  dispatch: (action: AddPostACType | UpdateNewPostTextACType | SendMessageACType | UpdateNewMessageTextACType) => void
 }
 
 //////////////////////////////
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
-const SEND_MESSGAE = 'ADD-MESSAGE';
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
-
-export type AddPostType = {
-  type: typeof ADD_POST
-  title: string
-}
-
-export type UpdateNewPostTextType = {
-  type: typeof UPDATE_NEWPOST_TEXT
-  title: string
-}
-
-export type AddMessageType = {
-  type: typeof SEND_MESSGAE
-  title: string
-}
-export type UpdateNewMessageType = {
-  type: typeof UPDATE_MESSAGE_TEXT
-  title: string
-}
-
-export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
-export const updateNewPostTextAC = (title: string) => ({
-  type: UPDATE_NEWPOST_TEXT, title
-} as const)
-export const sendMessageAC = (title: string) => ({type: SEND_MESSGAE, title} as const)
-export const updateNewMessageTextAC = (title: string) => {
-  return {type: UPDATE_MESSAGE_TEXT, title} as const
-}
-
+// const ADD_POST = 'ADD-POST';
+// const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
+// const SEND_MESSGAE = 'ADD-MESSAGE';
+// const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
+//
+// export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
+// export const updateNewPostTextAC = (title: string) => ({
+//   type: UPDATE_NEWPOST_TEXT, title
+// } as const)
+// export const sendMessageAC = (title: string) => ({type: SEND_MESSGAE, title} as const)
+// export const updateNewMessageTextAC = (title: string) => {
+//   return {type: UPDATE_MESSAGE_TEXT, title} as const
+// }
 
 export const store: StoreType = {
   _state: {
@@ -165,32 +147,9 @@ export const store: StoreType = {
     rerenderEntireTree(this._state)
   },
   dispatch(action) {
-    switch (action.type) {
-      case (ADD_POST): {
-        const newPost: postData = {id: 5, message: action.title, likesCount: 0};
-        this._state.profilePage.posts.push(newPost);
-        rerenderEntireTree(this._state)
-        return;
-      }
-      case (UPDATE_NEWPOST_TEXT) : {
-        this._state.profilePage.newPostText = action.title
-        rerenderEntireTree(this._state)
-        return;
-      }
-      case (SEND_MESSGAE) : {
-        const newPost: messageType = {id: 6, message: action.title}
-        this._state.dialogsPage.message.push(newPost);
-        this._state.dialogsPage.newMessageText = '';
-        rerenderEntireTree(this._state)
-        return;
-      }
-      case (UPDATE_MESSAGE_TEXT) : {
-        this._state.dialogsPage.newMessageText = action.title
-        rerenderEntireTree(this._state)
-        return;
-      }
-      default:
-        return this._state
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+
+    this._callSubscriber()
   }
 }

@@ -2,17 +2,17 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import {dialogsPageType} from './../../redux/state';
 import {
-  AddMessageType,
   sendMessageAC,
-  dialogsPageType,
+  SendMessageACType,
   updateNewMessageTextAC,
-  UpdateNewMessageType
-} from './../../redux/state';
+  UpdateNewMessageTextACType
+} from '../../redux/dialogsReducer';
 
 type DialogsPropsType = {
   state: dialogsPageType
-  dispatch: (action: AddMessageType | UpdateNewMessageType) => void
+  dispatch: (action: SendMessageACType | UpdateNewMessageTextACType) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {

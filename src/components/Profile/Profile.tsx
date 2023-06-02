@@ -1,11 +1,12 @@
 import React from 'react';
 import s from './Profile.module.css'
 import MyPost from './MyPost/MyPost';
-import {AddPostType, profilePageType, UpdateNewPostTextType} from '../../redux/state';
+import {profilePageType} from '../../redux/state';
+import {AddPostACType, UpdateNewPostTextACType} from '../../redux/profileReducer';
 
 type ProfilePropsType = {
   state: profilePageType
-  dispatch: (action: AddPostType | UpdateNewPostTextType) => void
+  dispatch: (action: AddPostACType | UpdateNewPostTextACType) => void
 }
 
 const Profile = (props: ProfilePropsType) => {

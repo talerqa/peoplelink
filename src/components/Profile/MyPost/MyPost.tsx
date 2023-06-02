@@ -2,11 +2,12 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './MyPost.module.css'
 import Post from './Post/Post';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
-import {addPostAC, AddPostType, postData, updateNewPostTextAC, UpdateNewPostTextType} from '../../../redux/state';
+import {postData} from '../../../redux/state';
+import {addPostAC, AddPostACType, updateNewPostTextAC, UpdateNewPostTextACType} from '../../../redux/profileReducer';
 
 type MyPostProps = {
   posts: Array<postData>
-  dispatch: (action: AddPostType | UpdateNewPostTextType) => void
+  dispatch: (action: AddPostACType | UpdateNewPostTextACType) => void
 }
 
 const MyPost = (props: MyPostProps) => {
