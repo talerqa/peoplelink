@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './MyPost.module.css'
 import Post from './Post/Post';
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
-import {addPostAC, AddPostType, postData, updateNewPostText, UpdateNewPostTextType} from '../../../redux/state';
+import {addPostAC, AddPostType, postData, updateNewPostTextAC, UpdateNewPostTextType} from '../../../redux/state';
 
 type MyPostProps = {
   posts: Array<postData>
@@ -23,12 +23,13 @@ const MyPost = (props: MyPostProps) => {
     if (e.currentTarget.value !== null) {
       let newPost = e.currentTarget.value
       setTitle(newPost)
-      const action = updateNewPostText(newPost)
+      const action = updateNewPostTextAC(newPost)
       props.dispatch(action)
     }
   }
 
   const postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>)
+
   return (
     <div className={s.item}>
       <ProfileInfo/>

@@ -30,7 +30,7 @@ export type messageType = {
 export type dialogsPageType = {
   dialogsData: Array<dialogsDataType>
   message: Array<messageType>
-  newMessage: string
+  newMessageText: string
 }
 
 //Типы Friends
@@ -68,7 +68,7 @@ type StoreType = {
 //////////////////////////////
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
-const ADD_MESSGAE = 'ADD-MESSAGE';
+const SEND_MESSGAE = 'ADD-MESSAGE';
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 
 export type AddPostType = {
@@ -82,7 +82,7 @@ export type UpdateNewPostTextType = {
 }
 
 export type AddMessageType = {
-  type: typeof ADD_MESSGAE
+  type: typeof SEND_MESSGAE
   title: string
 }
 export type UpdateNewMessageType = {
@@ -91,13 +91,14 @@ export type UpdateNewMessageType = {
 }
 
 export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
-export const updateNewPostText = (title: string) => ({
+export const updateNewPostTextAC = (title: string) => ({
   type: UPDATE_NEWPOST_TEXT, title
 } as const)
-export const addMessageAC = (title: string) => ({type: ADD_MESSGAE, title} as const)
-export const updateNewMessageText = (title: string) => {
+export const sendMessageAC = (title: string) => ({type: SEND_MESSGAE, title} as const)
+export const updateNewMessageTextAC = (title: string) => {
   return {type: UPDATE_MESSAGE_TEXT, title} as const
 }
+
 
 export const store: StoreType = {
   _state: {
@@ -116,7 +117,7 @@ export const store: StoreType = {
         {id: 3, message: 'Hi everyone'},
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Hello'}],
-      newMessage: '',
+      newMessageText: '',
       dialogsData: [
         {id: 1, name: 'Dimych'},
         {id: 2, name: 'Andrew'},
@@ -156,11 +157,11 @@ export const store: StoreType = {
   addMessage(title: string) {
     const newPost: messageType = {id: 6, message: title}
     this._state.dialogsPage.message.push(newPost);
-    this._state.dialogsPage.newMessage = '';
+    this._state.dialogsPage.newMessageText = '';
     rerenderEntireTree(this._state)
   },
   updateMessageText(title: string) {
-    this._state.dialogsPage.newMessage = title
+    this._state.dialogsPage.newMessageText = title
     rerenderEntireTree(this._state)
   },
   dispatch(action) {
@@ -176,15 +177,15 @@ export const store: StoreType = {
         rerenderEntireTree(this._state)
         return;
       }
-      case (ADD_MESSGAE) : {
+      case (SEND_MESSGAE) : {
         const newPost: messageType = {id: 6, message: action.title}
         this._state.dialogsPage.message.push(newPost);
-        this._state.dialogsPage.newMessage = '';
+        this._state.dialogsPage.newMessageText = '';
         rerenderEntireTree(this._state)
         return;
       }
       case (UPDATE_MESSAGE_TEXT) : {
-        this._state.dialogsPage.newMessage = action.title
+        this._state.dialogsPage.newMessageText = action.title
         rerenderEntireTree(this._state)
         return;
       }
