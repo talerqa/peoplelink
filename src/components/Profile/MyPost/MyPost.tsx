@@ -11,10 +11,10 @@ type MyPostProps = {
 }
 
 const MyPost = (props: MyPostProps) => {
-  console.log(props.dispatch)
   const [title, setTitle] = useState('')
   //Добавляем новый пост
   const addPost = () => {
+    console.log(title)
     let action = addPostAC(title)
     props.dispatch(action)
     setTitle('')

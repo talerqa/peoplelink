@@ -139,7 +139,7 @@ export const store: StoreType = {
   addMessage(title: string) {
     const newPost: messageType = {id: 6, message: title}
     this._state.dialogsPage.message.push(newPost);
-    this._state.dialogsPage.newMessageText = '';
+    // this._state.dialogsPage.newMessageText = '';
     rerenderEntireTree(this._state)
   },
   updateMessageText(title: string) {
