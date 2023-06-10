@@ -5,13 +5,14 @@ import chekhov from './img/chekhov.jpg'
 import karatkevich from './img/karatkevich.jpg'
 import {AddPostACType, profileReducer, UpdateNewPostTextACType} from './profileReducer';
 import {SendMessageACType, dialogsReducer, UpdateNewMessageTextACType} from './dialogsReducer';
+import {v1} from 'uuid';
 
 let rerenderEntireTree = (state: StateType) => {
 }
 
 //Типы Post
 export type postData = {
-  id: number
+  id: string
   message: string
   likesCount: number
 }
@@ -71,9 +72,9 @@ export const store: StoreType = {
   _state: {
     profilePage: {
       posts: [
-        {id: 1, message: 'Hi how are you', likesCount: 7},
-        {id: 2, message: 'It\'s my first project', likesCount: 4},
-        {id: 3, message: 'Its my second project', likesCount: 1},
+        {id: v1(), message: 'Hi how are you', likesCount: 7},
+        {id: v1(), message: 'It\'s my first project', likesCount: 4},
+        {id: v1(), message: 'Its my second project', likesCount: 1},
       ],
       newPostText: '',
     },
@@ -113,7 +114,7 @@ export const store: StoreType = {
     rerenderEntireTree = observer
   },
   addPost(title) {
-    const newPost: postData = {id: 5, message: title, likesCount: 0};
+    const newPost: postData = {id: v1(), message: title, likesCount: 0};
     this._state.profilePage.posts.push(newPost);
     rerenderEntireTree(this._state)
   },

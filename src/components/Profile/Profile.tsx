@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Profile.module.css'
-import MyPost from './MyPost/MyPost';
 import {ProfilePageType} from '../../redux/store';
 import {AddPostACType, UpdateNewPostTextACType} from '../../redux/profileReducer';
+import {MyPostContainer} from './MyPost/MyPostContainer';
 
 type ProfilePropsType = {
   state: ProfilePageType
@@ -12,9 +12,8 @@ type ProfilePropsType = {
 const Profile = (props: ProfilePropsType) => {
   return (
     <div className={s.Profile}>
-      <MyPost
+      <MyPostContainer
         posts={props.state.posts}
-        dispatch={props.dispatch}
       />
     </div>
   );

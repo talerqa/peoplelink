@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/Header/Header';
 import {Route} from 'react-router-dom';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
@@ -14,6 +13,7 @@ import {SendMessageACType, UpdateNewMessageTextACType} from './redux/dialogsRedu
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './redux/storeWithRedux';
 import Navbar from './components/Navbar/Navbar';
+import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
 type AppPropsType = {
   state: StateType
@@ -22,6 +22,7 @@ type AppPropsType = {
 
 function App() {
   const profilePage = useSelector<AppRootStateType, ProfilePageType>(state => state.profileReducer)
+
   const dialogsPage = useSelector<AppRootStateType, DialogsPageType>(state => state.dialogsReducer)
   const sideBarPage = useSelector<AppRootStateType, SideBarType>(state => state.sidebarReducer)
   const dispatch = useDispatch()
@@ -38,13 +39,13 @@ function App() {
 
         }/>
         <Route path={'/dialogs*/'} render={() =>
-          <Dialogs
+          <DialogsContainer
             state={dialogsPage}
-            dispatch={dispatch}/>}
+          />}
         />
       <Route path={'/friends*/'} render={() => {
-          return <Friends state={sideBarPage}/>
-        }
+        return <Friends state={sideBarPage}/>
+      }
         }/>
 
         <Route path={'/music*/'} component={Music}/>

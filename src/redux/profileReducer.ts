@@ -1,13 +1,14 @@
 import {postData, ProfilePageType} from './store';
+import {v1} from 'uuid';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
 
 const initState: ProfilePageType = {
   posts: [
-    {id: 1, message: 'Hi how are you', likesCount: 7},
-    {id: 2, message: 'It\'s my first project', likesCount: 4},
-    {id: 3, message: 'Its my second project', likesCount: 1},
+    {id: v1(), message: 'Hi how are you', likesCount: 7},
+    {id: v1(), message: 'It\'s my first project', likesCount: 4},
+    {id: v1(), message: 'Its my second project', likesCount: 1},
   ],
   newPostText: '',
 }
@@ -15,7 +16,7 @@ const initState: ProfilePageType = {
 export const profileReducer = (state = initState, action: any) => {
   switch (action.type) {
     case (ADD_POST): {
-      const newPost: postData = {id: 4, message: action.title, likesCount: 0};
+      const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
       state.posts.push(newPost)
       state.newPostText = ''
       return state

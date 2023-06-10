@@ -5,7 +5,7 @@ import ProfileInfo from '../../ProfileInfo/ProfileInfo';
 type PostPropsType =  {
   message: string
   likesCount: number
-  id: number
+  id: string
 }
 
 const Post = (props: PostPropsType) => {
