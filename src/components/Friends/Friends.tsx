@@ -1,13 +1,12 @@
 import React from 'react';
 import s from './Friends.module.css'
-import {myFriendsPageType} from './../../redux/state';
+import {SideBarType} from '../../redux/store';
 
 type FriendPropsType = {
-  state: myFriendsPageType
+  state: SideBarType
 }
 
 const Friends = (props: FriendPropsType) => {
-
   //Цвет статуса Friend в зависимости от статуса онлайн или оффлайн
   const statusOnline = <p className={s.statusOnline}>Online</p>
   const statusOffline = <p className={s.statusOffline}>Offline</p>

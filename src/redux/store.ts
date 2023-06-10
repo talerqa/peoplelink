@@ -15,7 +15,7 @@ export type postData = {
   message: string
   likesCount: number
 }
-export type profilePageType = {
+export type ProfilePageType = {
   posts: Array<postData>
   newPostText: string
 }
@@ -29,7 +29,7 @@ export type messageType = {
   id: number
   message: string
 }
-export type dialogsPageType = {
+export type DialogsPageType = {
   dialogsData: Array<dialogsDataType>
   message: Array<messageType>
   newMessageText: string
@@ -43,15 +43,15 @@ export type friendsType = {
   statusOnSite: boolean
   img: string
 }
-export type myFriendsPageType = {
+export type SideBarType = {
   friends: friendsType[]
 }
 
 //Тип State
 export type StateType = {
-  profilePage: profilePageType
-  dialogsPage: dialogsPageType
-  myFriendsPage: myFriendsPageType
+  profilePage: ProfilePageType
+  dialogsPage: DialogsPageType
+  sideBarPage: SideBarType
   addPost?: any
 }
 
@@ -66,21 +66,6 @@ type StoreType = {
   updateMessageText: (title: string) => void
   dispatch: (action: AddPostACType | UpdateNewPostTextACType | SendMessageACType | UpdateNewMessageTextACType) => void
 }
-
-//////////////////////////////
-// const ADD_POST = 'ADD-POST';
-// const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
-// const SEND_MESSGAE = 'ADD-MESSAGE';
-// const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
-//
-// export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
-// export const updateNewPostTextAC = (title: string) => ({
-//   type: UPDATE_NEWPOST_TEXT, title
-// } as const)
-// export const sendMessageAC = (title: string) => ({type: SEND_MESSGAE, title} as const)
-// export const updateNewMessageTextAC = (title: string) => {
-//   return {type: UPDATE_MESSAGE_TEXT, title} as const
-// }
 
 export const store: StoreType = {
   _state: {
@@ -109,7 +94,7 @@ export const store: StoreType = {
         {id: 6, name: 'Viktor'}
       ]
     },
-    myFriendsPage: {
+    sideBarPage: {
       friends: [
         {id: 1, name: 'Egor', lastName: 'Letov', statusOnSite: true, img: letov,},
         {id: 2, name: 'Anton', lastName: 'Chekhov', statusOnSite: false, img: chekhov,},
@@ -149,7 +134,6 @@ export const store: StoreType = {
   dispatch(action) {
     this._state.profilePage = profileReducer(this._state.profilePage, action)
     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-
     this._callSubscriber()
   }
 }
