@@ -1,17 +1,16 @@
 import React, {ChangeEvent, useState} from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {DialogsPageType} from '../../redux/store';
+import {DialogsDataType, DialogsPageType, MessageType} from '../../redux/store';
 import {sendMessageAC, updateNewMessageTextAC} from '../../redux/dialogsReducer';
 import Dialogs from './Dialogs';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../redux/storeWithRedux';
 
-type DialogsPropsType = {
-  state: DialogsPageType
-}
-
-export const DialogsContainer = (props: DialogsPropsType) => {
+export const DialogsContainer = () => {
   const [title, setTitle] = useState('')
+  const dialogsPage = useSelector<AppRootStateType, DialogsPageType>(state => state.dialogsReducer)
+
   const dispatch = useDispatch()
   //Добавляем новый пост
   const addPost = () => {
@@ -28,9 +27,11 @@ export const DialogsContainer = (props: DialogsPropsType) => {
     }
   }
 
-  const dialogsElement = props.state.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
-  const messageElement = props.state.message.map((message: any) => <Message message={message.message}/>)
-  const newMessageBody = props.state.newMessageText
+  const dialogsElement = dialogsPage.dialogsData
+    .map((dialog: DialogsDataType) => <DialogItem name={dialog.name} id={dialog.id}/>)
+  const messageElement = dialogsPage.message.map((message: MessageType) => <Message message={message.message}/>)
+
+  const newMessageBody = dialogsPage.newMessageText
 
   return (<Dialogs
     dialogsElement={dialogsElement}
@@ -40,3 +41,4 @@ export const DialogsContainer = (props: DialogsPropsType) => {
     addPost={addPost}
   />)
 }
+

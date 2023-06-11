@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
-import {SideBarType} from '../../redux/store';
+import {MyFrinedPageType} from '../../redux/store';
 
 type NavbarPropsType = {
-  state: SideBarType
+  state: MyFrinedPageType
 }
 
 const Navbar = (props: NavbarPropsType) => {

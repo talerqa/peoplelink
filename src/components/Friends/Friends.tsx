@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './Friends.module.css'
-import {SideBarType} from '../../redux/store';
+import {MyFrinedPageType} from '../../redux/store';
 
 type FriendPropsType = {
-  state: SideBarType
+  state: MyFrinedPageType
 }
 
 const Friends = (props: FriendPropsType) => {
@@ -18,6 +18,8 @@ const Friends = (props: FriendPropsType) => {
       <div>
         <a href="#">{f.name + " " + f.lastName}</a>
         <div>{f.statusOnSite ? statusOnline : statusOffline} </div>
+        <button>Follow</button>
+        <button>UNFOLLOW</button>
       </div>
     </div>)
   })
@@ -28,6 +30,7 @@ const Friends = (props: FriendPropsType) => {
       <div className={s.wrapper_item}>
       {friendsElement}
       </div>
+
     </div>
   );
 };

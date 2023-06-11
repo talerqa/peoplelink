@@ -6,7 +6,7 @@ import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
-import {DialogsPageType, ProfilePageType, SideBarType, StateType,} from './redux/store';
+import {DialogsPageType, ProfilePageType, MyFrinedPageType, StateType,} from './redux/store';
 import Friends from './components/Friends/Friends';
 import {AddPostACType, UpdateNewPostTextACType} from './redux/profileReducer';
 import {SendMessageACType, UpdateNewMessageTextACType} from './redux/dialogsReducer';
@@ -15,16 +15,14 @@ import {AppRootStateType} from './redux/storeWithRedux';
 import Navbar from './components/Navbar/Navbar';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
-type AppPropsType = {
-  state: StateType
-  dispatch: (action: UpdateNewPostTextACType | AddPostACType | SendMessageACType | UpdateNewMessageTextACType) => void
-}
+// type AppPropsType = {
+//   state: StateType
+//   dispatch: (action: UpdateNewPostTextACType | AddPostACType | SendMessageACType | UpdateNewMessageTextACType) => void
+// }
 
 function App() {
-  const profilePage = useSelector<AppRootStateType, ProfilePageType>(state => state.profileReducer)
 
-  const dialogsPage = useSelector<AppRootStateType, DialogsPageType>(state => state.dialogsReducer)
-  const sideBarPage = useSelector<AppRootStateType, SideBarType>(state => state.sidebarReducer)
+  const sideBarPage = useSelector<AppRootStateType, MyFrinedPageType>(state => state.sidebarReducer)
   const dispatch = useDispatch()
 
   return (<div className="app-wrapper">
@@ -32,15 +30,12 @@ function App() {
       <Navbar state={sideBarPage}/>
       <div className={'content'}>
         <Route path={'/profile*/'} render={() =>
-          <Profile
-            state={profilePage}
-            dispatch={dispatch}
-          />
+          <Profile/>
 
         }/>
         <Route path={'/dialogs*/'} render={() =>
           <DialogsContainer
-            state={dialogsPage}
+
           />}
         />
       <Route path={'/friends*/'} render={() => {

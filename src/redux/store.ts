@@ -22,17 +22,17 @@ export type ProfilePageType = {
 }
 
 //Типы Dialogs
-export type dialogsDataType = {
+export type DialogsDataType = {
   id: number
   name: string
 }
-export type messageType = {
+export type MessageType = {
   id: number
   message: string
 }
 export type DialogsPageType = {
-  dialogsData: Array<dialogsDataType>
-  message: Array<messageType>
+  dialogsData: Array<DialogsDataType>
+  message: Array<MessageType>
   newMessageText: string
 }
 
@@ -44,7 +44,7 @@ export type friendsType = {
   statusOnSite: boolean
   img: string
 }
-export type SideBarType = {
+export type MyFrinedPageType = {
   friends: friendsType[]
 }
 
@@ -52,7 +52,7 @@ export type SideBarType = {
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
-  sideBarPage: SideBarType
+  MyFriendPage: MyFrinedPageType
   addPost?: any
 }
 
@@ -95,7 +95,7 @@ export const store: StoreType = {
         {id: 6, name: 'Viktor'}
       ]
     },
-    sideBarPage: {
+    MyFriendPage: {
       friends: [
         {id: 1, name: 'Egor', lastName: 'Letov', statusOnSite: true, img: letov,},
         {id: 2, name: 'Anton', lastName: 'Chekhov', statusOnSite: false, img: chekhov,},
@@ -123,7 +123,7 @@ export const store: StoreType = {
     rerenderEntireTree(this._state)
   },
   addMessage(title: string) {
-    const newPost: messageType = {id: 6, message: title}
+    const newPost: MessageType = {id: 6, message: title}
     this._state.dialogsPage.message.push(newPost);
     // this._state.dialogsPage.newMessageText = '';
     rerenderEntireTree(this._state)

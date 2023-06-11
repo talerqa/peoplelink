@@ -1,9 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 import Post from './Post/Post';
-import {postData} from '../../../redux/store';
+import {postData, ProfilePageType} from '../../../redux/store';
 import {addPostAC, AddPostACType, updateNewPostTextAC, UpdateNewPostTextACType} from '../../../redux/profileReducer';
 import MyPost from './MyPost';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../redux/storeWithRedux';
 
 type MyPostProps = {
   posts: Array<postData>
@@ -11,6 +12,7 @@ type MyPostProps = {
 
 export const MyPostContainer  = (props: MyPostProps) => {
   const [title, setTitle] = useState<string>('')
+
   const dispatch = useDispatch()
   //Добавляем новый пост
   const addPost = () => {

@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+        <App/>
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')
