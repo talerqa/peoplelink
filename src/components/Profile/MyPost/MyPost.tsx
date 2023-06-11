@@ -1,15 +1,14 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPost.module.css'
 import ProfileInfo from '../ProfileInfo/ProfileInfo';
-import {postData} from '../../../redux/store';
-import {AddPostACType, UpdateNewPostTextACType} from '../../../redux/profileReducer';
 
 type MyPostProps = {
-  posts: Array<postData>
-  dispatch: (action: AddPostACType | UpdateNewPostTextACType) => void
+  postsElement: JSX.Element []
+  title: string
+  addPost: () => void
+  updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>)=>void
 }
-
-const MyPost = (props: any) => {
+const MyPost = (props: MyPostProps) => {
   return (
     <div className={s.item}>
       <ProfileInfo/>

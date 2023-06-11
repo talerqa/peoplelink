@@ -8,10 +8,13 @@ import {AppRootStateType} from '../../redux/storeWithRedux';
 
 const Profile = () => {
   const profilePage = useSelector<AppRootStateType, ProfilePageType>(state => state.profileReducer)
+
+  const posts = profilePage.posts
+
   return (
     <div className={s.Profile}>
       <MyPostContainer
-        posts={profilePage.posts}
+        posts={posts}
       />
     </div>
   );

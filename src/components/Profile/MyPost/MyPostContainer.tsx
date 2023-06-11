@@ -1,16 +1,16 @@
 import React, {ChangeEvent, useState} from 'react';
 import Post from './Post/Post';
-import {postData, ProfilePageType} from '../../../redux/store';
-import {addPostAC, AddPostACType, updateNewPostTextAC, UpdateNewPostTextACType} from '../../../redux/profileReducer';
+import {postData} from '../../../redux/store';
+import {addPostAC, updateNewPostTextAC} from '../../../redux/profileReducer';
 import MyPost from './MyPost';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../redux/storeWithRedux';
+import {useDispatch} from 'react-redux';
 
 type MyPostProps = {
   posts: Array<postData>
 }
 
-export const MyPostContainer  = (props: MyPostProps) => {
+export const MyPostContainer = (props: MyPostProps) => {
+  const {posts} = props
   const [title, setTitle] = useState<string>('')
 
   const dispatch = useDispatch()
@@ -30,8 +30,8 @@ export const MyPostContainer  = (props: MyPostProps) => {
     }
   }
 
-  const postsElement = props.posts.map(p =>
-    <Post message={p.message} likesCount={p.likesCount} id={p.id}/>)
+  const postsElement = posts.map(post =>
+    <Post message={post.message} likesCount={post.likesCount} id={post.id}/>)
 
   return (
     <MyPost
