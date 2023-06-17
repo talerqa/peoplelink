@@ -1,4 +1,5 @@
-import React, {ChangeEvent} from 'react';
+import * as React from 'react';
+import  {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 
 type DialogsPropsType = {

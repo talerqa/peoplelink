@@ -1,11 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import './index.css';
 import App from './App';
 import {store} from './redux/storeWithRedux'
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import ReactDOM from 'react-dom';
-
+import ReactDOM from 'react-dom'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -15,3 +14,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root')
 );
+
+

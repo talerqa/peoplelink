@@ -10,20 +10,20 @@ const initState: ProfilePageType = {
     {id: v1(), message: 'It\'s my first project', likesCount: 4},
     {id: v1(), message: 'Its my second project', likesCount: 1},
   ],
-  newPostText: '',
+  newPostText: ''
 }
 
-export const profileReducer = (state = initState, action: any) => {
+export const profileReducer = (state = initState, action: CommonACType) => {
   switch (action.type) {
     case (ADD_POST): {
       const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
-      state.posts.push(newPost)
-      state.newPostText = ''
-      return state
+      return {
+        ...state,
+        posts: [...state.posts, newPost]
+      }
     }
     case (UPDATE_NEWPOST_TEXT) : {
-      state.newPostText = action.title
-      return state
+      return {...state, newPostText: action.title}
     }
     default:
       return state

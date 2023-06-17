@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import s from './Profile.module.css'
 import {ProfilePageType} from '../../redux/store';
 import {MyPostContainer} from './MyPost/MyPostContainer';

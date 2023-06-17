@@ -1,15 +1,16 @@
 import {DialogsPageType, MessageType} from './store';
+import {v1} from 'uuid';
 
 const SEND_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 
 const initState: DialogsPageType = {
   message: [
-    {id: 1, message: 'Hello'},
-    {id: 2, message: 'Whatsup'},
-    {id: 3, message: 'Hi everyone'},
-    {id: 4, message: 'Yo'},
-    {id: 5, message: 'Hello'}],
+    {id: v1(), message: 'Hello'},
+    {id: v1(), message: 'Whatsup'},
+    {id: v1(), message: 'Hi everyone'},
+    {id: v1(), message: 'Yo'},
+    {id: v1(), message: 'Hello'}],
   newMessageText: '',
   dialogsData: [
     {id: 1, name: 'Dimych'},
@@ -21,18 +22,17 @@ const initState: DialogsPageType = {
   ]
 }
 
-export const dialogsReducer = (state = initState, action: any) => {
+export const dialogsReducer = (state = initState, action: CommonACType) => {
   switch (action.type) {
     case (SEND_MESSAGE) : {
-      console.log(state)
-      const newPost: MessageType = {id: 6, message: action.title}
-      state.message.push(newPost)
-      state.newMessageText = ''
-      return state
+      const newPost: MessageType = {id: v1(), message: action.title}
+      return {
+        ...state,
+        message: [...state.message, newPost]
+      }
     }
     case (UPDATE_MESSAGE_TEXT) : {
-      state.newMessageText = action.title
-      return state
+      return {...state, newMessageText: action.title}
     }
     default:
       return state

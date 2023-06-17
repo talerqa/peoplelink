@@ -1,4 +1,5 @@
-import React, {ChangeEvent, useState} from 'react';
+import * as React from 'react';
+import {ChangeEvent, useState} from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {DialogsDataType, DialogsPageType, MessageType} from '../../redux/store';
@@ -7,9 +8,11 @@ import Dialogs from './Dialogs';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../redux/storeWithRedux';
 
+
 export const DialogsContainer = () => {
   const [title, setTitle] = useState('')
   const dialogsPage = useSelector<AppRootStateType, DialogsPageType>(state => state.dialogsReducer)
+
 
   const dispatch = useDispatch()
   //Добавляем новый пост
