@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Friends.module.css'
-import {MyFrinedPageType} from '../../redux/store';
+import {MyFrinedPageType} from '../../redux/type';
 
 type FriendPropsType = {
   state: MyFrinedPageType

@@ -6,10 +6,10 @@ import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
-import {MyFrinedPageType,} from './redux/store';
+import {MyFrinedPageType,} from './redux/type';
 import Friends from './components/Friends/Friends';
 import {useSelector} from 'react-redux';
-import {AppRootStateType} from './redux/storeWithRedux';
+import {AppRootStateType} from './redux/store';
 import Navbar from './components/Navbar/Navbar';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 

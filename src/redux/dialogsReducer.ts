@@ -1,4 +1,4 @@
-import {DialogsPageType, MessageType} from './store';
+import {DialogsPageType, MessageType} from './type';
 import {v1} from 'uuid';
 
 const SEND_MESSAGE = 'ADD-MESSAGE';

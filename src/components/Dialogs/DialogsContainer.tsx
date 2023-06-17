@@ -2,11 +2,11 @@ import * as React from 'react';
 import {ChangeEvent, useState} from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {DialogsDataType, DialogsPageType, MessageType} from '../../redux/store';
+import {DialogsDataType, DialogsPageType, MessageType} from '../../redux/type';
 import {sendMessageAC, updateNewMessageTextAC} from '../../redux/dialogsReducer';
 import Dialogs from './Dialogs';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../redux/storeWithRedux';
+import {AppRootStateType} from '../../redux/store';
 
 
 export const DialogsContainer = () => {

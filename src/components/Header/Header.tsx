@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../redux/img/logo.png';
+import logo from '../../img/logo.png';
 import s from './Header.module.css'
 
 type HeaderProps = {}

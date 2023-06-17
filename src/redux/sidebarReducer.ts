@@ -2,12 +2,12 @@
 // const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
 
 
-import {MyFrinedPageType} from './store';
-import letov from './img/letov.webp';
-import chekhov from './img/chekhov.jpg';
-import adamovich from './img/adamovich.jpg';
-import karatkevich from './img/karatkevich.jpg';
-import kafka from './img/kafka.jpg';
+import {MyFrinedPageType} from './type';
+import letov from '../img/letov.webp';
+import chekhov from '../img/chekhov.jpg';
+import adamovich from '../img/adamovich.jpg';
+import karatkevich from '../img/karatkevich.jpg';
+import kafka from '../img/kafka.jpg';
 
 const initState: MyFrinedPageType = {
   friends: [{id: 1, name: 'Egor', lastName: 'Letov', statusOnSite: true, img: letov,},

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
-import {MyFrinedPageType} from '../../redux/store';
+import {MyFrinedPageType} from '../../redux/type';
 
 type NavbarPropsType = {
   state: MyFrinedPageType

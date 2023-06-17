@@ -1,4 +1,4 @@
-import {postData, ProfilePageType} from './store';
+import {postData, ProfilePageType} from './type';
 import {v1} from 'uuid';
 
 const ADD_POST = 'ADD-POST';

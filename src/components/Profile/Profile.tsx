@@ -1,9 +1,9 @@
 import * as React from 'react';
 import s from './Profile.module.css'
-import {ProfilePageType} from '../../redux/store';
+import {ProfilePageType} from '../../redux/type';
 import {MyPostContainer} from './MyPost/MyPostContainer';
 import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../redux/storeWithRedux';
+import {AppRootStateType} from '../../redux/store';
 
 
 const Profile = () => {

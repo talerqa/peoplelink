@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {ChangeEvent, useState} from 'react';
 import Post from './Post/Post';
-import {postData} from '../../../redux/store';
+import {postData} from '../../../redux/type';
 import {addPostAC, updateNewPostTextAC} from '../../../redux/profileReducer';
 import MyPost from './MyPost';
 import {useDispatch} from 'react-redux';

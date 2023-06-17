@@ -1,5 +1,5 @@
 import * as React from 'react';
-import avatar from '../../../redux/img/avatar.png';
+import avatar from '../../../img/avatar.png';
 import s from './ProfileInfo.module.css';
 
 type ProfileInfoProps = {
