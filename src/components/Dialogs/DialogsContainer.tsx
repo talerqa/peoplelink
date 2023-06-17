@@ -13,34 +13,33 @@ export const DialogsContainer = () => {
   const [title, setTitle] = useState('')
   const dialogsPage = useSelector<AppRootStateType, DialogsPageType>(state => state.dialogsReducer)
 
-
   const dispatch = useDispatch()
   //Добавляем новый пост
   const addPost = () => {
-    const action = sendMessageAC(title)
+    let action = sendMessageAC(title)
     dispatch(action)
     setTitle('')
   }
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.currentTarget) {
-      setTitle(e.currentTarget.value)
+    if (e.currentTarget.value !== null) {
+      let newPost = e.currentTarget.value
+      setTitle(newPost)
       const action = updateNewMessageTextAC(e.currentTarget.value)
       dispatch(action)
     }
   }
 
   const dialogsElement = dialogsPage.dialogsData
-    .map((dialog: DialogsDataType) => <DialogItem name={dialog.name} id={dialog.id}/>)
+    .map((dialog: DialogsDataType) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
   const messageElement = dialogsPage.message.map((message: MessageType) => <Message message={message.message}/>)
 
-  const newMessageBody = dialogsPage.newMessageText
 
   return (<Dialogs
+    title={title}
     dialogsElement={dialogsElement}
     messageElement={messageElement}
     changeTextArea={changeTextArea}
-    newMessageBody={newMessageBody}
     addPost={addPost}
   />)
 }

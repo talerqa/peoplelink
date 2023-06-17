@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import * as React from 'react';
 import s from './Message.module.css';
 
 type MessageType = {

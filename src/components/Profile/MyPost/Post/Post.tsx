@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import s from './Post.module.css'
 import ProfileInfo from '../../ProfileInfo/ProfileInfo';
 

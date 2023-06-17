@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import avatar from '../../../redux/img/avatar.png';
 import s from './ProfileInfo.module.css';
 

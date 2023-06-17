@@ -43,7 +43,9 @@ export type CommonACType = SendMessageACType | UpdateNewMessageTextACType
 export type SendMessageACType = ReturnType<typeof sendMessageAC>
 export type UpdateNewMessageTextACType = ReturnType<typeof updateNewMessageTextAC>
 
-export const sendMessageAC = (title: string) => ({type: SEND_MESSAGE, title} as const)
+export const sendMessageAC = (title: string) => {
+  return {type: SEND_MESSAGE, title} as const
+  }
 export const updateNewMessageTextAC = (title: string) => {
   return {type: UPDATE_MESSAGE_TEXT, title} as const
 }

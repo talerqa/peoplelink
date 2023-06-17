@@ -18,7 +18,7 @@ export const MyPostContainer = (props: MyPostProps) => {
   //Добавляем новый пост
   const addPost = () => {
     let action = addPostAC(title)
-   dispatch(action)
+    dispatch(action)
     setTitle('')
   }
 
@@ -32,7 +32,7 @@ export const MyPostContainer = (props: MyPostProps) => {
   }
 
   const postsElement = posts.map(post =>
-    <Post message={post.message} likesCount={post.likesCount} id={post.id}/>)
+    <Post key={post.id} message={post.message} likesCount={post.likesCount} id={post.id}/>)
 
   return (
     <MyPost
