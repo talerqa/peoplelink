@@ -5,69 +5,24 @@ const UNFOLLOW_USER = 'UNFOLLOW-USER';
 const SET_USER = 'SET-USER';
 
 const initState: MyUsersPageType = {
-  users: [
-    {
-      id: 1,
-      fullName: 'Egor',
-      followed: true,
-      location: {
-        country: 'Belarus',
-        city: 'Mink',
-      }
-    },
-    {
-      id: 2,
-      fullName: 'Egor',
-      followed: true,
-      location: {
-        country: 'Belarus',
-        city: 'Mink',
-      }
-    },
-    {
-      id: 3,
-      fullName: 'Egor',
-      followed: true,
-      location: {
-        country: 'Belarus',
-        city: 'Mink',
-      }
-    },
-    {
-      id: 4,
-      fullName: 'Egor',
-      followed: true,
-      location: {
-        country: 'Belarus',
-        city: 'Mink',
-      }
-    },
-    {
-      id: 5,
-      fullName: 'Egor',
-      followed: true,
-      location: {
-        country: 'Belarus',
-        city: 'Mink',
-      }
-    },]
+  users: [],
 }
 
 export const usersReducerAC = (state = initState, action: CommonUserType): MyUsersPageType => {
   switch (action.type) {
-    case (FOLLOW_USER): {
+    case FOLLOW_USER: {
       return {
         ...state,
         users: state.users.map(user => user.id === action.payload.userID ? {...user, followed: true} : user)
       }
     }
-    case (UNFOLLOW_USER): {
+    case UNFOLLOW_USER: {
       return {
         ...state,
         users: state.users.map(user => user.id === action.payload.userID ? {...user, followed: false} : user)
       }
     }
-    case (SET_USER): {
+    case SET_USER: {
       return {...state, users: [...state.users, ...action.payload.users]}
     }
     default:

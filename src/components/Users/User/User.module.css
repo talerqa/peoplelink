@@ -1,0 +1,13 @@
+
+
+.profileImg {
+  width: 40px;
+  height: 40px;
+}
+.statusOnline {
+  color: #b3ffb3;
+}
+
+.statusOffline {
+  color: red;
+}

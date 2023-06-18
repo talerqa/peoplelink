@@ -6,7 +6,6 @@ import {CommonUserType, followUserAC, setUserAC, unFollowUserAC} from '../../red
 import {Users} from './Users';
 import {Dispatch} from 'redux';
 
-
 class UsersContainer extends React.Component<UsersPropsType> {
   // constructor(props: UsersPropsType) {
   //   super(props);
@@ -22,11 +21,10 @@ class UsersContainer extends React.Component<UsersPropsType> {
   // onPageSize = (pageSize: number) => {
   //   this.props.getUsersTC(this.props.currentPage, pageSize)
   // }
-
   render() {
     return <>
       <Users
-        users={this.props.users}
+        users={this.props.users.users}
         follow={this.props.follow}
         unfollow={this.props.unfollow}
         setUsers={this.props.setUsers}

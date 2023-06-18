@@ -24,7 +24,7 @@ export type DialogsPageType = {
   newMessageText: string
 }
 
-//Типы Users
+//Типы User
 export type UsersType = {
   id: number
   fullName: string
