@@ -1,11 +1,10 @@
-import {MyFrinedPageType} from './type';
+import {MyUsersPageType, UsersType} from './type';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
 const SET_USER = 'SET-USER';
 
-
-const initState: MyFrinedPageType = {
+const initState: MyUsersPageType = {
   users: [
     {
       id: 1,
@@ -54,7 +53,7 @@ const initState: MyFrinedPageType = {
     },]
 }
 
-export const usersReducerAC = (state = initState, action: CommonUserType) => {
+export const usersReducerAC = (state = initState, action: CommonUserType): MyUsersPageType => {
   switch (action.type) {
     case (FOLLOW_USER): {
       return {
@@ -76,7 +75,8 @@ export const usersReducerAC = (state = initState, action: CommonUserType) => {
   }
 }
 
-type CommonUserType = FollowUserType | UnFollowUserType | SetUserType
+export type CommonUserType = FollowUserType | UnFollowUserType | SetUserType
+
 export type FollowUserType = ReturnType<typeof followUserAC>
 export type UnFollowUserType = ReturnType<typeof unFollowUserAC>
 export type SetUserType = ReturnType<typeof setUserAC>
@@ -99,7 +99,7 @@ export const unFollowUserAC = (userID: number) => {
   } as const
 }
 
-export const setUserAC = (users: []) => {
+export const setUserAC = (users: UsersType[]) => {
   return {
     type: SET_USER,
     payload: {

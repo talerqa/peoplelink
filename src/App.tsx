@@ -8,16 +8,9 @@ import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
-import {Users} from './components/Users/Users';
-
-// type AppPropsType = {
-//   state: StateType
-//   dispatch: (action: UpdateNewPostTextACType | AddPostACType | SendMessageACType | UpdateNewMessageTextACType) => void
-// }
+import UsersContainer from './components/Users/UsersContainer';
 
 function App() {
-
-
   return (<div className="app-wrapper">
       <Header/>
       <Navbar/>
@@ -25,7 +18,7 @@ function App() {
         <Route path={'/profile*/'} render={() => <Profile/>}/>
         <Route path={'/dialogs*/'} render={() => <DialogsContainer/>}/>
         <Route path={'/users*/'}
-               render={() => <Users/>}/>
+               render={() => <UsersContainer/>}/>
         <Route path={'/music*/'} component={Music}/>
         <Route path={'/setting*/'} component={Setting}/>
         <Route path={'/news*/'} component={News}/>

@@ -34,7 +34,7 @@ export type UsersType = {
     city: string,
   }
 }
-export type MyFrinedPageType = {
+export type MyUsersPageType = {
   users: UsersType[]
 }
 
@@ -42,7 +42,7 @@ export type MyFrinedPageType = {
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
-  MyFriendPage: MyFrinedPageType
+  MyFriendPage: MyUsersPageType
   addPost?: any
 }
 
