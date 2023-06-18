@@ -1,23 +1,27 @@
-import React from 'react';
-import s from './Friends.module.css'
+import * as React from 'react';
+import s from './Users.module.css'
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../redux/store';
 import {MyFrinedPageType} from '../../redux/type';
 
-type FriendPropsType = {
-  state: MyFrinedPageType
-}
+// type UsersPropsType = {
+//   state: MyFrinedPageType
+// }
 
-const Friends = (props: FriendPropsType) => {
+export const Users = () => {
+
+  const users = useSelector<AppRootStateType, MyFrinedPageType>(state => state.usersReducer)
+
   //Цвет статуса Friend в зависимости от статуса онлайн или оффлайн
   const statusOnline = <p className={s.statusOnline}>Online</p>
   const statusOffline = <p className={s.statusOffline}>Offline</p>
 
   //мапим друзей
-  const friendsElement = props.state.friends.map(f => {
+  const friendsElement = users.users.map(f => {
     return (<div key={f.id} className={s.friends_item}>
-      <img className={s.avatarFriends} src={f.img} alt="avatar"/>
       <div>
-        <a href="#">{f.name + " " + f.lastName}</a>
-        <div>{f.statusOnSite ? statusOnline : statusOffline} </div>
+        <a href={'#'}>{f.fullName}</a>
+        <div>{f.followed ? statusOnline : statusOffline} </div>
         <button>Follow</button>
         <button>UNFOLLOW</button>
       </div>
@@ -35,4 +39,3 @@ const Friends = (props: FriendPropsType) => {
   );
 };
 
-export default Friends;

@@ -6,12 +6,9 @@ import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
-import {MyFrinedPageType,} from './redux/type';
-import Friends from './components/Friends/Friends';
-import {useSelector} from 'react-redux';
-import {AppRootStateType} from './redux/store';
 import Navbar from './components/Navbar/Navbar';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
+import {Users} from './components/Users/Users';
 
 // type AppPropsType = {
 //   state: StateType
@@ -20,17 +17,15 @@ import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
 function App() {
 
-  const sideBarPage = useSelector<AppRootStateType, MyFrinedPageType>(state => state.sidebarReducer)
-
 
   return (<div className="app-wrapper">
       <Header/>
-      <Navbar state={sideBarPage}/>
+      <Navbar/>
       <div className={'content'}>
         <Route path={'/profile*/'} render={() => <Profile/>}/>
         <Route path={'/dialogs*/'} render={() => <DialogsContainer/>}/>
-        <Route path={'/friends*/'}
-               render={() => <Friends state={sideBarPage}/>}/>
+        <Route path={'/users*/'}
+               render={() => <Users/>}/>
         <Route path={'/music*/'} component={Music}/>
         <Route path={'/setting*/'} component={Setting}/>
         <Route path={'/news*/'} component={News}/>

@@ -24,16 +24,18 @@ export type DialogsPageType = {
   newMessageText: string
 }
 
-//Типы Friends
-export type friendsType = {
+//Типы Users
+export type UsersType = {
   id: number
-  name: string
-  lastName: string
-  statusOnSite: boolean
-  img: string
+  fullName: string
+  followed: boolean
+  location: {
+    country: string,
+    city: string,
+  }
 }
 export type MyFrinedPageType = {
-  friends: friendsType[]
+  users: UsersType[]
 }
 
 //Тип State

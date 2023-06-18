@@ -1,14 +1,14 @@
 import {combineReducers, createStore} from 'redux';
 import {dialogsReducer} from './dialogsReducer';
 import {profileReducer} from './profileReducer';
-import {sidebarReducer} from './sidebarReducer';
+import {usersReducerAC} from './usersReducerAC';
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
   dialogsReducer: dialogsReducer, // можно дублирующее убрать
   profileReducer: profileReducer, //
-  sidebarReducer: sidebarReducer, //
+  usersReducer: usersReducerAC, //
 })
 // непосредственно создаём store
 export const store = createStore(rootReducer);

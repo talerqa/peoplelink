@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import * as React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import {MyFrinedPageType} from '../../redux/type';
 
-type NavbarPropsType = {
-  state: MyFrinedPageType
-}
+// type NavbarPropsType = {
+//   state: MyFrinedPageType
+// }
 
-const Navbar = (props: NavbarPropsType) => {
+const Navbar = () => {
 
   const conditionChangeColorLink = (isActive: boolean) => isActive ? s.active + ' ' + s.link : s.link
 
@@ -30,7 +30,7 @@ const Navbar = (props: NavbarPropsType) => {
             <NavLink className={conditionChangeColorLink} to={'/news'}>News</NavLink>
           </li>
           <li className={s.navbarItem}>
-            <NavLink className={conditionChangeColorLink} to={'/friends'}>Friends</NavLink>
+            <NavLink className={conditionChangeColorLink} to={'/users'}>Friends</NavLink>
           </li>
         </ul>
 
