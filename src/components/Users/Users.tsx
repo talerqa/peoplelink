@@ -4,7 +4,7 @@ import {UsersType} from '../../redux/type';
 import User from './User/User';
 import axios from 'axios';
 
-type UsersComponentPropsType = {
+export type UsersComponentPropsType = {
   users: UsersType[]
   follow: (userId: number) => void
   unfollow: (userId: number) => void

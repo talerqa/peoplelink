@@ -11,7 +11,6 @@ type UserPropsType = {
 }
 
 const User = (props: UserPropsType) => {
-
   const onClickFollowHandler = () => props.follow(props.user.id)
   const onClickUnFollowHandler = () => props.unfollow(props.user.id)
   console.log(props.user.photos.small)

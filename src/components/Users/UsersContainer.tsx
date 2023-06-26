@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
 import {MyUsersPageType, UsersType} from '../../redux/type';
 import {CommonUserType, followUserAC, setUserAC, unFollowUserAC} from '../../redux/usersReducerAC';
-import {Users} from './Users';
+import {Users} from './UsersClass';
 import {Dispatch} from 'redux';
 
 class UsersContainer extends React.Component<UsersPropsType> {
