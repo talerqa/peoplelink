@@ -14,14 +14,14 @@ const User = (props: UserPropsType) => {
 
   const onClickFollowHandler = () => props.follow(props.user.id)
   const onClickUnFollowHandler = () => props.unfollow(props.user.id)
-
+  console.log(props.user.photos.small)
   return (
     <div key={props.user.id} className={s.friends_item}>
-      <img className={s.profileImg} src={profileLogo} alt=""/>
-      <a href={'#'}>{props.user.fullName}</a>
+      <img className={s.profileImg} src={props.user.photos.small != null ? props.user.photos.small : profileLogo} alt=""/>
+      <a href={'#'}>{props.user.name}</a>
       <div>{props.user.followed
-        ? <button onClick={onClickUnFollowHandler}>Unfollow</button>
-        : <button onClick={onClickFollowHandler}>Follow</button>
+        ? <button onClick={onClickUnFollowHandler}>Follow</button>
+        : <button onClick={onClickFollowHandler}>Unfollow</button>
       } </div>
     </div>
   );

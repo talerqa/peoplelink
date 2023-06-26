@@ -27,12 +27,13 @@ export type DialogsPageType = {
 //Типы User
 export type UsersType = {
   id: number
-  fullName: string
+  name: string
+  photos: {
+    small: null | string
+    large: null | string
+  },
+  status: string,
   followed: boolean
-  location: {
-    country: string,
-    city: string,
-  }
 }
 export type MyUsersPageType = {
   users: UsersType[]
