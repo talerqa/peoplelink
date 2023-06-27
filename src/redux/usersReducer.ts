@@ -3,12 +3,17 @@ import {MyUsersPageType, UsersType} from './type';
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
 const SET_USER = 'SET-USER';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const TOTAL_USERS_COUNT = 'TOTAL_USERS_COUNT';
 
 const initState: MyUsersPageType = {
   users: [],
+  pageSize: 6,
+  totalUsersCount: 0,
+  currentPage: 1,
 }
 
-export const usersReducerAC = (state = initState, action: CommonUserType): MyUsersPageType => {
+export const usersReducer = (state = initState, action: CommonUserType): MyUsersPageType => {
   switch (action.type) {
     case FOLLOW_USER: {
       return {
@@ -23,18 +28,25 @@ export const usersReducerAC = (state = initState, action: CommonUserType): MyUse
       }
     }
     case SET_USER: {
-      return {...state, users: [...state.users, ...action.payload.users]}
+      return {...state, users: [...action.payload.users]}
+    }
+    case SET_CURRENT_PAGE : {
+     return {...state, currentPage: action.payload.currentPage}
+    }
+    case TOTAL_USERS_COUNT: {
+      return {...state, totalUsersCount: action.payload.count}
     }
     default:
       return state
   }
 }
 
-export type CommonUserType = FollowUserType | UnFollowUserType | SetUserType
-
+export type CommonUserType = FollowUserType | UnFollowUserType | SetUserType | SetCurrentPageType | setTotalUsersCountType
 export type FollowUserType = ReturnType<typeof followUserAC>
 export type UnFollowUserType = ReturnType<typeof unFollowUserAC>
 export type SetUserType = ReturnType<typeof setUserAC>
+export type SetCurrentPageType = ReturnType<typeof setCurrentPageAC>
+export type setTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
 
 export const followUserAC = (userID: number) => {
   return {
@@ -63,13 +75,20 @@ export const setUserAC = (users: UsersType[]) => {
   } as const
 }
 
-// Follow unfollow при нажатии кнопки мапяться друзья
-// export type AddPostACType = ReturnType<typeof addPostAC>
-// export type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
-//
-// export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
-//
-// export const updateNewPostTextAC = (title: string) => ({
-//   type: UPDATE_NEWPOST_TEXT, title
-// } as const)
-//
+export const setCurrentPageAC = (currentPage: number) => {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: {
+      currentPage
+    }
+  } as const
+}
+
+export const setTotalUsersCountAC = (count: number) => {
+  return {
+    type: TOTAL_USERS_COUNT,
+    payload: {
+      count
+    }
+  } as const
+}

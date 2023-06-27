@@ -13,7 +13,6 @@ type UserPropsType = {
 const User = (props: UserPropsType) => {
   const onClickFollowHandler = () => props.follow(props.user.id)
   const onClickUnFollowHandler = () => props.unfollow(props.user.id)
-  console.log(props.user.photos.small)
   return (
     <div key={props.user.id} className={s.friends_item}>
       <img className={s.profileImg} src={props.user.photos.small != null ? props.user.photos.small : profileLogo} alt=""/>

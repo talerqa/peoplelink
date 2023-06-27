@@ -1,63 +1,37 @@
 import * as React from 'react';
-import s from './Users.module.css'
 import {UsersType} from '../../redux/type';
+import s from './Users.module.css';
 import User from './User/User';
-import axios from 'axios';
 
-export type UsersComponentPropsType = {
+type UsersComponentPropsType = {
   users: UsersType[]
+  pageSize: number
+  totalCount: number
+  currentPage: number
+  onPageChanged: (page: number) => void
   follow: (userId: number) => void
   unfollow: (userId: number) => void
   setUsers: (users: UsersType[]) => void
 }
 
 export const Users = (props: UsersComponentPropsType) => {
-
-  if (props.users.length === 0) {
-
-
-    axios.get('https://social-network.samuraijs.com/api/1.0/users', {withCredentials: true})
-      .then((res)=>{
-        props.setUsers(res.data.items)
-      })
-    //
-    // props.setUsers([
-    //   {
-    //     id: 1,
-    //     fullName: 'Egor',
-    //     followed: true,
-    //     location: {
-    //       country: 'Belarus',
-    //       city: 'Mink',
-    //     }
-    //   },
-    //   {
-    //     id: 2,
-    //     fullName: 'Egor',
-    //     followed: true,
-    //     location: {
-    //       country: 'Belarus',
-    //       city: 'Mink',
-    //     }
-    //   },
-    //   {
-    //     id: 3,
-    //     fullName: 'Egor',
-    //     followed: true,
-    //     location: {
-    //       country: 'Belarus',
-    //       city: 'Mink',
-    //     }
-    //   }])
-
+  let pagesCount = Math.ceil(props.totalCount / props.pageSize)
+  let pages = []
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i)
   }
 
-  console.log(props.users)
   return (
     <div className={s.wrapper}>
+      <div className={''}>
+        {pages.map(page => {
+          return <span className={props.currentPage === page ? s.selectedPage : ''}
+                       onClick={() => props.onPageChanged(page)}>{page}</span>
+        })}
+      </div>
       <p className={s.title}>Friends:</p>
       <div className={s.wrapper_item}>
-        {props.users.map(user => {
+        {props.users.map((user) => {
           return (
             <User
               key={user.id}
@@ -72,5 +46,4 @@ export const Users = (props: UsersComponentPropsType) => {
 
     </div>
   );
-};
-
+}
