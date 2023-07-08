@@ -40,6 +40,7 @@ export type MyUsersPageType = {
   pageSize: number
   totalUsersCount: number
   currentPage: number
+  isFetching: boolean
 }
 
 //Тип State

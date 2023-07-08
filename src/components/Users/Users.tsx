@@ -2,6 +2,7 @@ import * as React from 'react';
 import {UsersType} from '../../redux/type';
 import s from './Users.module.css';
 import User from './User/User';
+import preloader from '../../img/loader.webp';
 
 type UsersComponentPropsType = {
   users: UsersType[]
@@ -12,6 +13,7 @@ type UsersComponentPropsType = {
   follow: (userId: number) => void
   unfollow: (userId: number) => void
   setUsers: (users: UsersType[]) => void
+  isFetching: boolean
 }
 
 export const Users = (props: UsersComponentPropsType) => {
@@ -30,19 +32,22 @@ export const Users = (props: UsersComponentPropsType) => {
         })}
       </div>
       <p className={s.title}>Friends:</p>
-      <div className={s.wrapper_item}>
-        {props.users.map((user) => {
-          return (
-            <User
-              key={user.id}
-              user={user}
-              follow={props.follow}
-              unfollow={props.unfollow}
-              setUsers={props.setUsers}
-            />
-          )
-        })}
-      </div>
+      {props.isFetching
+        ? <img src={preloader} alt=""/>
+        : <div className={s.wrapper_item}>
+          {props.users.map((user) => {
+            return (
+              <User
+                key={user.id}
+                user={user}
+                follow={props.follow}
+                unfollow={props.unfollow}
+                setUsers={props.setUsers}
+              />
+            )
+          })}
+        </div>}
+
 
     </div>
   );
