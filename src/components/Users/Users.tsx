@@ -32,10 +32,12 @@ export const Users = (props: UsersComponentPropsType) => {
         })}
       </div>
       <p className={s.title}>Friends:</p>
-      {props.isFetching
-        ? <img src={preloader} alt=""/>
-        : <div className={s.wrapper_item}>
-          {props.users.map((user) => {
+
+      <div className={s.wrapper_item}>
+
+        {props.isFetching
+          ? <img src={preloader} className={s.preloader} alt="preloader"/>
+          : props.users.map((user) => {
             return (
               <User
                 key={user.id}
@@ -46,7 +48,7 @@ export const Users = (props: UsersComponentPropsType) => {
               />
             )
           })}
-        </div>}
+      </div>
 
 
     </div>
