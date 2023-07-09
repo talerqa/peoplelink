@@ -2,8 +2,9 @@ import * as React from 'react';
 import {UsersType} from '../../redux/type';
 import s from './Users.module.css';
 import User from './User/User';
-import preloader from '../../img/loader.webp';
-import Preloader from '../Preloader';
+import Preloader from '../Preloader/Preloader';
+import {NavLink} from 'react-router-dom';
+import profileLogo from '../../img/profileLogo.png';
 
 type UsersComponentPropsType = {
   users: UsersType[]
@@ -39,7 +40,8 @@ export const Users = (props: UsersComponentPropsType) => {
         {props.isFetching
           ? <Preloader/>
           : props.users.map((user) => {
-            return (
+            return (<>
+
               <User
                 key={user.id}
                 user={user}
@@ -47,6 +49,7 @@ export const Users = (props: UsersComponentPropsType) => {
                 unfollow={props.unfollow}
                 setUsers={props.setUsers}
               />
+              </>
             )
           })}
       </div>
