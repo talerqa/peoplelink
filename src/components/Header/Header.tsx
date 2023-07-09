@@ -11,7 +11,6 @@ type HeaderProps = {
 }
 
  const Header = (props: HeaderProps) => {
-   console.log(props)
   return <header className={s.header}>
     <div className={s.header_wrapper}>
       <div className={s.logo}>

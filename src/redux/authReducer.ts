@@ -16,7 +16,6 @@ export type AuthType = {
 export const authReducer = (state = initState, action: CommonAuthType) => {
   switch (action.type) {
     case (SET_USER_DATA): {
-      console.log(action.data)
       return {
         ...state,
         ...action.data,
