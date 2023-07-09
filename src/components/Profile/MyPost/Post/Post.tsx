@@ -6,12 +6,13 @@ type PostPropsType =  {
   message: string
   likesCount: number
   id: string
+  profile: any
 }
 
 const Post = (props: PostPropsType) => {
 
   return (<div className={s.item}>
-      <ProfileInfo/>
+      <ProfileInfo profile={props.profile}/>
       <div className={s.post}>
         <div>{props.message}</div>
         <div>Like</div>

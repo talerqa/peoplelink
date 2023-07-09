@@ -3,6 +3,7 @@ import {UsersType} from '../../redux/type';
 import s from './Users.module.css';
 import User from './User/User';
 import preloader from '../../img/loader.webp';
+import Preloader from '../Preloader';
 
 type UsersComponentPropsType = {
   users: UsersType[]
@@ -36,7 +37,7 @@ export const Users = (props: UsersComponentPropsType) => {
       <div className={s.wrapper_item}>
 
         {props.isFetching
-          ? <img src={preloader} className={s.preloader} alt="preloader"/>
+          ? <Preloader/>
           : props.users.map((user) => {
             return (
               <User

@@ -6,6 +6,7 @@ export type postData = {
 }
 export type ProfilePageType = {
   posts: Array<postData>
+  profile: null | {}
   newPostText: string
 }
 

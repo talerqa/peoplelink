@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
 import {UsersType} from '../../redux/type';
 import {
-  CommonUserType,
   fetchUsersCountAC,
   followUserAC,
   setCurrentPageAC,
@@ -12,7 +11,6 @@ import {
   unFollowUserAC
 } from '../../redux/usersReducer';
 import {Users} from './Users';
-import {Dispatch} from 'redux';
 import axios from 'axios';
 
 class UsersContainer extends React.Component<UsersPropsType> {
@@ -103,28 +101,36 @@ type MapDispatchToPropsType = {
   fetchUsersCount: (isFetching: boolean) => void
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<CommonUserType>): MapDispatchToPropsType => {
-  return {
-    follow: (userId) => {
-      dispatch(followUserAC(userId))
-    },
-    unfollow: (userId) => {
-      dispatch(unFollowUserAC(userId))
-    },
-    setUsers: (users) => {
-      dispatch(setUserAC(users))
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch(setCurrentPageAC(currentPage))
-    },
-    setTotalUsersCount: (count: number) => {
-      dispatch(setTotalUsersCountAC(count))
-    },
-    fetchUsersCount: (isFetching: boolean) => {
-      dispatch(fetchUsersCountAC(isFetching))
-    }
+// const mapDispatchToProps = (dispatch: Dispatch<CommonUserType>): MapDispatchToPropsType => {
+//   return {
+//     follow: (userId) => {
+//       dispatch(followUserAC(userId))
+//     },
+//     unfollow: (userId) => {
+//       dispatch(unFollowUserAC(userId))
+//     },
+//     setUsers: (users) => {
+//       dispatch(setUserAC(users))
+//     },
+//     setCurrentPage: (currentPage) => {
+//       dispatch(setCurrentPageAC(currentPage))
+//     },
+//     setTotalUsersCount: (count) => {
+//       dispatch(setTotalUsersCountAC(count))
+//     },
+//     fetchUsersCount: (isFetching) => {
+//       dispatch(fetchUsersCountAC(isFetching))
+//     }
+//
+//   }
+// }
 
+export default connect(mapStateToProps, {
+    follow: followUserAC,
+    unfollow: unFollowUserAC,
+    setUsers: setUserAC,
+    setCurrentPage: setCurrentPageAC,
+    setTotalUsersCount: setTotalUsersCountAC,
+    fetchUsersCount: fetchUsersCountAC
   }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+)(UsersContainer)

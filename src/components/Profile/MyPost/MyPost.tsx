@@ -1,7 +1,6 @@
 import * as React from 'react'
-import {ChangeEvent} from 'react';
+import {ChangeEvent} from 'react'
 import s from './MyPost.module.css'
-import ProfileInfo from '../ProfileInfo/ProfileInfo';
 
 type MyPostProps = {
   postsElement: JSX.Element []
@@ -12,7 +11,7 @@ type MyPostProps = {
 const MyPost = (props: MyPostProps) => {
   return (
     <div className={s.item}>
-      <ProfileInfo/>
+
       <div className={s.formPost}>
         <textarea
           className={s.textarea}

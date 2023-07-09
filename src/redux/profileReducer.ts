@@ -3,6 +3,7 @@ import {v1} from 'uuid';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
+const GET_PROFILE_USERS = 'GET-PROFILE-USERS';
 
 const initState: ProfilePageType = {
   posts: [
@@ -10,10 +11,11 @@ const initState: ProfilePageType = {
     {id: v1(), message: 'It\'s my first project', likesCount: 4},
     {id: v1(), message: 'Its my second project', likesCount: 1},
   ],
+  profile: null,
   newPostText: ''
 }
 
-export const profileReducer = (state = initState, action: CommonACType) => {
+export const profileReducer = (state = initState, action: CommonProfileType) => {
   switch (action.type) {
     case (ADD_POST): {
       const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
@@ -25,18 +27,23 @@ export const profileReducer = (state = initState, action: CommonACType) => {
     case (UPDATE_NEWPOST_TEXT) : {
       return {...state, newPostText: action.title}
     }
+
+    case (GET_PROFILE_USERS): {
+      return {...state, profile: action.profile}
+    }
+
     default:
       return state
   }
 }
 
-type CommonACType = AddPostACType | UpdateNewPostTextACType
+export type CommonProfileType = AddPostACType | UpdateNewPostTextACType | getProfileUserACType
 export type AddPostACType = ReturnType<typeof addPostAC>
 export type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
+export type getProfileUserACType = ReturnType<typeof getProfileUserAC>
 
 export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
 
-export const updateNewPostTextAC = (title: string) => ({
-  type: UPDATE_NEWPOST_TEXT, title
-} as const)
+export const updateNewPostTextAC = (title: string) => ({type: UPDATE_NEWPOST_TEXT, title} as const)
 
+export const getProfileUserAC = (profile: any) => ({type: GET_PROFILE_USERS, profile} as const)

@@ -7,6 +7,7 @@ import MyPost from './MyPost';
 import {useDispatch} from 'react-redux';
 
 type MyPostProps = {
+  profile: any
   posts: Array<postData>
 }
 
@@ -32,7 +33,14 @@ export const MyPostContainer = (props: MyPostProps) => {
   }
 
   const postsElement = posts.map(post =>
-    <Post key={post.id} message={post.message} likesCount={post.likesCount} id={post.id}/>)
+    <Post
+      key={post.id}
+      message={post.message}
+      likesCount={post.likesCount}
+      id={post.id}
+      profile={props.profile}
+    />
+  )
 
   return (
     <MyPost
