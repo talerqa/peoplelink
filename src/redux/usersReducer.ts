@@ -60,6 +60,7 @@ export type CommonUserType =
   | SetPageSizeType
   | SetTotalUsersCountType
   | FetchUsersType
+
 export type FollowUserType = ReturnType<typeof followUserAC>
 export type UnFollowUserType = ReturnType<typeof unFollowUserAC>
 export type SetUserType = ReturnType<typeof setUserAC>

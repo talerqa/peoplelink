@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {postData} from '../../redux/type';
+import {postData, ProfileType} from '../../redux/type';
 import {Dispatch} from 'redux';
 import {CommonProfileType, getProfileUserAC} from '../../redux/profileReducer';
 import {AppRootStateType} from '../../redux/store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {profileApi} from '../../api/api';
-
 
 class ProfileContainer extends React.Component<PropsType> {
   constructor(props: PropsType) {
@@ -37,42 +36,18 @@ type PathParamsType = {
   userId: string
 }
 
-
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 
 type OwnPropsType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
 
-
 type MapStateToPropsProfileType = {
-  profile: ProfileType
+  profile: null | ProfileType
   post: Array<postData>
 }
 
-type ProfileType = {
-  userId: string
-  lookingForAJob: boolean
-  lookingForAJobDescription: string
-  fullName: string
-  contacts: {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-  }
-  photos: {
-    small: string
-    large: string
-  }
-}
-
 type MapDispatchToPropsProfileType = {
-  getProfileUserAC: (profile: any) => void
+  getProfileUserAC: (profile: ProfileType) => void
 }
-
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType => {
   return {
@@ -83,13 +58,12 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
 
 const mapDispatchToProps = (dispatch: Dispatch<CommonProfileType>): MapDispatchToPropsProfileType => {
   return {
-    getProfileUserAC: (profile: any) => {
+    getProfileUserAC: (profile: ProfileType) => {
       dispatch(getProfileUserAC(profile))
     }
   }
 }
 
-//
 let withUrlDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withUrlDataContainerComponent)

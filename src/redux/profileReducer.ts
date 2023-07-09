@@ -1,4 +1,4 @@
-import {postData, ProfilePageType} from './type';
+import {postData, ProfilePageType, ProfileType} from './type';
 import {v1} from 'uuid';
 
 const ADD_POST = 'ADD-POST';
@@ -29,6 +29,7 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
     }
 
     case (GET_PROFILE_USERS): {
+      console.log(action.profile)
       return {...state, profile: action.profile}
     }
 
@@ -46,4 +47,4 @@ export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
 
 export const updateNewPostTextAC = (title: string) => ({type: UPDATE_NEWPOST_TEXT, title} as const)
 
-export const getProfileUserAC = (profile: any) => ({type: GET_PROFILE_USERS, profile} as const)
+export const getProfileUserAC = (profile: ProfileType) => ({type: GET_PROFILE_USERS, profile} as const)

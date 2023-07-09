@@ -3,8 +3,6 @@ import {UsersType} from '../../redux/type';
 import s from './Users.module.css';
 import User from './User/User';
 import Preloader from '../Preloader/Preloader';
-import {NavLink} from 'react-router-dom';
-import profileLogo from '../../img/profileLogo.png';
 
 type UsersComponentPropsType = {
   users: UsersType[]

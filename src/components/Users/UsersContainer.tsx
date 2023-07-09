@@ -12,7 +12,6 @@ import {
   unFollowUserAC
 } from '../../redux/usersReducer';
 import {Users} from './Users';
-import axios from 'axios';
 import {userApi} from '../../api/api';
 
 class UsersContainer extends React.Component<UsersPropsType> {
