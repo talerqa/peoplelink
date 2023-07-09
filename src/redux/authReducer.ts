@@ -3,7 +3,6 @@ const initState: AuthType = {
   id: null,
   login: null,
   email: null,
-  statusCode: null,
   isAuth: false,
 }
 
@@ -11,7 +10,6 @@ export type AuthType = {
   id: number | null
   login: string | null
   email: string | null
-  statusCode: number | null,
   isAuth: boolean
 }
 

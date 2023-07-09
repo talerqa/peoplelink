@@ -16,9 +16,11 @@ class HeaderContainer extends React.Component<AuthPropsType> {
 
     axios.get('https://social-network.samuraijs.com/api/1.0/auth/me/', {withCredentials: true})
       .then((res) => {
+        console.log(this.props.isAuth)
 
         if (res.data.resultCode === 0) {
           let {id, email, login} = res.data.data
+
           console.log('RES')
           this.props.setUserData(id, email, login)
         }
@@ -28,7 +30,9 @@ class HeaderContainer extends React.Component<AuthPropsType> {
 
 
   render() {
-    return <Header {...this.props}
+    return <Header id={this.props.id}
+                   email={this.props.email}
+
                    login={this.props.login}
                    isAuth={this.props.isAuth}/>;
   }
@@ -39,7 +43,7 @@ type MapStateToPropsAuthType = {
   email: string | null
   login: string | null,
   isAuth: boolean,
-  statusCode: number | null,
+
 }
 
 type AuthPropsType = MapStateToPropsAuthType & MapDispatchToPropsAuthType
@@ -50,7 +54,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsAuthType => {
     email: state.authReducer.email,
     login: state.authReducer.login,
     isAuth: state.authReducer.isAuth,
-    statusCode: state.authReducer.statusCode
+
   }
 }
 

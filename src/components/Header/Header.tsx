@@ -4,12 +4,14 @@ import s from './Header.module.css'
 import {NavLink} from 'react-router-dom';
 
 type HeaderProps = {
-  isAuth: boolean
+  id: number | null
   login: string | null
+  email: string | null
+  isAuth: boolean
 }
 
  const Header = (props: HeaderProps) => {
-  console.log(props.isAuth)
+   console.log(props)
   return <header className={s.header}>
     <div className={s.header_wrapper}>
       <div className={s.logo}>
@@ -17,9 +19,14 @@ type HeaderProps = {
         <img className={s.logo_img} src={logo} alt="logo"/>
       </div>
       <nav className={s.navMenu}>
+
         <ul className={s.navItems}>
           <NavLink to={'/login'}>
-            <li className={s.navItem}>LOGIN</li>
+            {props.isAuth
+              ? <li className={s.navItem}>Logged</li>
+              : <li className={s.navItem}>LOGIN</li>}
+
+
           </NavLink>
           <NavLink to={''}>
             <li className={s.navItem}>LINK</li>
