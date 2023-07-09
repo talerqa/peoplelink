@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Header from './Header';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
 import {Dispatch} from 'redux';
 import {CommonAuthType, setUserDataAC} from '../../redux/authReducer';
+import {authApi} from '../../api/api';
 
 
 class HeaderContainer extends React.Component<AuthPropsType> {
@@ -13,16 +13,12 @@ class HeaderContainer extends React.Component<AuthPropsType> {
   }
 
   componentDidMount() {
-
-    axios.get('https://social-network.samuraijs.com/api/1.0/auth/me/', {withCredentials: true})
+    authApi.getAuthMe()
       .then((res) => {
-
         if (res.data.resultCode === 0) {
           let {id, email, login} = res.data.data
-
           this.props.setUserData(id, email, login)
         }
-
       })
   }
 

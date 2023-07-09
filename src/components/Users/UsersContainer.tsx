@@ -6,12 +6,14 @@ import {
   fetchUsersCountAC,
   followUserAC,
   setCurrentPageAC,
+  setPageSizeAC,
   setTotalUsersCountAC,
   setUserAC,
   unFollowUserAC
 } from '../../redux/usersReducer';
 import {Users} from './Users';
 import axios from 'axios';
+import {userApi} from '../../api/api';
 
 class UsersContainer extends React.Component<UsersPropsType> {
   constructor(props: UsersPropsType) {
@@ -19,29 +21,24 @@ class UsersContainer extends React.Component<UsersPropsType> {
   }
 
   componentDidMount() {
-
+    console.log(this.props.pageSize)
     this.props.fetchUsersCount(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-        withCredentials: true,
-      }
-    )
-      .then((res) => {
+    userApi.getUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
         this.props.fetchUsersCount(false)
-        this.props.setUsers(res.data.items)
-        this.props.setTotalUsersCount(res.data.totalCount)
+        this.props.setUsers(data.items)
+        this.props.setTotalUsersCount(data.totalCount)
       })
   }
 
   onPageChanged = (pageNumber: number) => {
     this.props.fetchUsersCount(true)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-      withCredentials: true,
-
-    })
-      .then((res) => {
+    userApi.getUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
         this.props.fetchUsersCount(false)
-        this.props.setUsers(res.data.items)
+        this.props.setUsers(data.items)
         this.props.setCurrentPage(pageNumber)
+        this.props.setPageSize(this.props.pageSize)
       })
   }
 
@@ -52,9 +49,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
   // onPageChanged = (pageNumber: number) => {
   //   this.props.getUsersTC(pageNumber, this.props.pageSize)
   // }
-  // onPageSize = (pageSize: number) => {
-  //   this.props.getUsersTC(this.props.currentPage, pageSize)
-  // }
+
   render() {
     return <>
       <Users
@@ -96,6 +91,7 @@ type MapDispatchToPropsType = {
   follow: (userId: number) => void,
   unfollow: (userId: number) => void,
   setUsers: (users: UsersType[]) => void,
+  setPageSize: (pageSize: number) => void,
   setCurrentPage: (currentPage: number) => void,
   setTotalUsersCount: (count: number) => void,
   fetchUsersCount: (isFetching: boolean) => void
@@ -129,6 +125,7 @@ export default connect(mapStateToProps, {
     follow: followUserAC,
     unfollow: unFollowUserAC,
     setUsers: setUserAC,
+    setPageSize: setPageSizeAC,
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
     fetchUsersCount: fetchUsersCountAC
