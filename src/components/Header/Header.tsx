@@ -1,10 +1,15 @@
 import * as React from 'react';
 import logo from '../../img/logo.png';
 import s from './Header.module.css'
+import {NavLink} from 'react-router-dom';
 
-type HeaderProps = {}
+type HeaderProps = {
+  isAuth: boolean
+  login: string | null
+}
 
-const Header: React.FC = (props: HeaderProps) => {
+ const Header = (props: HeaderProps) => {
+  console.log(props.isAuth)
   return <header className={s.header}>
     <div className={s.header_wrapper}>
       <div className={s.logo}>
@@ -13,11 +18,12 @@ const Header: React.FC = (props: HeaderProps) => {
       </div>
       <nav className={s.navMenu}>
         <ul className={s.navItems}>
-          <li className={s.navItem}>LINK</li>
-          <li className={s.navItem}>LINK</li>
-          <li className={s.navItem}>LINK</li>
-          <li className={s.navItem}>LINK</li>
-          <li className={s.navItem}>LINK</li>
+          <NavLink to={'/login'}>
+            <li className={s.navItem}>LOGIN</li>
+          </NavLink>
+          <NavLink to={''}>
+            <li className={s.navItem}>LINK</li>
+          </NavLink>
         </ul>
       </nav>
     </div>
@@ -25,3 +31,5 @@ const Header: React.FC = (props: HeaderProps) => {
 }
 
 export default Header
+
+

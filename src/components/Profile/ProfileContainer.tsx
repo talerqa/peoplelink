@@ -95,4 +95,5 @@ const mapDispatchToProps = (dispatch: Dispatch<CommonProfileType>): MapDispatchT
 //
 let withUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect<MapStateToPropsProfileType, MapDispatchToPropsProfileType, PropsType, AppRootStateType>(mapStateToProps, mapDispatchToProps)(withUrlDataContainerComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(withUrlDataContainerComponent)
+// <MapStateToPropsProfileType, MapDispatchToPropsProfileType, PropsType, AppRootStateType>

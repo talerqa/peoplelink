@@ -1,0 +1,42 @@
+const SET_USER_DATA = 'SET-USER-DATA'
+const initState: AuthType = {
+  id: null,
+  login: null,
+  email: null,
+  statusCode: null,
+  isAuth: false,
+}
+
+export type AuthType = {
+  id: number | null
+  login: string | null
+  email: string | null
+  statusCode: number | null,
+  isAuth: boolean
+}
+
+export const authReducer = (state = initState, action: CommonAuthType) => {
+  switch (action.type) {
+    case (SET_USER_DATA): {
+      console.log(action.data)
+      return {
+        ...state,
+        ...action.data,
+        isAuth: true
+      }
+    }
+
+    default:
+      return state
+  }
+}
+
+
+export type CommonAuthType = SetUserDataType
+export type SetUserDataType = ReturnType<typeof setUserDataAC>
+
+
+export const setUserDataAC = (id: number | null, email: string | null, login: string | null) => ({
+  type: SET_USER_DATA,
+  data: {id, email, login}
+} as const)
