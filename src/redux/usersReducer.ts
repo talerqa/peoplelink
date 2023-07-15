@@ -13,7 +13,7 @@ const initState: MyUsersPageType = {
   pageSize: 28,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: true
+  isFetching: true,
 }
 
 export const usersReducer = (state = initState, action: CommonUserType): MyUsersPageType => {
@@ -24,18 +24,22 @@ export const usersReducer = (state = initState, action: CommonUserType): MyUsers
         users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
       }
     }
+
     case UNFOLLOW_USER: {
       return {
         ...state,
         users: state.users.map(user => user.id === action.userID ? {...user, followed: false} : user)
       }
     }
+
     case SET_USER: {
       return {...state, users: [...action.users]}
     }
+
     case SET_CURRENT_PAGE : {
       return {...state, currentPage: action.currentPage}
     }
+
     case TOTAL_USERS_COUNT: {
       return {...state, totalUsersCount: action.count}
     }
@@ -47,6 +51,7 @@ export const usersReducer = (state = initState, action: CommonUserType): MyUsers
     case FETCHING_USERS: {
       return {...state, isFetching: action.isFetching}
     }
+
     default:
       return state
   }
