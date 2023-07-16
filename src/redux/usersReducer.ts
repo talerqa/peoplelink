@@ -1,4 +1,6 @@
 import {MyUsersPageType, UsersType} from './type';
+import {profileApi, userApi} from '../api/api';
+import {Dispatch} from 'redux';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
@@ -87,3 +89,31 @@ export const setPageSizeAC = (pageSize: number) => ({type: SET_PAGE_SIZE, pageSi
 export const setTotalUsersCountAC = (count: number) => ({type: TOTAL_USERS_COUNT, count} as const)
 
 export const fetchUsersCountAC = (isFetching: boolean) => ({type: FETCHING_USERS, isFetching} as const)
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+  dispatch(fetchUsersCountAC(true))
+  userApi.getUsers(currentPage, pageSize)
+    .then((data) => {
+      dispatch(fetchUsersCountAC(false))
+      dispatch(setUserAC(data.items))
+      dispatch(setTotalUsersCountAC(data.totalCount))
+    })
+}
+
+export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+  profileApi.unfollowUser(userId)
+    .then((res) => {
+      if (res.data.resultCode === 0) {
+        dispatch(unFollowUserAC(userId))
+      }
+    })
+}
+
+export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+  profileApi.unfollowUser(userId)
+    .then((res) => {
+      if (res.data.resultCode === 0) {
+        dispatch(followUserAC(userId))
+      }
+    })
+}

@@ -4,7 +4,7 @@ import {AppRootStateType} from '../../redux/store';
 import {UsersType} from '../../redux/type';
 import {
   fetchUsersCountAC,
-  followUserAC,
+  followUserAC, getUsersThunkCreator,
   setCurrentPageAC,
   setPageSizeAC,
   setTotalUsersCountAC,
@@ -20,34 +20,12 @@ class UsersContainer extends React.Component<UsersPropsType> {
   }
 
   componentDidMount() {
-    console.log(this.props.pageSize)
-    this.props.fetchUsersCount(true)
-    userApi.getUsers(this.props.currentPage, this.props.pageSize)
-      .then((data) => {
-        this.props.fetchUsersCount(false)
-        this.props.setUsers(data.items)
-        this.props.setTotalUsersCount(data.totalCount)
-      })
+    this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
   }
 
   onPageChanged = (pageNumber: number) => {
-    this.props.fetchUsersCount(true)
-    userApi.getUsers(this.props.currentPage, this.props.pageSize)
-      .then((data) => {
-        this.props.fetchUsersCount(false)
-        this.props.setUsers(data.items)
-        this.props.setCurrentPage(pageNumber)
-        this.props.setPageSize(this.props.pageSize)
-      })
+    this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
   }
-
-  // componentDidMount() {
-  //   this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
-  // }
-  //
-  // onPageChanged = (pageNumber: number) => {
-  //   this.props.getUsersTC(pageNumber, this.props.pageSize)
-  // }
 
   render() {
     return <>
@@ -93,7 +71,8 @@ type MapDispatchToPropsType = {
   setPageSize: (pageSize: number) => void,
   setCurrentPage: (currentPage: number) => void,
   setTotalUsersCount: (count: number) => void,
-  fetchUsersCount: (isFetching: boolean) => void
+  fetchUsersCount: (isFetching: boolean) => void,
+  getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
 // const mapDispatchToProps = (dispatch: Dispatch<CommonUserType>): MapDispatchToPropsType => {
@@ -127,6 +106,7 @@ export default connect(mapStateToProps, {
     setPageSize: setPageSizeAC,
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
-    fetchUsersCount: fetchUsersCountAC
+    fetchUsersCount: fetchUsersCountAC,
+    getUsersThunkCreator: getUsersThunkCreator,
   }
 )(UsersContainer)
