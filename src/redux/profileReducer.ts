@@ -1,5 +1,7 @@
 import {postData, ProfilePageType, ProfileType} from './type';
 import {v1} from 'uuid';
+import {Dispatch} from 'redux';
+import {profileApi} from '../api/api';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
@@ -48,3 +50,10 @@ export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
 export const updateNewPostTextAC = (title: string) => ({type: UPDATE_NEWPOST_TEXT, title} as const)
 
 export const getProfileUserAC = (profile: ProfileType) => ({type: GET_PROFILE_USERS, profile} as const)
+
+export const getProfileUserThunkCreator = (userId: string) => (dispatch: Dispatch) => {
+  profileApi.getProfileUser(userId)
+    .then((res) => {
+      dispatch(getProfileUserAC(res.data))
+    })
+}

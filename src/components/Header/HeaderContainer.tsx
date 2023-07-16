@@ -2,9 +2,7 @@ import * as React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
-import {Dispatch} from 'redux';
-import {CommonAuthType, setUserDataAC} from '../../redux/authReducer';
-import {authApi} from '../../api/api';
+import {authThunkCreator, setUserDataAC} from '../../redux/authReducer';
 
 
 class HeaderContainer extends React.Component<AuthPropsType> {
@@ -13,20 +11,12 @@ class HeaderContainer extends React.Component<AuthPropsType> {
   }
 
   componentDidMount() {
-    authApi.getAuthMe()
-      .then((res) => {
-        if (res.data.resultCode === 0) {
-          let {id, email, login} = res.data.data
-          this.props.setUserData(id, email, login)
-        }
-      })
+    this.props.authThunkCreator()
   }
-
 
   render() {
     return <Header id={this.props.id}
                    email={this.props.email}
-
                    login={this.props.login}
                    isAuth={this.props.isAuth}/>;
   }
@@ -48,20 +38,15 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsAuthType => {
     email: state.authReducer.email,
     login: state.authReducer.login,
     isAuth: state.authReducer.isAuth,
-
   }
 }
 
 type MapDispatchToPropsAuthType = {
   setUserData: (id: number | null, email: string | null, login: string | null) => void
+  authThunkCreator: () => void
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<CommonAuthType>): MapDispatchToPropsAuthType => {
-  return {
-    setUserData: (id: number | null, email: string | null, login: string | null) => {
-      dispatch(setUserDataAC(id, email, login))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)
+export default connect(mapStateToProps, {
+  setUserData: setUserDataAC,
+  authThunkCreator: authThunkCreator,
+})(HeaderContainer)

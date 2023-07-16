@@ -4,7 +4,8 @@ import {AppRootStateType} from '../../redux/store';
 import {UsersType} from '../../redux/type';
 import {
   fetchUsersCountAC,
-  followUserAC, getUsersThunkCreator,
+  followUserAC,
+  getUsersThunkCreator,
   setCurrentPageAC,
   setPageSizeAC,
   setTotalUsersCountAC,
@@ -12,7 +13,6 @@ import {
   unFollowUserAC
 } from '../../redux/usersReducer';
 import {Users} from './Users';
-import {userApi} from '../../api/api';
 
 class UsersContainer extends React.Component<UsersPropsType> {
   constructor(props: UsersPropsType) {

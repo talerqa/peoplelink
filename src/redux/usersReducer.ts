@@ -103,6 +103,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
 export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
   profileApi.unfollowUser(userId)
     .then((res) => {
+      console.log('un')
       if (res.data.resultCode === 0) {
         dispatch(unFollowUserAC(userId))
       }
@@ -112,6 +113,8 @@ export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch)
 export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
   profileApi.unfollowUser(userId)
     .then((res) => {
+      console.log('fol')
+
       if (res.data.resultCode === 0) {
         dispatch(followUserAC(userId))
       }

@@ -3,8 +3,6 @@ import s from './User.module.css';
 import profileLogo from './../../../img/profileLogo.png'
 import {UsersType} from '../../../redux/type';
 import {NavLink} from 'react-router-dom';
-import {profileApi} from '../../../api/api';
-import {followUserThunkCreator, unFollowUserThunkCreator} from '../../../redux/usersReducer';
 
 type UserPropsType = {
   user: UsersType
@@ -14,17 +12,16 @@ type UserPropsType = {
 }
 
 
-
 const User = (props: UserPropsType) => {
 
   const onClickFollowHandler = () => {
     let userId = props.user.id
-    followUserThunkCreator(userId)
+    props.follow(userId)
   }
 
   const onClickUnFollowHandler = () => {
     let userId = props.user.id
-    unFollowUserThunkCreator(userId)
+    props.unfollow(userId)
   }
 
   return (
