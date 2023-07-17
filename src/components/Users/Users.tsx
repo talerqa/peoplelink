@@ -27,6 +27,7 @@ export const Users = (props: UsersComponentPropsType) => {
     <div className={s.wrapper}>
       <div className={''}>
         {pages.map(page => {
+
           return <span className={props.currentPage === page ? s.selectedPage : ''}
                        onClick={() => props.onPageChanged(page)}>{page}</span>
         })}

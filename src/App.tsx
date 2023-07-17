@@ -6,10 +6,11 @@ import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
-import {DialogsContainer} from './components/Dialogs/DialogsContainer';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import {Login} from './components/Login/Login';
 
 function App() {
   return (<div className="app-wrapper">
@@ -22,6 +23,7 @@ function App() {
         <Route path={'/music*/'} component={Music}/>
         <Route path={'/setting*/'} component={Setting}/>
         <Route path={'/news*/'} component={News}/>
+        <Route path={'/login*/'} component={Login}/>
       </div>
     </div>
   )

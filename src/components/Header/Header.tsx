@@ -22,7 +22,7 @@ type HeaderProps = {
         <ul className={s.navItems}>
           <NavLink to={'/login'}>
             {props.isAuth
-              ? <li className={s.navItem}>Logged</li>
+              ? <li className={s.navItem}>{props.login}</li>
               : <li className={s.navItem}>LOGIN</li>}
 
 

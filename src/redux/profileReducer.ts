@@ -31,7 +31,6 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
     }
 
     case (GET_PROFILE_USERS): {
-      console.log(action.profile)
       return {...state, profile: action.profile}
     }
 

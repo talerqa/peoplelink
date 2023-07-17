@@ -95,6 +95,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
   userApi.getUsers(currentPage, pageSize)
     .then((data) => {
       dispatch(fetchUsersCountAC(false))
+      dispatch(setCurrentPageAC(currentPage))
       dispatch(setUserAC(data.items))
       dispatch(setTotalUsersCountAC(data.totalCount))
     })
@@ -113,8 +114,6 @@ export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch)
 export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
   profileApi.unfollowUser(userId)
     .then((res) => {
-      console.log('fol')
-
       if (res.data.resultCode === 0) {
         dispatch(followUserAC(userId))
       }

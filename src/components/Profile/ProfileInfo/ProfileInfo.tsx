@@ -16,8 +16,8 @@ const   ProfileInfo = (props: ProfileInfoProps) => {
   return (
     <div className={s.item}>
       <span className={s.firstName}> {props.profile.fullName} </span>
-      <img className={s.avatar} src={profileLogo} alt={'profileLogo'}/>
-      <img src={props.profile.photos.large} className={''} alt=""/>
+      <img className={s.avatar} src={ props.profile.photos.large ? props.profile.photos.large : profileLogo} alt={'profileLogo'}/>
+
 
 
   <div>

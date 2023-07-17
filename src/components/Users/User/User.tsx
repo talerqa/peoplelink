@@ -17,11 +17,14 @@ const User = (props: UserPropsType) => {
   const onClickFollowHandler = () => {
     let userId = props.user.id
     props.follow(userId)
+    //dispatch
   }
 
   const onClickUnFollowHandler = () => {
     let userId = props.user.id
     props.unfollow(userId)
+
+    //dispatch
   }
 
   return (
