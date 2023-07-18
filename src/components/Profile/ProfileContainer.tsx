@@ -4,13 +4,13 @@ import {connect} from 'react-redux';
 import {postData, ProfileType} from '../../redux/type';
 import {getProfileUserAC, getProfileUserThunkCreator} from '../../redux/profileReducer';
 import {AppRootStateType} from '../../redux/store';
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
-import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {MapStateToPropsRedirectType, WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 
-class ProfileContainer extends React.Component<PropsType> {
-  constructor(props: PropsType) {
-    super(props);
-  }
+class ProfileContainer extends React.Component<PropsType  > {
+  // constructor(props: PropsType) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     let userId = this.props.match.params.userId
@@ -40,10 +40,9 @@ type OwnPropsType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
 type MapStateToPropsProfileType = {
   profile: null | ProfileType
   post: Array<postData>
-
 }
 
-type MapDispatchToPropsProfileType = {
+export type MapDispatchToPropsProfileType = {
   getProfileUserAC: (profile: ProfileType) => void
   getProfileUserThunkCreator: (userId: string) => void
 }
@@ -58,11 +57,10 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
 
 let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
 
-
-let withUrlDataContainerComponent = withRouter(AuthRedirectComponent)
+let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 export default connect(mapStateToProps, {
   getProfileUserAC: getProfileUserAC,
   getProfileUserThunkCreator: getProfileUserThunkCreator
-})(withUrlDataContainerComponent)
+})(WithUrlDataContainerComponent)
 // <MapStateToPropsProfileType, MapDispatchToPropsProfileType, PropsType, AppRootStateType>

@@ -37,10 +37,7 @@ const Dialogs = (props: DialogsPropsType) => {
     props.changeTextArea('')
   }
 
-  if (!props.isAuth) return (<Redirect to={'/login'}/>)
-
-
-  return (<div className={s.dialogs}>
+   return (<div className={s.dialogs}>
     <div className={s.dialogsItem}>
       {dialogsElement}
     </div>

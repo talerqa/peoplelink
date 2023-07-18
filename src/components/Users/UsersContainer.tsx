@@ -13,6 +13,7 @@ import {
   unFollowUserAC
 } from '../../redux/usersReducer';
 import {Users} from './Users';
+import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 class UsersContainer extends React.Component<UsersPropsType> {
   constructor(props: UsersPropsType) {
@@ -75,29 +76,8 @@ type MapDispatchToPropsType = {
   getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch<CommonUserType>): MapDispatchToPropsType => {
-//   return {
-//     follow: (userId) => {
-//       dispatch(followUserAC(userId))
-//     },
-//     unfollow: (userId) => {
-//       dispatch(unFollowUserAC(userId))
-//     },
-//     setUsers: (users) => {
-//       dispatch(setUserAC(users))
-//     },
-//     setCurrentPage: (currentPage) => {
-//       dispatch(setCurrentPageAC(currentPage))
-//     },
-//     setTotalUsersCount: (count) => {
-//       dispatch(setTotalUsersCountAC(count))
-//     },
-//     fetchUsersCount: (isFetching) => {
-//       dispatch(fetchUsersCountAC(isFetching))
-//     }
-//
-//   }
-// }
+let WithAuthUserRedirect = WithAuthRedirect(UsersContainer)
+
 
 export default connect(mapStateToProps, {
     follow: followUserAC,
@@ -109,4 +89,4 @@ export default connect(mapStateToProps, {
     fetchUsersCount: fetchUsersCountAC,
     getUsersThunkCreator: getUsersThunkCreator,
   }
-)(UsersContainer)
+)(WithAuthUserRedirect)
