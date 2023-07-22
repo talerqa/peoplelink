@@ -3,7 +3,7 @@ import {DialogsPageType, MessageType} from '../../redux/type';
 import {CommonACType, sendMessageAC, updateNewMessageTextAC} from '../../redux/dialogsReducer';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
-import {Dispatch} from 'redux';
+import {compose, Dispatch} from 'redux';
 import Dialogs from './Dialogs';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 
@@ -35,6 +35,7 @@ class DialogsContainer extends React.Component<DialogsType> {
   }
 
 }
+
 
 
 let mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
@@ -71,11 +72,13 @@ type mapDispatchToPropsType = {
   changeTextArea: (title: string) => void
 }
 
-const AuthRedirectComponent = WithAuthRedirect(DialogsContainer)
-
 type DialogsType = mapStateToPropsType & mapDispatchToPropsType
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+export default compose<React.ComponentType>(
+  connect(mapStateToProps, mapDispatchToProps),
+  WithAuthRedirect)
+(DialogsContainer)
+
 
 // export const DialogsContainer = () => {
 //   const [title, setTitle] = useState('')

@@ -14,6 +14,7 @@ import {
 } from '../../redux/usersReducer';
 import {Users} from './Users';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {compose} from 'redux';
 
 class UsersContainer extends React.Component<UsersPropsType> {
   constructor(props: UsersPropsType) {
@@ -76,17 +77,16 @@ type MapDispatchToPropsType = {
   getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
-let WithAuthUserRedirect = WithAuthRedirect(UsersContainer)
-
-
-export default connect(mapStateToProps, {
-    follow: followUserAC,
-    unfollow: unFollowUserAC,
-    setUsers: setUserAC,
-    setPageSize: setPageSizeAC,
-    setCurrentPage: setCurrentPageAC,
-    setTotalUsersCount: setTotalUsersCountAC,
-    fetchUsersCount: fetchUsersCountAC,
-    getUsersThunkCreator: getUsersThunkCreator,
-  }
-)(WithAuthUserRedirect)
+export default compose<React.ComponentType>(
+  connect(mapStateToProps, {
+      follow: followUserAC,
+      unfollow: unFollowUserAC,
+      setUsers: setUserAC,
+      setPageSize: setPageSizeAC,
+      setCurrentPage: setCurrentPageAC,
+      setTotalUsersCount: setTotalUsersCountAC,
+      fetchUsersCount: fetchUsersCountAC,
+      getUsersThunkCreator: getUsersThunkCreator,
+    }
+  ),
+  WithAuthRedirect)(UsersContainer)

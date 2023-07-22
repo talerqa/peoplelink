@@ -5,9 +5,10 @@ import {postData, ProfileType} from '../../redux/type';
 import {getProfileUserAC, getProfileUserThunkCreator} from '../../redux/profileReducer';
 import {AppRootStateType} from '../../redux/store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {MapStateToPropsRedirectType, WithAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {compose} from 'redux';
 
-class ProfileContainer extends React.Component<PropsType  > {
+class ProfileContainer extends React.Component<PropsType> {
   // constructor(props: PropsType) {
   //   super(props);
   // }
@@ -55,12 +56,14 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
   }
 }
 
-let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
+export default compose<React.ComponentType>(
+  connect(mapStateToProps, {
+    getProfileUserAC: getProfileUserAC,
+    getProfileUserThunkCreator: getProfileUserThunkCreator
+  }),
+  withRouter,
+  WithAuthRedirect
+)(ProfileContainer)
 
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
-export default connect(mapStateToProps, {
-  getProfileUserAC: getProfileUserAC,
-  getProfileUserThunkCreator: getProfileUserThunkCreator
-})(WithUrlDataContainerComponent)
 // <MapStateToPropsProfileType, MapDispatchToPropsProfileType, PropsType, AppRootStateType>
