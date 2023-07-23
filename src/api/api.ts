@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {LoginFormType} from '../components/Login/Login';
 
 
@@ -37,15 +37,31 @@ export const profileApi = {
 
 export const authApi = {
   getAuthMe: () => {
-    return instance.get('auth/me')
+    return instance.get<ResponseType<UserDataType>>('auth/me')
   },
   login: (data: LoginFormType)=> {
-    return instance.post('auth/login', data)
+    return instance.post<ResponseType<LoginUserDataType>, AxiosResponse<ResponseType<LoginUserDataType>>, LoginFormType>('auth/login', data)
   },
   logOut: () => {
-    return instance.delete('auth/login')
+    return instance.delete<ResponseType>('auth/login')
   }
-
 }
 
+export type UserDataType = {
+  id: number
+  email: string
+  login: string
+}
 
+export type LoginUserDataType = {
+  email: string
+  login: string
+  rememberMe: boolean
+}
+
+export type ResponseType<D = {}> = {
+  resultCode: number
+  messages: Array<string>
+  fieldsErrors: Array<string>
+  data: D
+}
