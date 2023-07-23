@@ -8,6 +8,7 @@ type HeaderProps = {
   login: string | null
   email: string | null
   isAuth: boolean
+  logout: () => void
 }
 
  const Header = (props: HeaderProps) => {
@@ -22,13 +23,11 @@ type HeaderProps = {
         <ul className={s.navItems}>
           <NavLink to={'/login'}>
             {props.isAuth
-              ? <li className={s.navItem}>{props.login}</li>
-              : <li className={s.navItem}>LOGIN</li>}
-
-
+              ? <li className={s.navItem}>{props.login} logged in </li>
+              : <button className={s.navItem}>Log in</button>}
           </NavLink>
           <NavLink to={''}>
-            <li className={s.navItem}>LINK</li>
+            <button className={s.navItem} onClick={props.logout}>Log out</button>
           </NavLink>
         </ul>
       </nav>
