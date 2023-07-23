@@ -1,6 +1,7 @@
 import {MyUsersPageType, UsersType} from './type';
 import {profileApi, userApi} from '../api/api';
 import {Dispatch} from 'redux';
+import {ActionTypes} from 'redux-form';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
@@ -114,6 +115,7 @@ export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch)
 export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
   profileApi.unfollowUser(userId)
     .then((res) => {
+      console.log(12132)
       if (res.data.resultCode === 0) {
         dispatch(followUserAC(userId))
       }

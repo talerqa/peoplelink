@@ -53,6 +53,7 @@ export type ProfilePageType = {
   posts: Array<postData>
   profile: ProfileType | null
   newPostText: string
+  status: string
 }
 
 export type ProfileType = {

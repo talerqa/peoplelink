@@ -2,7 +2,11 @@ import * as React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {postData, ProfileType} from '../../redux/type';
-import {getProfileUserAC, getProfileUserThunkCreator} from '../../redux/profileReducer';
+import {
+  getProfileUserAC,
+  getProfileUserThunkCreator,
+  getStatusProfileUserThunkCreator, updateStatusProfileUserThunkCreator
+} from '../../redux/profileReducer';
 import {AppRootStateType} from '../../redux/store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
@@ -17,15 +21,21 @@ class ProfileContainer extends React.Component<PropsType> {
     let userId = this.props.match.params.userId
 
     if (!userId) {
-      userId = '2'
+      userId = '29080'
     }
     this.props.getProfileUserThunkCreator(userId)
+    this.props.getStatusProfile(userId)
   }
 
   render() {
     return (
       <div>
-        <Profile {...this.props} profile={this.props.profile} posts={this.props.post}/>
+        <Profile {...this.props}
+                 profile={this.props.profile}
+                 posts={this.props.post}
+                 status={this.props.status}
+                 updateStatus={this.props.updateStatusProfile}
+        />
       </div>)
   }
 }
@@ -41,11 +51,15 @@ type OwnPropsType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
 type MapStateToPropsProfileType = {
   profile: null | ProfileType
   post: Array<postData>
+  status: string
+
 }
 
 export type MapDispatchToPropsProfileType = {
   getProfileUserAC: (profile: ProfileType) => void
   getProfileUserThunkCreator: (userId: string) => void
+  getStatusProfile: (userId: string) => void
+  updateStatusProfile: (status: string) => void
 }
 
 
@@ -53,13 +67,16 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
   return {
     profile: state.profileReducer.profile,
     post: state.profileReducer.posts,
+    status: state.profileReducer.status,
   }
 }
 
 export default compose<React.ComponentType>(
   connect(mapStateToProps, {
     getProfileUserAC: getProfileUserAC,
-    getProfileUserThunkCreator: getProfileUserThunkCreator
+    getProfileUserThunkCreator: getProfileUserThunkCreator,
+    getStatusProfile: getStatusProfileUserThunkCreator,
+    updateStatusProfile: updateStatusProfileUserThunkCreator,
   }),
   withRouter,
   WithAuthRedirect

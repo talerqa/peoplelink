@@ -6,6 +6,7 @@ import {profileApi} from '../api/api';
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
 const GET_PROFILE_USERS = 'GET-PROFILE-USERS';
+const SET_STATUS = 'SET-STATUS';
 
 const initState: ProfilePageType = {
   posts: [
@@ -14,7 +15,8 @@ const initState: ProfilePageType = {
     {id: v1(), message: 'Its my second project', likesCount: 1},
   ],
   profile: null,
-  newPostText: ''
+  newPostText: '',
+  status: '',
 }
 
 export const profileReducer = (state = initState, action: CommonProfileType) => {
@@ -33,16 +35,22 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
     case (GET_PROFILE_USERS): {
       return {...state, profile: action.profile}
     }
+    case (SET_STATUS): {
+
+      return {...state, status: action.status}
+    }
 
     default:
       return state
   }
 }
 
-export type CommonProfileType = AddPostACType | UpdateNewPostTextACType | getProfileUserACType
-export type AddPostACType = ReturnType<typeof addPostAC>
-export type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
-export type getProfileUserACType = ReturnType<typeof getProfileUserAC>
+export type CommonProfileType =
+  | ReturnType<typeof addPostAC>
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof getProfileUserAC>
+  | ReturnType<typeof setStatusProfileUserAC>
+
 
 export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
 
@@ -50,9 +58,26 @@ export const updateNewPostTextAC = (title: string) => ({type: UPDATE_NEWPOST_TEX
 
 export const getProfileUserAC = (profile: ProfileType) => ({type: GET_PROFILE_USERS, profile} as const)
 
+export const setStatusProfileUserAC = (status: string) => ({type: SET_STATUS, status} as const)
+
 export const getProfileUserThunkCreator = (userId: string) => (dispatch: Dispatch) => {
   profileApi.getProfileUser(userId)
     .then((res) => {
       dispatch(getProfileUserAC(res.data))
+    })
+}
+
+
+export const getStatusProfileUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+  profileApi.getStatus(userId)
+    .then((res) => {
+      dispatch(setStatusProfileUserAC(res.data))
+    })
+}
+
+export const updateStatusProfileUserThunkCreator = (status: string) => (dispatch: Dispatch) => {
+  profileApi.updateStatus(status)
+    .then((res) => {
+        dispatch(setStatusProfileUserAC(status))
     })
 }

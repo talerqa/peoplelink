@@ -9,6 +9,8 @@ import {useDispatch} from 'react-redux';
 type MyPostProps = {
   profile: any
   posts: Array<postData>
+  status: string
+  updateStatus: (status: string) => void
 }
 
 export const MyPostContainer = (props: MyPostProps) => {
@@ -39,6 +41,8 @@ export const MyPostContainer = (props: MyPostProps) => {
       likesCount={post.likesCount}
       id={post.id}
       profile={props.profile}
+      status={props.status}
+      updateStatus={props.updateStatus}
     />
   )
 

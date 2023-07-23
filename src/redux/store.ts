@@ -1,10 +1,9 @@
-import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {dialogsReducer} from './dialogsReducer';
 import {profileReducer} from './profileReducer';
 import {usersReducer} from './usersReducer';
 import {authReducer} from './authReducer';
-import thunk, {ThunkDispatch} from 'redux-thunk';
-import {useDispatch} from 'react-redux';
+import thunk from 'redux-thunk';
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
