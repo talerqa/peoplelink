@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {useFormik} from 'formik';
+import {LoginFormType} from '../Login';
 
 type FormikErrorType = {
   email?: string
@@ -7,12 +8,12 @@ type FormikErrorType = {
   rememberMe?: boolean
 }
 
-type LoginFormType = {
-  onSubmit: (formData: any) => void
+type LoginPropsFormType = {
+  onSubmit: (formData: LoginFormType) => void
 }
 
 
-export const LoginForm = (props: LoginFormType) => {
+export const LoginForm = (props: LoginPropsFormType) => {
 
   const formik = useFormik({
     initialValues: {
@@ -35,8 +36,9 @@ export const LoginForm = (props: LoginFormType) => {
       return errors
     },
     onSubmit: values => {
-      console.log(JSON.stringify(values))
+
       props.onSubmit(values)
+
       // formik.resetForm()
     },
   })
@@ -45,7 +47,6 @@ export const LoginForm = (props: LoginFormType) => {
     <div>
       <form action="" onSubmit={formik.handleSubmit}>
         <input type="email"
-
                {...formik.getFieldProps('email')}
         />
         {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
@@ -58,7 +59,7 @@ export const LoginForm = (props: LoginFormType) => {
           checked={formik.values.rememberMe}
           {...formik.getFieldProps('rememberMe')}
         />
-        <button>Submit</button>
+        <button type={'submit'}>Submit</button>
       </form>
     </div>
   );

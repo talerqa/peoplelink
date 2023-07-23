@@ -1,5 +1,5 @@
 import {authApi} from '../api/api';
-import {AnyAction, Dispatch} from 'redux';
+import {Dispatch} from 'redux';
 import {LoginFormType} from '../components/Login/Login';
 
 const SET_USER_DATA = 'SET-USER-DATA'
@@ -46,17 +46,18 @@ export const setUserDataAC = (id: number | null, email: string | null, login: st
 export const authThunkCreator =  (): any => (dispatch: Dispatch) => {
   authApi.getAuthMe()
     .then((res) => {
+      console.log(res)
       if (res.data.resultCode === 0) {
-        // let {id, email, login} = res.data.data
         dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true))
       }
     })
 }
 
-export const loginThunkCreator = (data: any): any => (dispatch: Dispatch) => {
+export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: Dispatch) => {
+  console.log(data)
   authApi.login(data)
     .then((res) => {
-      console.log(data)
+      console.log(res)
       if (res.data.resultCode === 0) {
         dispatch(authThunkCreator())
       }
