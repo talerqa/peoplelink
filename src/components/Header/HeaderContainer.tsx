@@ -26,8 +26,7 @@ type MapStateToPropsAuthType = {
   id: number | null
   email: string | null
   login: string | null,
-  isAuth: boolean,
-
+  isAuth: boolean
 }
 
 type AuthPropsType = MapStateToPropsAuthType & MapDispatchToPropsAuthType
@@ -42,7 +41,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsAuthType => {
 }
 
 type MapDispatchToPropsAuthType = {
-  setUserData: (id: number | null, email: string | null, login: string | null) => void
+  setUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean) => void
   authThunkCreator: () => void
 }
 

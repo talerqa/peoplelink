@@ -36,8 +36,6 @@ class DialogsContainer extends React.Component<DialogsType> {
 
 }
 
-
-
 let mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     dialogsPage: state.dialogsReducer,
