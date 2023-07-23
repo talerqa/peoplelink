@@ -12,6 +12,7 @@ const rootReducer = combineReducers({
   profileReducer: profileReducer, //
   usersReducer: usersReducer, //
   authReducer: authReducer,
+//  form: form,
 })
 
 // непосредственно создаём store
