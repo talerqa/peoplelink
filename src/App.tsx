@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import {Route} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Setting from './components/Setting/Setting';
 import Music from './components/Music/Music';
@@ -10,9 +10,18 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import {LoginContainer} from './components/Login/Login';
+import {AppRootStateType} from './redux/store';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
 
-function App() {
-  return (<div className="app-wrapper">
+class App extends React.Component<AppPropsType> {
+
+
+  render() {
+
+
+
+    return (<div className="app-wrapper">
       <HeaderContainer/>
       <Navbar/>
       <div className={'content'}>
@@ -24,8 +33,25 @@ function App() {
         <Route path={'/news*/'} component={News}/>
         <Route path={'/login*/'} render={() => <LoginContainer/>}/>
       </div>
-    </div>
-  )
+    </div>)
+  }
 }
 
-export default App;
+
+type AppPropsType = mapDispatchToPropsTye & mapStateToPropsType
+
+type mapStateToPropsType = {
+  isAuth: boolean
+}
+
+type mapDispatchToPropsTye = {}
+const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
+  return {
+    isAuth: state.authReducer.isAuth
+  }
+}
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsTye => {
+  return {}
+}
+
+export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);

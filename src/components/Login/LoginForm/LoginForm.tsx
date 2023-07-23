@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useFormik} from 'formik';
 import {LoginFormType} from '../Login';
+import s from '../Login.module.css'
 
 type FormikErrorType = {
   email?: string
@@ -36,25 +37,27 @@ export const LoginForm = (props: LoginPropsFormType) => {
       return errors
     },
     onSubmit: values => {
-
       props.onSubmit(values)
-
-      // formik.resetForm()
     },
   })
 
   return (
     <div>
       <form action="" onSubmit={formik.handleSubmit}>
-        <input type="email"
-               {...formik.getFieldProps('email')}
+        <input
+          className={s.email}
+          type="email"
+          {...formik.getFieldProps('email')}
         />
         {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
-        <input type="password"
+        <input
+          className={s.password}
+          type="password"
                {...formik.getFieldProps('password')}
         />
         {formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}
         <input
+          className={s.checkbox}
           type="checkbox"
           checked={formik.values.rememberMe}
           {...formik.getFieldProps('rememberMe')}

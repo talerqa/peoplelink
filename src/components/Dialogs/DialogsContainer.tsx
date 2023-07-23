@@ -77,39 +77,3 @@ export default compose<React.ComponentType>(
   WithAuthRedirect)
 (DialogsContainer)
 
-
-// export const DialogsContainer = () => {
-//   const [title, setTitle] = useState('')
-//   const dialogsPage = useSelector<AppRootStateType, DialogsPageType>(state => state.dialogsReducer)
-//
-//   const dispatch = useDispatch()
-//   //Добавляем новый пост
-//   const addPost = () => {
-//     let action = sendMessageAC(title)
-//     dispatch(action)
-//     setTitle('')
-//   }
-//
-//   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-//     if (e.currentTarget.value !== null) {
-//       let newPost = e.currentTarget.value
-//       setTitle(newPost)
-//       const action = updateNewMessageTextAC(e.currentTarget.value)
-//       dispatch(action)
-//     }
-//   }
-//
-//   const dialogsElement = dialogsPage.dialogsData
-//     .map((dialog: DialogsDataType) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
-//   const messageElement = dialogsPage.message.map((message: MessageType) => <Message message={message.message}/>)
-//
-//
-//   return (<Dialogs
-//     title={title}
-//     dialogsElement={dialogsElement}
-//     messageElement={messageElement}
-//     changeTextArea={changeTextArea}
-//     addPost={addPost}
-//   />)
-// }
-

@@ -14,12 +14,17 @@ class HeaderContainer extends React.Component<AuthPropsType> {
     this.props.authThunkCreator()
   }
 
+  logOutHandler = () => {
+    this.props.logout()
+  }
+
   render() {
+    
     return <Header id={this.props.id}
                    email={this.props.email}
                    login={this.props.login}
                    isAuth={this.props.isAuth}
-                   logout={this.props.logout}
+                   logout={this.logOutHandler}
     />;
   }
 }

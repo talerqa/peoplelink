@@ -5,23 +5,23 @@ import {Dispatch} from 'redux';
 import {loginThunkCreator} from '../../redux/authReducer';
 import {AppRootStateType} from '../../redux/store';
 import {Redirect} from 'react-router-dom';
+import {LoginInfo} from './LoginInfo/LoginInfo';
 
 
 export const Login = (props: LoginPropsType) => {
   const onSubmitHandler = (formData: LoginFormType) => {
     props.login(formData)
-    console.log(formData)
-
   }
 
-  if(props.isAuth){
-    return <Redirect to={'/profile'}/>
+  if (props.isAuth) {
+    return <Redirect to={'/login'}/>
   }
 
   return (
     <div>
       <span>Login</span>
       <LoginForm onSubmit={onSubmitHandler}/>
+      <LoginInfo/>
     </div>
   );
 };

@@ -36,7 +36,6 @@ export const authReducer = (state = initState, action: CommonAuthType) => {
 export type CommonAuthType = SetUserDataType
 export type SetUserDataType = ReturnType<typeof setUserDataAC>
 
-
 export const setUserDataAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
   type: SET_USER_DATA,
   data: {id, email, login, isAuth}
@@ -46,7 +45,6 @@ export const setUserDataAC = (id: number | null, email: string | null, login: st
 export const authThunkCreator =  (): any => (dispatch: Dispatch) => {
   authApi.getAuthMe()
     .then((res) => {
-      console.log(res)
       if (res.data.resultCode === 0) {
         dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true))
       }
@@ -60,6 +58,8 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
       console.log(res)
       if (res.data.resultCode === 0) {
         dispatch(authThunkCreator())
+      } else if (res.data.resultCode === 1) {
+        console.log('НЕТ ТАКОГО ПОЛЬЗОВАТЕЛЯ')
       }
     })
 }
