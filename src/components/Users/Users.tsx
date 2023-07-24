@@ -1,18 +1,18 @@
 import * as React from 'react';
-import {UsersType} from '../../redux/type';
+import {UserType} from '../../redux/type';
 import s from './Users.module.css';
 import User from './User/User';
 import Preloader from '../Preloader/Preloader';
 
 type UsersComponentPropsType = {
-  users: UsersType[]
+  users: UserType[]
   pageSize: number
   totalCount: number
   currentPage: number
   onPageChanged: (page: number) => void
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  setUsers: (users: UsersType[]) => void
+  setUsers: (users: UserType[]) => void
   isFetching: boolean
 }
 

@@ -1,4 +1,4 @@
-import {MyUsersPageType, UsersType} from './type';
+import {MyUsersPageType, UserType} from './type';
 import {profileApi, userApi} from '../api/api';
 import {Dispatch} from 'redux';
 import {ActionTypes} from 'redux-form';
@@ -81,7 +81,7 @@ export const followUserAC = (userID: number) => ({type: FOLLOW_USER, userID} as 
 
 export const unFollowUserAC = (userID: number) => ({type: UNFOLLOW_USER, userID} as const)
 
-export const setUserAC = (users: UsersType[]) => ({type: SET_USER, users} as const)
+export const setUserAC = (users: UserType[]) => ({type: SET_USER, users} as const)
 
 export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 
@@ -95,6 +95,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
   dispatch(fetchUsersCountAC(true))
   userApi.getUsers(currentPage, pageSize)
     .then((data) => {
+      console.log(data)
       dispatch(fetchUsersCountAC(false))
       dispatch(setCurrentPageAC(currentPage))
       dispatch(setUserAC(data.items))
@@ -105,7 +106,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
 export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
   profileApi.unfollowUser(userId)
     .then((res) => {
-      console.log('un')
+      console.log(res)
       if (res.data.resultCode === 0) {
         dispatch(unFollowUserAC(userId))
       }
@@ -113,9 +114,9 @@ export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch)
 }
 
 export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
-  profileApi.unfollowUser(userId)
+  profileApi.followUser(userId)
     .then((res) => {
-      console.log(12132)
+      console.log(res)
       if (res.data.resultCode === 0) {
         dispatch(followUserAC(userId))
       }

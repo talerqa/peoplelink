@@ -21,18 +21,20 @@ export type DialogsPageType = {
 }
 
 //Типы User
-export type UsersType = {
+export type UserType = {
+  followed: boolean
   id: number
   name: string
   photos: {
     small: null | string
     large: null | string
-  },
-  status: string,
-  followed: boolean
+  }
+  status: null | string
+  uniqueUrlName: null | string
 }
+
 export type MyUsersPageType = {
-  users: UsersType[]
+  users: UserType[]
   pageSize: number
   totalUsersCount: number
   currentPage: number

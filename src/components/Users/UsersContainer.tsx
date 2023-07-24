@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
-import {UsersType} from '../../redux/type';
+import {UserType} from '../../redux/type';
 import {
   fetchUsersCountAC,
-  followUserAC,
+  followUserAC, followUserThunkCreator,
   getUsersThunkCreator,
   setCurrentPageAC,
   setPageSizeAC,
   setTotalUsersCountAC,
   setUserAC,
-  unFollowUserAC
+  unFollowUserAC, unFollowUserThunkCreator
 } from '../../redux/usersReducer';
 import {Users} from './Users';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
@@ -49,7 +49,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
 type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
-  users: UsersType[],
+  users: UserType[],
   pageSize: number
   totalCount: number
   currentPage: number
@@ -69,7 +69,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
 type MapDispatchToPropsType = {
   follow: (userId: number) => void,
   unfollow: (userId: number) => void,
-  setUsers: (users: UsersType[]) => void,
+  setUsers: (users: UserType[]) => void,
   setPageSize: (pageSize: number) => void,
   setCurrentPage: (currentPage: number) => void,
   setTotalUsersCount: (count: number) => void,
@@ -79,8 +79,8 @@ type MapDispatchToPropsType = {
 
 export default compose<React.ComponentType>(
   connect(mapStateToProps, {
-      follow: followUserAC,
-      unfollow: unFollowUserAC,
+      follow: followUserThunkCreator,
+      unfollow: unFollowUserThunkCreator,
       setUsers: setUserAC,
       setPageSize: setPageSizeAC,
       setCurrentPage: setCurrentPageAC,

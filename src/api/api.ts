@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 import {LoginFormType} from '../components/Login/Login';
+import {ProfileType, UserType} from '../redux/type';
 
 
 const instance = axios.create({
@@ -12,14 +13,16 @@ const instance = axios.create({
 
 export const userApi = {
   getUsers: (currenPage: number = 1, pageSize: number = 28) => {
-    return instance.get(`users?page=${currenPage}&count=${pageSize}`).then((res) => res.data)
-  },
-
+    return instance.get<GetUserType>(`users?page=${currenPage}&count=${pageSize}`).then((res) => {
+      console.log(res)
+      return  res.data
+    })
+  }
 }
 
 export const profileApi = {
   getProfileUser: (userId: string) => {
-    return instance.get(`profile/` + userId)
+    return instance.get<ProfileType>(`profile/` + userId)
   },
   followUser: (userId: number) => {
     return instance.post('follow/' + userId, userId)
@@ -28,7 +31,7 @@ export const profileApi = {
     return instance.delete('follow/' + userId)
   },
   getStatus: (userId : number) => {
-    return instance.get('profile/status/' + userId)
+    return instance.get<string>('profile/status/' + userId)
   },
   updateStatus: (status: string) => {
     return instance.put('profile/status', {status})
@@ -57,6 +60,12 @@ export type LoginUserDataType = {
   email: string
   login: string
   rememberMe: boolean
+}
+
+export type GetUserType = {
+  items: Array<UserType>,
+  totalCount: number,
+  error: string | null
 }
 
 export type ResponseType<D = {}> = {

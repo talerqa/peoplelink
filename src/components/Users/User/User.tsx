@@ -1,15 +1,15 @@
 import * as React from 'react';
 import s from './User.module.css';
 import profileLogo from './../../../img/profileLogo.png'
-import {UsersType} from '../../../redux/type';
+import {UserType} from '../../../redux/type';
 import {NavLink} from 'react-router-dom';
 import {followUserThunkCreator, unFollowUserThunkCreator} from '../../../redux/usersReducer';
 
 type UserPropsType = {
-  user: UsersType
+  user: UserType
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  setUsers: (users: UsersType[]) => void
+  setUsers: (users: UserType[]) => void
 }
 
 
