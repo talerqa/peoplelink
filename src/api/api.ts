@@ -25,16 +25,16 @@ export const profileApi = {
     return instance.get<ProfileType>(`profile/` + userId)
   },
   followUser: (userId: number) => {
-    return instance.post('follow/' + userId, userId)
+    return instance.post<ResponseType<{ followed: boolean }>, AxiosResponse<ResponseType<{ followed: boolean }>>, { userId: number  }>('follow/' + userId, {userId})
   },
   unfollowUser: (userId: number) => {
-    return instance.delete('follow/' + userId)
+    return instance.delete<ResponseType>('follow/' + userId)
   },
   getStatus: (userId : number) => {
     return instance.get<string>('profile/status/' + userId)
   },
   updateStatus: (status: string) => {
-    return instance.put('profile/status', {status})
+    return instance.put<ResponseType<string>, AxiosResponse<ResponseType<string>>, { status: string }>('profile/status', {status})
   }
 }
 
