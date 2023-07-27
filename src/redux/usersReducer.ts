@@ -1,7 +1,6 @@
 import {MyUsersPageType, UserType} from './type';
 import {profileApi, userApi} from '../api/api';
 import {Dispatch} from 'redux';
-import {ActionTypes} from 'redux-form';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
@@ -91,25 +90,34 @@ export const setTotalUsersCountAC = (count: number) => ({type: TOTAL_USERS_COUNT
 
 export const fetchUsersCountAC = (isFetching: boolean) => ({type: FETCHING_USERS, isFetching} as const)
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
   dispatch(fetchUsersCountAC(true))
-  userApi.getUsers(currentPage, pageSize)
-    .then((data) => {
-      console.log(data)
+  const data = await userApi.getUsers(currentPage, pageSize)
+    try {
       dispatch(fetchUsersCountAC(false))
       dispatch(setCurrentPageAC(currentPage))
       dispatch(setUserAC(data.items))
       dispatch(setTotalUsersCountAC(data.totalCount))
-    })
+    } catch (e) {
+
+    }
 }
 
-export const unFollowUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
-  profileApi.unfollowUser(userId)
-    .then((res) => {
-      if (res.data.resultCode === 0) {
+enum ResultCode {
+  OK = 0,
+  ERROR = 1
+}
+
+export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+  const res = await  profileApi.unfollowUser(userId)
+  console.log(res.data)
+    try {
+      if (res.data.resultCode === ResultCode.OK) {
         dispatch(unFollowUserAC(userId))
       }
-    })
+  } catch (e) {
+
+    }
 }
 
 export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {

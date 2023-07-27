@@ -1,0 +1,128 @@
+.email, .password {
+  display: block;
+  outline: none;
+  width: 100%;
+  font-size: 20px;
+}
+
+.email, .password {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  flex: 0 0 auto;
+  flex-grow: 1;
+}
+
+
+.emailError {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  border: 1px solid red;
+  flex: 0 0 auto;
+  flex-grow: 1;
+  outline: none;
+
+}
+
+.passwordError {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  border: 1px solid red;
+  flex: 0 0 auto;
+  flex-grow: 1;
+  outline: none;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  margin-bottom: 60px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  width: 60%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.inputName {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+
+.buttonSend {
+  margin-top: 5px;
+  height: 30px;
+  align-self: center;
+  background-color: transparent;
+  border: 1px solid red;
+  outline: none;
+  font-family: inherit;
+}
+
+.errorText {
+  margin: 0;
+  font-size: 20px;
+}
+
+.errorTextEmail {
+  color: red;
+  height: 30px;
+}
+
+.errorTextPassword{
+  color: red;
+  height: 30px;
+}
+
+.submitBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.rememberMe {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.loginBlock {
+
+}
+
+.passwordBlock {
+
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 0;
+  -webkit-text-fill-color: #1f1f20;
+  -webkit-box-shadow: 0 0 0 1000px #1aff00 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);
+}

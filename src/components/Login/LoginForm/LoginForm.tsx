@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useFormik} from 'formik';
 import {LoginFormType} from '../Login';
-import s from '../Login.module.css'
+import s from './LoginForm.module.css'
 
 type FormikErrorType = {
   email?: string
@@ -42,27 +42,48 @@ export const LoginForm = (props: LoginPropsFormType) => {
   })
 
   return (
-    <div>
-      <form action="" onSubmit={formik.handleSubmit}>
-        <input
-          className={s.email}
-          type="email"
-          {...formik.getFieldProps('email')}
-        />
-        {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
-        <input
-          className={s.password}
-          type="password"
-               {...formik.getFieldProps('password')}
-        />
-        {formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}
-        <input
-          className={s.checkbox}
-          type="checkbox"
-          checked={formik.values.rememberMe}
-          {...formik.getFieldProps('rememberMe')}
-        />
-        <button type={'submit'}>Submit</button>
+    <div className={s.contactForm}>
+      <form action="" onSubmit={formik.handleSubmit} className={s.form}>
+        <div className={s.inputName}>
+          <div className={s.loginBlock}>
+            <span>Login</span>
+            <input
+              className={formik.touched.email && formik.errors.email ? s.emailError : s.email}
+              type="email"
+              {...formik.getFieldProps('email')}
+            />
+            <div className={s.errorTextEmail}>
+              {formik.touched.email && formik.errors.email &&
+                <span className={s.errorText}>{formik.errors.email}</span>}
+            </div>
+          </div>
+          <div className={s.passwordBlock}>
+            <span>Password</span>
+            <input
+              className={formik.touched.password && formik.errors.password ? s.passwordError : s.password}
+              type="password"
+              {...formik.getFieldProps('password')}
+            />
+            <div className={s.errorTextPassword}>
+              {formik.touched.password && formik.errors.password &&
+                <span className={s.errorText}>{formik.errors.password}</span>}
+            </div>
+          </div>
+          <div className={s.submitBlock}>
+            <div className={s.rememberMe}>
+              <span>Remember me</span>
+              <input
+                className={s.checkbox}
+                type="checkbox"
+                checked={formik.values.rememberMe}
+                {...formik.getFieldProps('rememberMe')}
+              />
+            </div>
+
+            <button className={s.buttonSend} type={'submit'}>Submit</button>
+          </div>
+
+        </div>
       </form>
     </div>
   );

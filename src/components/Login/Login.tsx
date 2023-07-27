@@ -6,7 +6,7 @@ import {loginThunkCreator} from '../../redux/authReducer';
 import {AppRootStateType} from '../../redux/store';
 import {Redirect} from 'react-router-dom';
 import {LoginInfo} from './LoginInfo/LoginInfo';
-
+import s from './Login.module.css'
 
 export const Login = (props: LoginPropsType) => {
   const onSubmitHandler = (formData: LoginFormType) => {
@@ -18,8 +18,8 @@ export const Login = (props: LoginPropsType) => {
   }
 
   return (
-    <div>
-      <span>Login</span>
+    <div className={s.loginBlock}>
+
       <LoginForm onSubmit={onSubmitHandler}/>
       <LoginInfo/>
     </div>
