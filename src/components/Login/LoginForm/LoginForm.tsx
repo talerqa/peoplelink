@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useFormik} from 'formik';
 import {LoginFormType} from '../Login';
 import s from './LoginForm.module.css'
+import {useState} from 'react';
 
 type FormikErrorType = {
   email?: string
@@ -11,10 +12,13 @@ type FormikErrorType = {
 
 type LoginPropsFormType = {
   onSubmit: (formData: LoginFormType) => void
+  error: string
 }
 
 
 export const LoginForm = (props: LoginPropsFormType) => {
+
+
 
   const formik = useFormik({
     initialValues: {
@@ -40,7 +44,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
       props.onSubmit(values)
     },
   })
-
+  console.log(props.error)
   return (
     <div className={s.contactForm}>
       <form action="" onSubmit={formik.handleSubmit} className={s.form}>
@@ -82,7 +86,9 @@ export const LoginForm = (props: LoginPropsFormType) => {
 
             <button className={s.buttonSend} type={'submit'}>Submit</button>
           </div>
-
+          <div>
+            { props.error }
+          </div>
         </div>
       </form>
     </div>

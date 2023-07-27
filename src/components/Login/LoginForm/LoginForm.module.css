@@ -52,7 +52,6 @@
   align-items: center;
   justify-content: space-around;
   height: 200px;
-  width: 100%;
   margin: 0 auto;
 }
 
@@ -63,7 +62,6 @@
   width: 100%;
   gap: 20px;
 }
-
 
 .buttonSend {
   margin-top: 5px;

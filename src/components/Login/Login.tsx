@@ -19,8 +19,7 @@ export const Login = (props: LoginPropsType) => {
 
   return (
     <div className={s.loginBlock}>
-
-      <LoginForm onSubmit={onSubmitHandler}/>
+      <LoginForm onSubmit={onSubmitHandler} error={props.error}/>
       <LoginInfo/>
     </div>
   );
@@ -30,6 +29,7 @@ export type LoginPropsType = mapDispatchToPropsType & mapStatePropsType
 
 type mapStatePropsType = {
   isAuth: boolean
+  error: string
 }
 
 type mapDispatchToPropsType = {
@@ -38,6 +38,7 @@ type mapDispatchToPropsType = {
 const mapStateToProps = (state: AppRootStateType): mapStatePropsType => {
   return {
     isAuth: state.authReducer.isAuth,
+    error: state.authReducer.error
   }
 }
 

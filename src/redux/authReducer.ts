@@ -9,6 +9,7 @@ const initState: AuthType = {
   login: null,
   email: null,
   isAuth: false,
+  error: '',
 }
 
 export type AuthType = {
@@ -16,6 +17,7 @@ export type AuthType = {
   login: string | null
   email: string | null
   isAuth: boolean
+  error: string
 }
 
 export const authReducer = (state = initState, action: CommonAuthType) => {
@@ -26,14 +28,16 @@ export const authReducer = (state = initState, action: CommonAuthType) => {
         ...action.data
       }
     }
-
+    case 'SET_ERROR': {
+      return {...state, error: action.error}
+    }
     default:
       return state
   }
 }
 
 
-export type CommonAuthType = SetUserDataType
+export type CommonAuthType = SetUserDataType | ReturnType<typeof setErrorAC>
 export type SetUserDataType = ReturnType<typeof setUserDataAC>
 
 export const setUserDataAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
@@ -41,27 +45,37 @@ export const setUserDataAC = (id: number | null, email: string | null, login: st
   data: {id, email, login, isAuth}
 } as const)
 
+export const setErrorAC = (error: string) => ({
+  type: 'SET_ERROR',
+  error
+} as const)
 
-export const authThunkCreator =  (): any => (dispatch: Dispatch) => {
-  authApi.getAuthMe()
-    .then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true))
-      }
-    })
+
+export const authThunkCreator = (): any => async (dispatch: Dispatch) => {
+  const res = await authApi.getAuthMe()
+  try {
+    if (res.data.resultCode === 0) {
+      dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true))
+    } else if (res.data.resultCode === 1) {
+      dispatch(setErrorAC(res.data.messages[0]))
+    }
+  } catch (e) {
+
+  }
 }
 
 export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: Dispatch) => {
-  console.log(data)
-  authApi.login(data)
-    .then((res) => {
-      console.log(res)
-      if (res.data.resultCode === 0) {
-        dispatch(authThunkCreator())
-      } else if (res.data.resultCode === 1) {
-        console.log('НЕТ ТАКОГО ПОЛЬЗОВАТЕЛЯ')
-      }
-    })
+
+  const res = await authApi.login(data)
+  try {
+    if (res.data.resultCode === 0) {
+      dispatch(authThunkCreator())
+    }else if (res.data.resultCode === 1) {
+      dispatch(setErrorAC(res.data.messages[0]))
+    }
+  } catch (e) {
+
+  }
 }
 
 export const logOutThunkCreator = () => (dispatch: Dispatch<CommonAuthType>) => {
