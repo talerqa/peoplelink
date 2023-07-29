@@ -1,17 +1,21 @@
-.email, .password {
-  display: block;
-  outline: none;
-  width: 100%;
+input {
   font-size: 20px;
 }
-
 .email, .password {
   display: block;
   font-size: 20px;
   font-weight: 400;
   flex: 0 0 auto;
   flex-grow: 1;
+  outline: none;
+  width: 100%;
 }
+
+.email::placeholder, .password::placeholder {
+  font-size: 20px;
+  padding: 0;
+}
+
 
 
 .emailError {
@@ -53,6 +57,7 @@
   justify-content: space-around;
   height: 200px;
   margin: 0 auto;
+  font-size: 20px;
 }
 
 
@@ -60,7 +65,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 20px;
 }
 
 .buttonSend {
@@ -68,7 +72,7 @@
   height: 30px;
   align-self: center;
   background-color: transparent;
-  border: 1px solid red;
+
   outline: none;
   font-family: inherit;
 }
@@ -108,19 +112,19 @@
 
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  border: 0;
-  -webkit-text-fill-color: #1f1f20;
-  -webkit-box-shadow: 0 0 0 1000px #1aff00 inset;
-  transition: background-color 5000s ease-in-out 0s;
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);
-}
+/*input:-webkit-autofill,*/
+/*input:-webkit-autofill:hover,*/
+/*input:-webkit-autofill:focus*/
+/*input:-webkit-autofill,*/
+/*textarea:-webkit-autofill,*/
+/*textarea:-webkit-autofill:hover*/
+/*textarea:-webkit-autofill:focus,*/
+/*select:-webkit-autofill,*/
+/*select:-webkit-autofill:hover,*/
+/*select:-webkit-autofill:focus {*/
+/*  border: 0;*/
+/*  -webkit-text-fill-color: #1f1f20;*/
+/*  -webkit-box-shadow: 0 0 0 1000px #1aff00 inset;*/
+/*  transition: background-color 5000s ease-in-out 0s;*/
+/*  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);*/
+/*}*/

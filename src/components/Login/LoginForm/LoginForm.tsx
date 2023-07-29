@@ -2,19 +2,19 @@ import * as React from 'react';
 import {useFormik} from 'formik';
 import {LoginFormType} from '../Login';
 import s from './LoginForm.module.css'
-import {useState} from 'react';
 
 type FormikErrorType = {
   email?: string
   password?: string
   rememberMe?: boolean
+  captcha?: string
 }
 
 type LoginPropsFormType = {
   onSubmit: (formData: LoginFormType) => void
   error: string
+  captcha: any
 }
-
 
 export const LoginForm = (props: LoginPropsFormType) => {
 
@@ -24,7 +24,8 @@ export const LoginForm = (props: LoginPropsFormType) => {
     initialValues: {
       email: '',
       password: '',
-      rememberMe: false
+      rememberMe: false,
+      captcha: '',
     },
     validate: (values) => {
       const errors: FormikErrorType = {}
@@ -41,10 +42,11 @@ export const LoginForm = (props: LoginPropsFormType) => {
       return errors
     },
     onSubmit: values => {
+      console.log(values)
       props.onSubmit(values)
     },
   })
-  console.log(props.error)
+  console.log(props.captcha)
   return (
     <div className={s.contactForm}>
       <form action="" onSubmit={formik.handleSubmit} className={s.form}>
@@ -87,7 +89,15 @@ export const LoginForm = (props: LoginPropsFormType) => {
             <button className={s.buttonSend} type={'submit'}>Submit</button>
           </div>
           <div>
-            { props.error }
+            {props.error}
+          </div>
+          <div>
+            {props.captcha.url && <img src={props.captcha.url} alt=""/> }
+            {props.captcha.url && <input
+              className={s.captcha}
+              type="text"
+              {...formik.getFieldProps('captcha')}
+            />}
           </div>
         </div>
       </form>

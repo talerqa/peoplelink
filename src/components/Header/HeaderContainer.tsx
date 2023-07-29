@@ -34,6 +34,7 @@ type MapStateToPropsAuthType = {
   email: string | null
   login: string | null,
   isAuth: boolean
+  captcha: string
 }
 
 type AuthPropsType = MapStateToPropsAuthType & MapDispatchToPropsAuthType
@@ -44,11 +45,12 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsAuthType => {
     email: state.authReducer.email,
     login: state.authReducer.login,
     isAuth: state.authReducer.isAuth,
+    captcha: state.authReducer.getCaptcha,
   }
 }
 
 type MapDispatchToPropsAuthType = {
-  setUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean) => void
+  setUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean, captcha: null | string) => void
   authThunkCreator: () => void
   logout: () => void
 }

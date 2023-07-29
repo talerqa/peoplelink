@@ -19,7 +19,7 @@ export const Login = (props: LoginPropsType) => {
 
   return (
     <div className={s.loginBlock}>
-      <LoginForm onSubmit={onSubmitHandler} error={props.error}/>
+      <LoginForm onSubmit={onSubmitHandler} error={props.error} captcha={props.getCaptcha}/>
       <LoginInfo/>
     </div>
   );
@@ -30,6 +30,7 @@ export type LoginPropsType = mapDispatchToPropsType & mapStatePropsType
 type mapStatePropsType = {
   isAuth: boolean
   error: string
+  getCaptcha: any
 }
 
 type mapDispatchToPropsType = {
@@ -38,7 +39,8 @@ type mapDispatchToPropsType = {
 const mapStateToProps = (state: AppRootStateType): mapStatePropsType => {
   return {
     isAuth: state.authReducer.isAuth,
-    error: state.authReducer.error
+    error: state.authReducer.error,
+    getCaptcha: state.authReducer.getCaptcha,
   }
 }
 
@@ -46,11 +48,13 @@ export type LoginFormType = {
   email: string | null
   password: string | null
   rememberMe: boolean
+  captcha?: string
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
     login: (formData: LoginFormType) => {
+
       dispatch(loginThunkCreator(formData))
     }
   }
