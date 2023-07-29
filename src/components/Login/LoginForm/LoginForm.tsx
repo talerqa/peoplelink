@@ -19,7 +19,6 @@ type LoginPropsFormType = {
 export const LoginForm = (props: LoginPropsFormType) => {
 
 
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -42,7 +41,6 @@ export const LoginForm = (props: LoginPropsFormType) => {
       return errors
     },
     onSubmit: values => {
-      console.log(values)
       props.onSubmit(values)
     },
   })
@@ -92,12 +90,14 @@ export const LoginForm = (props: LoginPropsFormType) => {
             {props.error}
           </div>
           <div>
-            {props.captcha.url && <img src={props.captcha.url} alt=""/> }
-            {props.captcha.url && <input
-              className={s.captcha}
-              type="text"
-              {...formik.getFieldProps('captcha')}
-            />}
+            {props.captcha && <div className={s.setCaptcha}>
+              <img src={props.captcha} alt=""/>
+              <input
+                className={s.captcha}
+                type="text"
+                {...formik.getFieldProps('captcha')}
+              />
+            </div>}
           </div>
         </div>
       </form>

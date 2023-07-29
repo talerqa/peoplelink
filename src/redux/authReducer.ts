@@ -10,7 +10,7 @@ const initState: AuthType = {
   email: null,
   isAuth: false,
   error: '',
-  getCaptcha: ''
+  getCaptcha: null
 }
 
 export type AuthType = {
@@ -19,7 +19,7 @@ export type AuthType = {
   email: string | null
   isAuth: boolean
   error: string
-  getCaptcha: string
+  getCaptcha: string | null
 }
 
 export const authReducer = (state = initState, action: CommonAuthType) => {
@@ -46,7 +46,7 @@ export type CommonAuthType = SetUserDataType | SetErrorType | GetCaptchaType
 
 export type SetUserDataType = ReturnType<typeof setUserDataAC>
 export type SetErrorType = ReturnType<typeof setErrorAC>
-export type GetCaptchaType = ReturnType<typeof GetCaptchaAC>
+export type GetCaptchaType = ReturnType<typeof getCaptchaAC>
 
 
 export const setUserDataAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean, captcha: null | string) => ({
@@ -56,8 +56,7 @@ export const setUserDataAC = (id: number | null, email: string | null, login: st
 
 export const setErrorAC = (error: string) => ({type: 'SET_ERROR', error} as const)
 
-export const GetCaptchaAC = (captcha:  any) => ({type: 'GET_CAPTCHA', captcha} as const)
-
+export const getCaptchaAC = (captcha: string) => ({type: 'GET_CAPTCHA', captcha} as const)
 
 //THUNK
 
@@ -77,30 +76,41 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
 
 export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: Dispatch<CommonAuthType>) => {
   const res = await authApi.login(data)
-  const captcha = await authApi.getCaptcha()
-
-  console.log(captcha.data)
 
   try {
     if (res.data.resultCode === 0) {
-      console.log('ВВЕДЕНО')
       dispatch(authThunkCreator())
     } else if (res.data.resultCode === 1) {
       console.log('ЕРОР')
       dispatch(setErrorAC(res.data.messages[0]))
     } else if (res.data.resultCode === 10) {
-      dispatch(GetCaptchaAC(captcha.data))
+      dispatch(setCaptchaThunkCreator())
+      // dispatch(authThunkCreator())
     }
   } catch (e) {
     console.log('ОШИБКА')
   }
 }
 
-export const logOutThunkCreator = () => (dispatch: Dispatch<CommonAuthType>) => {
-  authApi.logOut()
-    .then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(setUserDataAC(null, null, null, false, ''))
-      }
-    })
+export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType>) => {
+  const res = await authApi.logOut()
+  try {
+    if (res.data.resultCode === 0) {
+      dispatch(setUserDataAC(null, null, null, false, null))
+      dispatch(getCaptchaAC(''))
+    }
+  } catch (e) {
+
+  }
+
 }
+
+export const setCaptchaThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthType>) => {
+  const res = await authApi.getCaptcha()
+  try {
+    dispatch(getCaptchaAC(res.data.url))
+  } catch (e) {
+
+  }
+}
+

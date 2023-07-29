@@ -30,7 +30,7 @@ export type LoginPropsType = mapDispatchToPropsType & mapStatePropsType
 type mapStatePropsType = {
   isAuth: boolean
   error: string
-  getCaptcha: any
+  getCaptcha: string | null
 }
 
 type mapDispatchToPropsType = {
@@ -48,13 +48,12 @@ export type LoginFormType = {
   email: string | null
   password: string | null
   rememberMe: boolean
-  captcha?: string
+  captcha?: string | null
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
     login: (formData: LoginFormType) => {
-
       dispatch(loginThunkCreator(formData))
     }
   }

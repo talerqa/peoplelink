@@ -8,7 +8,11 @@ import {authThunkCreator, logOutThunkCreator, setUserDataAC} from '../../redux/a
 class HeaderContainer extends React.Component<AuthPropsType> {
   constructor(props: AuthPropsType) {
     super(props);
+    this.state  = {
+      captcha: null,
+    };
   }
+
 
   componentDidMount() {
     this.props.authThunkCreator()
@@ -16,6 +20,7 @@ class HeaderContainer extends React.Component<AuthPropsType> {
 
   logOutHandler = () => {
     this.props.logout()
+    this.setState({captcha: ''})
   }
 
   render() {
@@ -34,7 +39,7 @@ type MapStateToPropsAuthType = {
   email: string | null
   login: string | null,
   isAuth: boolean
-  captcha: string
+  captcha: string | null
 }
 
 type AuthPropsType = MapStateToPropsAuthType & MapDispatchToPropsAuthType

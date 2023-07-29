@@ -43,7 +43,7 @@ export const authApi = {
     return instance.get<ResponseType<UserDataType>>('auth/me')
   },
   getCaptcha: ()=> {
-    return instance.get<ResponseType<string>>('/security/get-captcha-url')
+    return instance.get<{ url: string }>('/security/get-captcha-url')
   },
   login: (data: LoginFormType)=> {
     return instance.post<ResponseType<LoginUserDataType>, AxiosResponse<ResponseType<LoginUserDataType>>, LoginFormType>('auth/login', data)
