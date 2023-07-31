@@ -6,7 +6,7 @@ import {loginThunkCreator} from '../../redux/authReducer';
 import {AppRootStateType} from '../../redux/store';
 import {Redirect} from 'react-router-dom';
 import {LoginInfo} from './LoginInfo/LoginInfo';
-import s from './Login.module.css'
+import s from './Login.module.scss'
 
 export const Login = (props: LoginPropsType) => {
   const onSubmitHandler = (formData: LoginFormType) => {

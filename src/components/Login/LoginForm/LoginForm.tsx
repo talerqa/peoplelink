@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useFormik} from 'formik';
 import {LoginFormType} from '../Login';
-import s from './LoginForm.module.css'
+import s from './LoginForm.module.scss'
 
 type FormikErrorType = {
   email?: string
@@ -44,10 +44,10 @@ export const LoginForm = (props: LoginPropsFormType) => {
       props.onSubmit(values)
     },
   })
-  console.log(props.captcha)
+
   return (
     <div className={s.contactForm}>
-      <form action="" onSubmit={formik.handleSubmit} className={s.form}>
+      <form action="" onSubmit={formik.handleSubmit} className={props.captcha ? s.formWithCaptcha : s.form}>
         <div className={s.inputName}>
           <div className={s.loginBlock}>
             <span>Login</span>
@@ -75,13 +75,13 @@ export const LoginForm = (props: LoginPropsFormType) => {
           </div>
           <div className={s.submitBlock}>
             <div className={s.rememberMe}>
-              <span>Remember me</span>
               <input
                 className={s.checkbox}
                 type="checkbox"
                 checked={formik.values.rememberMe}
                 {...formik.getFieldProps('rememberMe')}
               />
+              <span>Remember me</span>
             </div>
 
             <button className={s.buttonSend} type={'submit'}>Submit</button>
@@ -90,14 +90,19 @@ export const LoginForm = (props: LoginPropsFormType) => {
             {props.error}
           </div>
           <div>
-            {props.captcha && <div className={s.setCaptcha}>
-              <img src={props.captcha} alt=""/>
-              <input
-                className={s.captcha}
-                type="text"
-                {...formik.getFieldProps('captcha')}
-              />
-            </div>}
+            <div className={s.setCaptcha}>
+              {props.captcha &&
+                <>
+                  <img className={s.captchaImg} src={props.captcha} alt=""/>
+                  <input
+                    className={s.captcha}
+                    placeholder={'captcha'}
+                    type="text"
+                    {...formik.getFieldProps('captcha')}
+                  />
+                </>
+              }
+            </div>
           </div>
         </div>
       </form>

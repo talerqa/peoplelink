@@ -1,6 +1,12 @@
+.contactForm {
+  margin: 0 auto 10px;
+}
+
 input {
   font-size: 20px;
+  width: 100%;
 }
+
 .email, .password {
   display: block;
   font-size: 20px;
@@ -43,23 +49,29 @@ input {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-left: 20px;
-  margin-bottom: 60px;
-  padding: 0 12px;
+  margin-bottom: 20px;
   box-sizing: border-box;
-  width: 60%;
+  width: 350px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  height: 200px;
+  height: 245px;
+  margin: 0 auto;
+  font-size: 20px;
+  width: 100%;
+}
+
+.formWithCaptcha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 370px;
   margin: 0 auto;
   font-size: 20px;
 }
-
 
 .inputName {
   display: flex;
@@ -72,7 +84,6 @@ input {
   height: 30px;
   align-self: center;
   background-color: transparent;
-
   outline: none;
   font-family: inherit;
 }
@@ -100,8 +111,14 @@ input {
 
 .rememberMe {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: start;
+}
+
+.checkbox {
+  align-self: center;
+  width:20px;
 }
 
 .loginBlock {
@@ -111,6 +128,20 @@ input {
 .passwordBlock {
 
 }
+
+.setCaptcha {
+  margin: 0 auto;
+  height: 100px;
+
+  .captchaImg {
+
+  }
+
+  .captcha {
+  }
+
+}
+
 
 /*input:-webkit-autofill,*/
 /*input:-webkit-autofill:hover,*/
