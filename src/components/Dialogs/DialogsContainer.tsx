@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {DialogsPageType, MessageType} from '../../redux/type';
-import {CommonACType, sendMessageAC, updateNewMessageTextAC} from '../../redux/dialogsReducer';
+import {DialogsPageType, MessageType} from '../../type';
+import {CommonACType, sendMessageAC, updateNewMessageTextAC} from './dialogsReducer';
 import {connect} from 'react-redux';
-import {AppRootStateType} from '../../redux/store';
+import {AppRootStateType} from '../../app/store';
 import {compose, Dispatch} from 'redux';
 import Dialogs from './Dialogs';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';

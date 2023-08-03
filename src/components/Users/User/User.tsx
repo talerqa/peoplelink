@@ -1,9 +1,9 @@
 import * as React from 'react';
 import s from './User.module.css';
 import profileLogo from './../../../img/profileLogo.png'
-import {UserType} from '../../../redux/type';
+import {UserType} from '../../../type';
 import {NavLink} from 'react-router-dom';
-import {followUserThunkCreator, unFollowUserThunkCreator} from '../../../redux/usersReducer';
+import {followUserThunkCreator, unFollowUserThunkCreator} from '../usersReducer';
 
 type UserPropsType = {
   user: UserType

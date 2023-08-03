@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 import {LoginFormType} from '../components/Login/Login';
-import {ProfileType, UserType} from '../redux/type';
+import {ProfileType, UserType} from '../type';
 
 
 const instance = axios.create({

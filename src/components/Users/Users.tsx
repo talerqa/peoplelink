@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {UserType} from '../../redux/type';
+import {UserType} from '../../type';
 import s from './Users.module.css';
 import User from './User/User';
 import Preloader from '../Preloader/Preloader';

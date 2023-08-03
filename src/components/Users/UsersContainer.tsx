@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {AppRootStateType} from '../../redux/store';
-import {UserType} from '../../redux/type';
+import {AppRootStateType} from '../../app/store';
+import {UserType} from '../../type';
 import {
   fetchUsersCountAC,
   followUserAC, followUserThunkCreator,
@@ -11,7 +11,7 @@ import {
   setTotalUsersCountAC,
   setUserAC,
   unFollowUserAC, unFollowUserThunkCreator
-} from '../../redux/usersReducer';
+} from './usersReducer';
 import {Users} from './Users';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';

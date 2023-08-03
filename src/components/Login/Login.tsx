@@ -2,8 +2,8 @@ import * as React from 'react';
 import {LoginForm} from './LoginForm/LoginForm';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {loginThunkCreator} from '../../redux/authReducer';
-import {AppRootStateType} from '../../redux/store';
+import {loginThunkCreator} from './authReducer';
+import {AppRootStateType} from '../../app/store';
 import {Redirect} from 'react-router-dom';
 import {LoginInfo} from './LoginInfo/LoginInfo';
 import s from './Login.module.scss'

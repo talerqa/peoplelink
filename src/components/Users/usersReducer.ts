@@ -1,5 +1,5 @@
-import {MyUsersPageType, UserType} from './type';
-import {profileApi, userApi} from '../api/api';
+import {MyUsersPageType, UserType} from '../../type';
+import {profileApi, userApi} from '../../api/api';
 import {Dispatch} from 'redux';
 
 const FOLLOW_USER = 'FOLLOW-USER';

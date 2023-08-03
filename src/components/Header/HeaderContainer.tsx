@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
-import {AppRootStateType} from '../../redux/store';
-import {authThunkCreator, logOutThunkCreator, setUserDataAC} from '../../redux/authReducer';
+import {AppRootStateType} from '../../app/store';
+import {authThunkCreator, logOutThunkCreator, setUserDataAC} from '../Login/authReducer';
 
 
 class HeaderContainer extends React.Component<AuthPropsType> {

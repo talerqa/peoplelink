@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {postData, ProfileType} from '../../redux/type';
+import {postData, ProfileType} from '../../type';
 import {
   getProfileUserAC,
   getProfileUserThunkCreator,
   getStatusProfileUserThunkCreator, updateStatusProfileUserThunkCreator
-} from '../../redux/profileReducer';
-import {AppRootStateType} from '../../redux/store';
+} from './profileReducer';
+import {AppRootStateType} from '../../app/store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';

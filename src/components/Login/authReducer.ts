@@ -1,6 +1,13 @@
-import {authApi} from '../api/api';
+import {authApi} from '../../api/api';
 import {Dispatch} from 'redux';
-import {LoginFormType} from '../components/Login/Login';
+import {LoginFormType} from './Login';
+import {
+  SetAppErrorActionType,
+  SetAppInitializeActionType,
+  setAppInitializedAC,
+  setAppStatusAC,
+  SetAppStatusActionType
+} from '../../app/appReducer';
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
@@ -42,7 +49,13 @@ export const authReducer = (state = initState, action: CommonAuthType) => {
 }
 
 
-export type CommonAuthType = SetUserDataType | SetErrorType | GetCaptchaType
+export type CommonAuthType =
+  | SetUserDataType
+  | SetErrorType
+  | GetCaptchaType
+  | SetAppErrorActionType
+  | SetAppStatusActionType
+  | SetAppInitializeActionType
 
 export type SetUserDataType = ReturnType<typeof setUserDataAC>
 export type SetErrorType = ReturnType<typeof setErrorAC>
@@ -61,43 +74,56 @@ export const getCaptchaAC = (captcha: string) => ({type: 'GET_CAPTCHA', captcha}
 //THUNK
 
 export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthType>) => {
-  const res = await authApi.getAuthMe()
 
+  dispatch(setAppStatusAC('loading'))
+  const res = await authApi.getAuthMe()
   try {
     if (res.data.resultCode === 0) {
       dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true, ''))
+      dispatch(setAppStatusAC('succeeded'))
     } else if (res.data.resultCode === 1) {
       dispatch(setErrorAC(res.data.messages[0]))
     }
-  } catch (e) {
 
+  } catch (e) {
+    console.log(e)
+  } finally {
+    console.log(123)
+    dispatch(setAppInitializedAC(true))
   }
 }
 
 export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: Dispatch<CommonAuthType>) => {
+  dispatch(setAppStatusAC('loading'))
   const res = await authApi.login(data)
-
   try {
     if (res.data.resultCode === 0) {
       dispatch(authThunkCreator())
+      dispatch(setAppStatusAC('succeeded'))
     } else if (res.data.resultCode === 1) {
       console.log('ЕРОР')
       dispatch(setErrorAC(res.data.messages[0]))
+      dispatch(setAppStatusAC('failed'))
     } else if (res.data.resultCode === 10) {
       dispatch(setCaptchaThunkCreator())
       // dispatch(authThunkCreator())
     }
   } catch (e) {
     console.log('ОШИБКА')
+  }  finally {
+    console.log(123)
+    dispatch(setAppInitializedAC(true))
   }
 }
 
 export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType>) => {
+  dispatch(setAppStatusAC('loading'))
   const res = await authApi.logOut()
   try {
     if (res.data.resultCode === 0) {
       dispatch(setUserDataAC(null, null, null, false, null))
       dispatch(getCaptchaAC(''))
+      dispatch(setAppStatusAC('succeeded'))
     }
   } catch (e) {
 
@@ -111,6 +137,8 @@ export const setCaptchaThunkCreator = (): any => async (dispatch: Dispatch<Commo
     dispatch(getCaptchaAC(res.data.url))
   } catch (e) {
 
+  } finally {
+    dispatch(setAppInitializedAC(true))
   }
 }
 

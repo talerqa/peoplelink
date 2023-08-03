@@ -1,7 +1,7 @@
-import {postData, ProfilePageType, ProfileType} from './type';
+import {postData, ProfilePageType, ProfileType} from '../../type';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
-import {profileApi} from '../api/api';
+import {profileApi} from '../../api/api';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';

@@ -1,9 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import {dialogsReducer} from './dialogsReducer';
-import {profileReducer} from './profileReducer';
-import {usersReducer} from './usersReducer';
-import {authReducer} from './authReducer';
+import {dialogsReducer} from '../components/Dialogs/dialogsReducer';
+import {profileReducer} from '../components/Profile/profileReducer';
+import {usersReducer} from '../components/Users/usersReducer';
+import {authReducer} from '../components/Login/authReducer';
 import thunk from 'redux-thunk';
+import {appReducer} from './appReducer';
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   profileReducer: profileReducer, //
   usersReducer: usersReducer, //
   authReducer: authReducer,
+  appReducer: appReducer,
 //  form: form,
 })
 
