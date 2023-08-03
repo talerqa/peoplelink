@@ -7,6 +7,7 @@ import {AppRootStateType} from '../../app/store';
 import {Redirect} from 'react-router-dom';
 import {LoginInfo} from './LoginInfo/LoginInfo';
 import s from './Login.module.scss'
+import {RequestStatusType} from '../../app/appReducer';
 
 export const Login = (props: LoginPropsType) => {
   const onSubmitHandler = (formData: LoginFormType) => {
@@ -14,12 +15,16 @@ export const Login = (props: LoginPropsType) => {
   }
 
   if (props.isAuth) {
-    return <Redirect to={'/login'}/>
+    return <Redirect to={'/profile'}/>
   }
 
   return (
     <div className={s.loginBlock}>
-      <LoginForm onSubmit={onSubmitHandler} error={props.error} captcha={props.getCaptcha}/>
+      <LoginForm
+        onSubmit={onSubmitHandler}
+        error={props.error}
+        status={props.status}
+        captcha={props.getCaptcha}/>
       <LoginInfo/>
     </div>
   );
@@ -31,6 +36,7 @@ type mapStatePropsType = {
   isAuth: boolean
   error: string
   getCaptcha: string | null
+  status: RequestStatusType
 }
 
 type mapDispatchToPropsType = {
@@ -41,6 +47,7 @@ const mapStateToProps = (state: AppRootStateType): mapStatePropsType => {
     isAuth: state.authReducer.isAuth,
     error: state.authReducer.error,
     getCaptcha: state.authReducer.getCaptcha,
+    status: state.appReducer.status
   }
 }
 
@@ -49,6 +56,7 @@ export type LoginFormType = {
   password: string | null
   rememberMe: boolean
   captcha?: string | null
+
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {

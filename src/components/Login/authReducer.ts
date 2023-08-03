@@ -62,7 +62,7 @@ export type SetErrorType = ReturnType<typeof setErrorAC>
 export type GetCaptchaType = ReturnType<typeof getCaptchaAC>
 
 
-export const setUserDataAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean, captcha: null | string) => ({
+export const setUserDataAC = (id: number | null , email: string | null, login: string | null, isAuth: boolean, captcha: null | string) => ({
   type: SET_USER_DATA,
   data: {id, email, login, isAuth, captcha}
 } as const)
@@ -77,15 +77,15 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
   try {
     dispatch(setAppStatusAC('loading'))
     const res = await authApi.getAuthMe()
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCode.OK) {
       dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true, ''))
       dispatch(setAppStatusAC('succeeded'))
-    } else if (res.data.resultCode === 1) {
-      dispatch(setErrorAC(res.data.messages[0]))
+    } else if (res.data.resultCode === ResultCode.ERROR) {
+      dispatch(setAppStatusAC('failed'))
     }
 
   } catch (e) {
-    console.log(e)
+
   } finally {
     dispatch(setAppInitializedAC(true))
     dispatch(setAppStatusAC('succeeded'))
@@ -106,6 +106,7 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
     } else if (res.data.resultCode === ResultCode.CAPTCHA) {
       dispatch(setCaptchaThunkCreator())
       dispatch(authThunkCreator())
+      dispatch(setErrorAC(res.data.messages[0]))
     }
   } catch (e) {
 
@@ -134,6 +135,7 @@ export const setCaptchaThunkCreator = (): any => async (dispatch: Dispatch<Commo
   const res = await authApi.getCaptcha()
   try {
     dispatch(getCaptchaAC(res.data.url))
+
     dispatch(setAppStatusAC('succeeded'))
   } catch (e) {
 

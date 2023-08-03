@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useFormik} from 'formik';
 import {LoginFormType} from '../Login';
 import s from './LoginForm.module.scss'
+import {RequestStatusType} from '../../../app/appReducer';
 
 type FormikErrorType = {
   email?: string
@@ -13,7 +14,8 @@ type FormikErrorType = {
 type LoginPropsFormType = {
   onSubmit: (formData: LoginFormType) => void
   error: string
-  captcha: any
+  captcha: string | null
+  status: RequestStatusType
 }
 
 export const LoginForm = (props: LoginPropsFormType) => {
@@ -87,7 +89,8 @@ export const LoginForm = (props: LoginPropsFormType) => {
             <button className={s.buttonSend} type={'submit'}>Submit</button>
           </div>
           <div className={s.errorLoginOrPass}>
-            {props.error}
+            { props.error}
+
           </div>
           <div>
             <div className={s.setCaptcha}>

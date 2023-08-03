@@ -5,7 +5,8 @@ import {postData, ProfileType} from '../../type';
 import {
   getProfileUserAC,
   getProfileUserThunkCreator,
-  getStatusProfileUserThunkCreator, updateStatusProfileUserThunkCreator
+  getStatusProfileUserThunkCreator,
+  updateStatusProfileUserThunkCreator
 } from './profileReducer';
 import {AppRootStateType} from '../../app/store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
@@ -21,8 +22,10 @@ class ProfileContainer extends React.Component<PropsType> {
     let userId = this.props.match.params.userId
 
     if (!userId) {
-      userId = '29080'
+
+      userId = `${this.props.userId}`
     }
+
     this.props.getProfileUserThunkCreator(userId)
     this.props.getStatusProfile(userId)
   }
@@ -52,13 +55,13 @@ type MapStateToPropsProfileType = {
   profile: null | ProfileType
   post: Array<postData>
   status: string
-
+  userId: number | null
 }
 
 export type MapDispatchToPropsProfileType = {
   getProfileUserAC: (profile: ProfileType) => void
-  getProfileUserThunkCreator: (userId: string) => void
-  getStatusProfile: (userId: string) => void
+  getProfileUserThunkCreator: (userId: number | null | string) => void
+  getStatusProfile: (userId: number | null | string) => void
   updateStatusProfile: (status: string) => void
 }
 
@@ -68,6 +71,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
     profile: state.profileReducer.profile,
     post: state.profileReducer.posts,
     status: state.profileReducer.status,
+    userId: state.authReducer.id,
   }
 }
 
