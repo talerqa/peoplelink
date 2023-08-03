@@ -86,7 +86,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
 
             <button className={s.buttonSend} type={'submit'}>Submit</button>
           </div>
-          <div>
+          <div className={s.errorLoginOrPass}>
             {props.error}
           </div>
           <div>

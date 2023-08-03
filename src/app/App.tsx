@@ -43,8 +43,7 @@ class App extends React.Component<AppPropsType> {
         <Route path={'/music*/'} component={Music}/>
         <Route path={'/setting*/'} component={Setting}/>
         <Route path={'/news*/'} component={News}/>
-        {/*///  {this.props.status === 'loading' && <Preloader/>}*/}
-        {this.props.status === 'succeeded' && <Route path={'/login*/'} render={() => <LoginContainer/>}/>}
+        <Route path={'/login*/'} render={() => <LoginContainer/>}/>
       </div>
     </div>)
   }

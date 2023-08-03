@@ -59,6 +59,13 @@ export const usersReducer = (state = initState, action: CommonUserType): MyUsers
   }
 }
 
+
+export enum ResultCode {
+  OK = 0,
+  ERROR = 1,
+  CAPTCHA = 10,
+}
+
 export type CommonUserType =
   | FollowUserType
   | UnFollowUserType
@@ -103,15 +110,10 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => a
     }
 }
 
-enum ResultCode {
-  OK = 0,
-  ERROR = 1
-}
-
 export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
   const res = await  profileApi.unfollowUser(userId)
-  console.log(res.data)
     try {
+
       if (res.data.resultCode === ResultCode.OK) {
         dispatch(unFollowUserAC(userId))
       }
@@ -123,9 +125,9 @@ export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dis
 export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
   profileApi.followUser(userId)
     .then((res) => {
-      console.log(res.data)
       if (res.data.resultCode === 0) {
         dispatch(followUserAC(userId))
       }
     })
 }
+

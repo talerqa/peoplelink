@@ -3,7 +3,6 @@ import s from './User.module.css';
 import profileLogo from './../../../img/profileLogo.png'
 import {UserType} from '../../../type';
 import {NavLink} from 'react-router-dom';
-import {followUserThunkCreator, unFollowUserThunkCreator} from '../usersReducer';
 
 type UserPropsType = {
   user: UserType
@@ -37,8 +36,8 @@ const User = (props: UserPropsType) => {
         <a href={'#'}>{props.user.name}</a>
       </NavLink>
       <div>{props.user.followed
-        ? <button onClick={onClickUnFollowHandler}>Follow</button>
-        : <button onClick={onClickFollowHandler}>Unfollow</button>
+        ? <button onClick={onClickUnFollowHandler}>Unfollow</button>
+        : <button onClick={onClickFollowHandler}>Follow</button>
       } </div>
     </div>
   );

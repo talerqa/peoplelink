@@ -4,13 +4,13 @@ import {AppRootStateType} from '../../app/store';
 import {UserType} from '../../type';
 import {
   fetchUsersCountAC,
-  followUserAC, followUserThunkCreator,
+  followUserThunkCreator,
   getUsersThunkCreator,
   setCurrentPageAC,
   setPageSizeAC,
   setTotalUsersCountAC,
   setUserAC,
-  unFollowUserAC, unFollowUserThunkCreator
+  unFollowUserThunkCreator
 } from './usersReducer';
 import {Users} from './Users';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
