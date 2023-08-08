@@ -24,7 +24,6 @@ class App extends React.Component<AppPropsType> {
   }
 
   render() {
-
     if (!this.props.isInitialized) {
       return <div
         style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
@@ -36,7 +35,6 @@ class App extends React.Component<AppPropsType> {
       <HeaderContainer/>
       <Navbar/>
       <div className={'content'}>
-
         <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
         <Route path={'/dialogs*/'} render={() => <DialogsContainer/>}/>
         <Route path={'/users*/'} render={() => <UsersContainer/>}/>
