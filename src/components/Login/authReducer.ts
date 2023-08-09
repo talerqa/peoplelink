@@ -8,7 +8,9 @@ import {
   setAppStatusAC,
   SetAppStatusActionType
 } from '../../app/appReducer';
-import {ResultCode} from '../Users/usersReducer';
+import {deleteDataUsersAC, DeleteDataUsersACType, ResultCode} from '../Users/usersReducer';
+import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsReducer';
+import {DeleteDataProfileACType, deleteDataProfileUserAC} from '../Profile/profileReducer';
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
@@ -56,6 +58,9 @@ export type CommonAuthType =
   | SetAppErrorActionType
   | SetAppStatusActionType
   | SetAppInitializeActionType
+  | DeleteDataMessageACType
+  | DeleteDataUsersACType
+  | DeleteDataProfileACType
 
 export type SetUserDataType = ReturnType<typeof setUserDataAC>
 export type SetErrorType = ReturnType<typeof setErrorAC>
@@ -124,6 +129,10 @@ export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType
       dispatch(setUserDataAC(null, null, null, false, null))
       dispatch(getCaptchaAC(''))
       dispatch(setAppStatusAC('succeeded'))
+      //////////
+      dispatch(deleteDataMessageAC())
+      dispatch(deleteDataUsersAC())
+      dispatch(deleteDataProfileUserAC())
     }
   } catch (e) {
 

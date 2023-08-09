@@ -9,6 +9,7 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_PAGE_SIZE = 'SET-PAGE-SIZE';
 const TOTAL_USERS_COUNT = 'TOTAL-USERS-COUNT';
 const FETCHING_USERS = 'FETCHING-USERS';
+const DELETE_DATA_USERS = 'DELETE-DATA-USERS';
 
 const initState: MyUsersPageType = {
   users: [],
@@ -54,6 +55,10 @@ export const usersReducer = (state = initState, action: CommonUserType): MyUsers
       return {...state, isFetching: action.isFetching}
     }
 
+    case DELETE_DATA_USERS: {
+      return {...state, users: [], totalUsersCount: 0, pageSize: 0, currentPage: 0}
+    }
+
     default:
       return state
   }
@@ -74,6 +79,7 @@ export type CommonUserType =
   | SetPageSizeType
   | SetTotalUsersCountType
   | FetchUsersType
+  | DeleteDataUsersACType
 
 export type FollowUserType = ReturnType<typeof followUserAC>
 export type UnFollowUserType = ReturnType<typeof unFollowUserAC>
@@ -82,6 +88,7 @@ export type SetCurrentPageType = ReturnType<typeof setCurrentPageAC>
 export type SetPageSizeType = ReturnType<typeof setPageSizeAC>
 export type SetTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
 export type FetchUsersType = ReturnType<typeof fetchUsersCountAC>
+export type DeleteDataUsersACType = ReturnType<typeof deleteDataUsersAC>
 
 export const followUserAC = (userID: number) => ({type: FOLLOW_USER, userID} as const)
 
@@ -97,23 +104,27 @@ export const setTotalUsersCountAC = (count: number) => ({type: TOTAL_USERS_COUNT
 
 export const fetchUsersCountAC = (isFetching: boolean) => ({type: FETCHING_USERS, isFetching} as const)
 
+export const deleteDataUsersAC = () => ({type: DELETE_DATA_USERS} as const)
+
+
+//THUNK
+
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
   dispatch(fetchUsersCountAC(true))
   const data = await userApi.getUsers(currentPage, pageSize)
-    try {
-      dispatch(fetchUsersCountAC(false))
-      dispatch(setCurrentPageAC(currentPage))
-      dispatch(setUserAC(data.items))
-      dispatch(setTotalUsersCountAC(data.totalCount))
-    } catch (e) {
+  try {
+    dispatch(fetchUsersCountAC(false))
+    dispatch(setCurrentPageAC(currentPage))
+    dispatch(setUserAC(data.items))
+    dispatch(setTotalUsersCountAC(data.totalCount))
+  } catch (e) {
 
-    }
+  }
 }
 
 export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
   const res = await  profileApi.unfollowUser(userId)
     try {
-
       if (res.data.resultCode === ResultCode.OK) {
         dispatch(unFollowUserAC(userId))
       }

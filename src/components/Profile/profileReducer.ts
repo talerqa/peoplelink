@@ -7,6 +7,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
 const GET_PROFILE_USERS = 'GET-PROFILE-USERS';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_DATA_PROFILE = 'DELETE-DATA-PROFILE';
 
 const initState: ProfilePageType = {
   posts: [
@@ -36,8 +37,11 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
       return {...state, profile: action.profile}
     }
     case (SET_STATUS): {
-
       return {...state, status: action.status}
+    }
+
+    case 'DELETE-DATA-PROFILE': {
+      return  {...state, posts: [], newPostText: '', status: ''}
     }
 
     default:
@@ -50,7 +54,9 @@ export type CommonProfileType =
   | ReturnType<typeof updateNewPostTextAC>
   | ReturnType<typeof getProfileUserAC>
   | ReturnType<typeof setStatusProfileUserAC>
+  | DeleteDataProfileACType
 
+export type DeleteDataProfileACType = ReturnType<typeof deleteDataProfileUserAC>
 
 export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
 
@@ -60,6 +66,10 @@ export const getProfileUserAC = (profile: ProfileType) => ({type: GET_PROFILE_US
 
 export const setStatusProfileUserAC = (status: string) => ({type: SET_STATUS, status} as const)
 
+export const deleteDataProfileUserAC = () => ({type: DELETE_DATA_PROFILE} as const)
+
+
+//THUNK
 export const getProfileUserThunkCreator = (userId: string) => (dispatch: Dispatch) => {
   profileApi.getProfileUser(userId)
     .then((res) => {

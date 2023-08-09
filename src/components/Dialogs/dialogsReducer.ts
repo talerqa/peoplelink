@@ -3,6 +3,7 @@ import {v1} from 'uuid';
 
 const SEND_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
+const DELETE_DATA_MESSAGE = 'DELETE-DATA-MESSAGE';
 
 const initState: DialogsPageType = {
   message: [
@@ -34,21 +35,28 @@ export const dialogsReducer = (state = initState, action: CommonACType) => {
     case (UPDATE_MESSAGE_TEXT) : {
       return {...state, newMessageText: action.title}
     }
+    case 'DELETE-DATA-MESSAGE': {
+      return {...state, message: [], dialogsData: [], newMessageText: ''}
+    }
     default:
       return state
   }
 }
 
-export type CommonACType = SendMessageACType | UpdateNewMessageTextACType
+export type CommonACType = SendMessageACType | UpdateNewMessageTextACType | DeleteDataMessageACType
 export type SendMessageACType = ReturnType<typeof sendMessageAC>
 export type UpdateNewMessageTextACType = ReturnType<typeof updateNewMessageTextAC>
+export type DeleteDataMessageACType = ReturnType<typeof deleteDataMessageAC>
 
 export const sendMessageAC = (title: string) => {
   return {type: SEND_MESSAGE, title} as const
   }
+
 export const updateNewMessageTextAC = (title: string) => {
   return {type: UPDATE_MESSAGE_TEXT, title} as const
 }
+
+export const deleteDataMessageAC = () => ({type: DELETE_DATA_MESSAGE} as const)
 
 
 
