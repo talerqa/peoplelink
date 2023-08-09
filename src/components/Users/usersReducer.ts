@@ -1,6 +1,7 @@
 import {MyUsersPageType, UserType} from '../../type';
 import {profileApi, userApi} from '../../api/api';
 import {Dispatch} from 'redux';
+import {setAppErrorAC} from '../../app/appReducer';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
@@ -123,22 +124,30 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => a
 }
 
 export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
-  const res = await  profileApi.unfollowUser(userId)
+
     try {
+      const res = await  profileApi.unfollowUser(userId)
       if (res.data.resultCode === ResultCode.OK) {
         dispatch(unFollowUserAC(userId))
       }
   } catch (e) {
-
+      //Диспатчим ошибку при отсутствии соединения
+      const error = e as { message: string }
+      dispatch(setAppErrorAC(error.message))
     }
 }
 
-export const followUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
-  profileApi.followUser(userId)
-    .then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(followUserAC(userId))
-      }
-    })
+export const followUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+
+  try {
+    const res = await profileApi.followUser(userId)
+    if (res.data.resultCode === ResultCode.OK) {
+      dispatch(followUserAC(userId))
+    }
+  } catch (e) {
+    //Диспатчим ошибку при отсутствии соединения
+    const error = e as { message: string }
+    dispatch(setAppErrorAC(error.message))
+  }
 }
 

@@ -43,6 +43,10 @@ class App extends React.Component<AppPropsType> {
         <Route path={'/news*/'} component={News}/>
         <Route path={'/login*/'} render={() => <LoginContainer/>}/>
       </div>
+      {/*МОДАЛЬНОЕ ОКНО С ОШИБКОЙ*/}
+      <div>
+        {this.props.error}
+      </div>
     </div>)
   }
 }
@@ -53,6 +57,7 @@ type mapStateToPropsType = {
   isAuth: boolean
   status: RequestStatusType
   isInitialized: boolean
+  error: string | null
 }
 
 type mapDispatchToPropsTye = {
@@ -62,7 +67,8 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     isAuth: state.authReducer.isAuth,
     status: state.appReducer.status,
-    isInitialized: state.appReducer.isInitialized
+    isInitialized: state.appReducer.isInitialized,
+    error: state.appReducer.error,
   }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsTye => {

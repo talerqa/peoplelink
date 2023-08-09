@@ -2,6 +2,7 @@ import {postData, ProfilePageType, ProfileType} from '../../type';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
 import {profileApi} from '../../api/api';
+import {setAppErrorAC} from '../../app/appReducer';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
@@ -70,24 +71,37 @@ export const deleteDataProfileUserAC = () => ({type: DELETE_DATA_PROFILE} as con
 
 
 //THUNK
-export const getProfileUserThunkCreator = (userId: string) => (dispatch: Dispatch) => {
-  profileApi.getProfileUser(userId)
-    .then((res) => {
-      dispatch(getProfileUserAC(res.data))
-    })
+export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
+
+  try {
+    const res = await profileApi.getProfileUser(userId)
+    dispatch(getProfileUserAC(res.data))
+  } catch (e) {
+    //Диспатчим ошибку при отсутствии соединения
+    const error = e as { message: string }
+    dispatch(setAppErrorAC(error.message))
+  }
 }
 
 
-export const getStatusProfileUserThunkCreator = (userId: number) => (dispatch: Dispatch) => {
-  profileApi.getStatus(userId)
-    .then((res) => {
-      dispatch(setStatusProfileUserAC(res.data))
-    })
+export const getStatusProfileUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+  try {
+    const res = await profileApi.getStatus(userId)
+    dispatch(setStatusProfileUserAC(res.data))
+  } catch (e) {
+    //Диспатчим ошибку при отсутствии соединения
+    const error = e as { message: string }
+    dispatch(setAppErrorAC(error.message))
+  }
 }
 
-export const updateStatusProfileUserThunkCreator = (status: string) => (dispatch: Dispatch) => {
-  profileApi.updateStatus(status)
-    .then((res) => {
-        dispatch(setStatusProfileUserAC(status))
-    })
+export const updateStatusProfileUserThunkCreator = (status: string) => async (dispatch: Dispatch) => {
+  try {
+    const res = await profileApi.updateStatus(status)
+    dispatch(setStatusProfileUserAC(status))
+  } catch (e) {
+    //Диспатчим ошибку при отсутствии соединения
+    const error = e as { message: string }
+    dispatch(setAppErrorAC(error.message))
+  }
 }

@@ -4,8 +4,6 @@ import s from './Dialogs.module.css'
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
 import {DialogsDataType, DialogsPageType, MessageType} from '../../type';
-import {AuthType} from '../Login/authReducer';
-import {Redirect} from 'react-router-dom';
 
 type DialogsPropsType = {
   dialogPage: DialogsPageType
