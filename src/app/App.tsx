@@ -13,14 +13,13 @@ import {LoginContainer} from '../components/Login/Login';
 import {AppRootStateType} from './store';
 import {compose, Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {RequestStatusType} from './appReducer';
+import {initializeApp, RequestStatusType} from './appReducer';
 import Preloader from '../components/Preloader/Preloader';
-import {authThunkCreator} from '../components/Login/authReducer';
 
 class App extends React.Component<AppPropsType> {
 
   componentDidMount() {
-    this.props.auth()
+    this.props.initializedApp()
   }
 
   render() {
@@ -66,7 +65,8 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsTye = {
-  auth: () => void
+
+  initializedApp: () => void
 }
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
@@ -78,8 +78,8 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsTye => {
   return {
-    auth: () => {
-      dispatch(authThunkCreator())
+    initializedApp: () => {
+      dispatch(initializeApp())
     }
   }
 }

@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {authThunkCreator} from '../components/Login/authReducer';
+
 const initialState: InitialStateType = {
   status: 'idle',
   error: null,
@@ -36,4 +39,15 @@ export type InitialStateType = {
   status: RequestStatusType
   error: string | null
   isInitialized: boolean
+}
+
+export const setInitializedAC = () => ({type: 'APP/SET-INITIALIZED'} as const)
+
+export const initializeApp = (): any => async (dispatch: Dispatch) => {
+
+  await dispatch(authThunkCreator()).then(() => {
+    dispatch(setInitializedAC())
+  })
+
+
 }

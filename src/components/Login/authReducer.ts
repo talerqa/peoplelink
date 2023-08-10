@@ -85,12 +85,15 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
   try {
     dispatch(setAppStatusAC('loading'))
     const res = await authApi.getAuthMe()
+
     if (res.data.resultCode === ResultCode.OK) {
       dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true, ''))
       dispatch(setAppStatusAC('succeeded'))
-    } else if (res.data.resultCode === ResultCode.ERROR) {
+    }
+    else if (res.data.resultCode === ResultCode.ERROR) {
       dispatch(setAppStatusAC('failed'))
-    } else {
+    }
+    else {
       if (res.data.messages.length) {
         dispatch(setAppErrorAC(res.data.messages[0]))
       } else {
@@ -98,6 +101,8 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
       }
       dispatch(setAppStatusAC('failed'))
     }
+    return  res
+
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
@@ -105,6 +110,7 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
     dispatch(setAppInitializedAC(true))
     dispatch(setAppStatusAC('succeeded'))
   }
+
 }
 
 export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: Dispatch<CommonAuthType>) => {
