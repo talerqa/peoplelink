@@ -58,7 +58,7 @@ export const usersReducer = (state = initState, action: CommonUserType): MyUsers
     }
 
     case DELETE_DATA_USERS: {
-      return {...state, users: [], totalUsersCount: 0, pageSize: 0, currentPage: 0}
+      return {...state, users: [], totalUsersCount: initState.totalUsersCount, pageSize: initState.pageSize, currentPage: initState.currentPage}
     }
 
     default:
@@ -113,8 +113,8 @@ export const deleteDataUsersAC = () => ({type: DELETE_DATA_USERS} as const)
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
   dispatch(fetchUsersCountAC(true))
-  const data = await userApi.getUsers(currentPage, pageSize)
   try {
+    const data = await userApi.getUsers(currentPage, pageSize)
     dispatch(fetchUsersCountAC(false))
     dispatch(setCurrentPageAC(currentPage))
     dispatch(setUserAC(data.items))

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {DialogsPageType, MessageType} from '../../type';
-import {CommonACType, sendMessageAC, updateNewMessageTextAC} from './dialogsReducer';
+import {CommonACType, sendMessageAC, setDataMessageAC, updateNewMessageTextAC} from './dialogsReducer';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../app/store';
 import {compose, Dispatch} from 'redux';
@@ -13,6 +13,7 @@ class DialogsContainer extends React.Component<DialogsType> {
   }
 
   componentDidMount() {
+    return this.props.setDataMessage()
   }
 
   changeTextArea = (title: string) => {
@@ -52,7 +53,6 @@ type mapStateToPropsType = {
   isAuth: boolean
   newMessageText: string | ''
   messages: Array<MessageType>
-
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<CommonACType>): mapDispatchToPropsType => {
@@ -62,6 +62,9 @@ const mapDispatchToProps = (dispatch: Dispatch<CommonACType>): mapDispatchToProp
     },
     changeTextArea: (title: string) => {
       dispatch(updateNewMessageTextAC(title))
+    },
+    setDataMessage: () => {
+      dispatch(setDataMessageAC())
     }
   }
 }
@@ -69,6 +72,7 @@ const mapDispatchToProps = (dispatch: Dispatch<CommonACType>): mapDispatchToProp
 type mapDispatchToPropsType = {
   addPost: (title: string) => void
   changeTextArea: (title: string) => void
+  setDataMessage: () => void
 }
 
 type DialogsType = mapStateToPropsType & mapDispatchToPropsType

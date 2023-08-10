@@ -1,5 +1,6 @@
 import {Dispatch} from 'redux';
 import {authThunkCreator} from '../components/Login/authReducer';
+import {getUsersThunkCreator} from '../components/Users/usersReducer';
 
 const initialState: InitialStateType = {
   status: 'idle',

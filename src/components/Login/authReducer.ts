@@ -9,7 +9,7 @@ import {
   setAppStatusAC,
   SetAppStatusActionType
 } from '../../app/appReducer';
-import {deleteDataUsersAC, DeleteDataUsersACType, ResultCode} from '../Users/usersReducer';
+import {deleteDataUsersAC, DeleteDataUsersACType, getUsersThunkCreator, ResultCode} from '../Users/usersReducer';
 import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsReducer';
 import {DeleteDataProfileACType, deleteDataProfileUserAC, getProfileUserThunkCreator} from '../Profile/profileReducer';
 import {handleServerNetworkError} from '../../utils/error-utils';
@@ -102,7 +102,6 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
       }
       dispatch(setAppStatusAC('failed'))
     }
-    return  res
 
   } catch (e) {
     const error = e as { message: string }
