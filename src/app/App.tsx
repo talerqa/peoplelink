@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import News from '../components/News/News';
 import Setting from '../components/Setting/Setting';
 import Music from '../components/Music/Music';
@@ -11,7 +11,7 @@ import ProfileContainer from '../components/Profile/ProfileContainer';
 import HeaderContainer from '../components/Header/HeaderContainer';
 import {LoginContainer} from '../components/Login/Login';
 import {AppRootStateType} from './store';
-import {Dispatch} from 'redux';
+import {compose, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {RequestStatusType} from './appReducer';
 import Preloader from '../components/Preloader/Preloader';
@@ -21,8 +21,6 @@ class App extends React.Component<AppPropsType> {
 
   componentDidMount() {
     this.props.auth()
-
-
   }
 
   render() {
@@ -34,7 +32,6 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className="app-wrapper">
-
 
       <HeaderContainer/>
       <Navbar/>
@@ -87,4 +84,8 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsTye => {
   }
 }
 
-export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+export default compose<React.ComponentType> (
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(App)
+
