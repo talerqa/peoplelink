@@ -22,8 +22,10 @@ class ProfileContainer extends React.Component<PropsType> {
     let userId = this.props.match.params.userId
 
     if (!userId) {
-
       userId = `${this.props.userId}`
+      if(!userId) {
+        this.props.history.push('/profile')
+      }
     }
 
     this.props.getProfileUserThunkCreator(userId)

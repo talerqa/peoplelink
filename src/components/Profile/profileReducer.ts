@@ -2,7 +2,6 @@ import {postData, ProfilePageType, ProfileType} from '../../type';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
 import {profileApi} from '../../api/api';
-import {setAppErrorAC} from '../../app/appReducer';
 import {handleServerNetworkError} from '../../utils/error-utils';
 
 const ADD_POST = 'ADD-POST';
@@ -10,6 +9,7 @@ const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
 const GET_PROFILE_USERS = 'GET-PROFILE-USERS';
 const SET_STATUS = 'SET-STATUS';
 const DELETE_DATA_PROFILE = 'DELETE-DATA-PROFILE';
+const SET_POSTS = 'SET-POSTS';
 
 const initState: ProfilePageType = {
   posts: [
@@ -24,26 +24,31 @@ const initState: ProfilePageType = {
 
 export const profileReducer = (state = initState, action: CommonProfileType) => {
   switch (action.type) {
-    case (ADD_POST): {
+    case ADD_POST: {
       const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
       return {
         ...state,
         posts: [...state.posts, newPost]
       }
     }
-    case (UPDATE_NEWPOST_TEXT) : {
+
+    case SET_POSTS: {
+      return initState
+    }
+
+    case UPDATE_NEWPOST_TEXT : {
       return {...state, newPostText: action.title}
     }
 
-    case (GET_PROFILE_USERS): {
+    case GET_PROFILE_USERS: {
       return {...state, profile: action.profile}
     }
-    case (SET_STATUS): {
+    case SET_STATUS: {
       return {...state, status: action.status}
     }
 
-    case 'DELETE-DATA-PROFILE': {
-      return  {...state, posts: [], newPostText: '', status: ''}
+    case DELETE_DATA_PROFILE: {
+      return {...state, posts: [], newPostText: '', status: ''}
     }
 
     default:
@@ -57,10 +62,14 @@ export type CommonProfileType =
   | ReturnType<typeof getProfileUserAC>
   | ReturnType<typeof setStatusProfileUserAC>
   | DeleteDataProfileACType
+  | SetPostsProfileACType
 
 export type DeleteDataProfileACType = ReturnType<typeof deleteDataProfileUserAC>
+export type SetPostsProfileACType = ReturnType<typeof setPostsAC>
 
 export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
+
+export const setPostsAC = () => ({type: SET_POSTS} as const)
 
 export const updateNewPostTextAC = (title: string) => ({type: UPDATE_NEWPOST_TEXT, title} as const)
 
@@ -75,6 +84,7 @@ export const deleteDataProfileUserAC = () => ({type: DELETE_DATA_PROFILE} as con
 export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
 
   try {
+    dispatch(setPostsAC())
     const res = await profileApi.getProfileUser(userId)
     dispatch(getProfileUserAC(res.data))
   } catch (e) {

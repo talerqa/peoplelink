@@ -11,7 +11,7 @@ import {
 } from '../../app/appReducer';
 import {deleteDataUsersAC, DeleteDataUsersACType, ResultCode} from '../Users/usersReducer';
 import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsReducer';
-import {DeleteDataProfileACType, deleteDataProfileUserAC} from '../Profile/profileReducer';
+import {DeleteDataProfileACType, deleteDataProfileUserAC, getProfileUserThunkCreator} from '../Profile/profileReducer';
 import {handleServerNetworkError} from '../../utils/error-utils';
 
 const SET_USER_DATA = 'SET-USER-DATA'
@@ -89,6 +89,7 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
     if (res.data.resultCode === ResultCode.OK) {
       dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true, ''))
       dispatch(setAppStatusAC('succeeded'))
+
     }
     else if (res.data.resultCode === ResultCode.ERROR) {
       dispatch(setAppStatusAC('failed'))
