@@ -12,6 +12,7 @@ import {
 import {deleteDataUsersAC, DeleteDataUsersACType, ResultCode} from '../Users/usersReducer';
 import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsReducer';
 import {DeleteDataProfileACType, deleteDataProfileUserAC} from '../Profile/profileReducer';
+import {handleServerNetworkError} from '../../utils/error-utils';
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
@@ -90,12 +91,16 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
     } else if (res.data.resultCode === ResultCode.ERROR) {
       dispatch(setAppStatusAC('failed'))
     } else {
-      dispatch(setErrorAC(''))
-      console.log(1232112)
+      if (res.data.messages.length) {
+        dispatch(setAppErrorAC(res.data.messages[0]))
+      } else {
+        dispatch(setAppErrorAC('Some error occurred'))
+      }
+      dispatch(setAppStatusAC('failed'))
     }
   } catch (e) {
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
+    handleServerNetworkError(error, dispatch)
   } finally {
     dispatch(setAppInitializedAC(true))
     dispatch(setAppStatusAC('succeeded'))
@@ -118,14 +123,17 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
       dispatch(setErrorAC(res.data.messages[0]))
       dispatch(setAppStatusAC('succeeded'))
     } else {
-      dispatch(setErrorAC(''))
-      console.log(1232112)
+      if (res.data.messages.length) {
+        dispatch(setAppErrorAC(res.data.messages[0]))
+      } else {
+        dispatch(setAppErrorAC('Some error occurred'))
+      }
+      dispatch(setAppStatusAC('failed'))
     }
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
-    dispatch(setAppStatusAC('failed'))
+    handleServerNetworkError(error, dispatch)
   }  finally {
     dispatch(setAppInitializedAC(true))
     dispatch(setAppStatusAC('succeeded'))
@@ -134,7 +142,6 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
 
 export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType>) => {
   dispatch(setAppStatusAC('loading'))
-
   try {
     const res = await authApi.logOut()
     if (res.data.resultCode === ResultCode.OK) {
@@ -149,8 +156,7 @@ export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
-    dispatch(setAppStatusAC('failed'))
+    handleServerNetworkError(error, dispatch)
   }
 }
 
@@ -163,8 +169,7 @@ export const setCaptchaThunkCreator = (): any => async (dispatch: Dispatch<Commo
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
-    dispatch(setAppStatusAC('failed'))
+    handleServerNetworkError(error, dispatch)
   } finally {
     dispatch(setAppInitializedAC(true))
   }

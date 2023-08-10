@@ -44,8 +44,10 @@
   max-width: 80vw;
   min-height: 100vh;
   grid-template-areas:
+
     'header header'
-    'nav content  ';
+    'nav content  '
+  'error error';
   grid-template-rows: 100px 1fr;
   grid-template-columns: 200px 10fr;
   grid-gap: 20px;
@@ -56,3 +58,44 @@
   background-color: rgba(255, 255, 255, 0.9);
   grid-area: content;
 }
+
+.modal-wrap {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 200px;
+  height: 30px;
+  background: rgba(255, 34, 119, 0.79);
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid #57606c;
+  border-radius: 10px;
+
+  text-align: center;
+  opacity: 1;
+  transition: .1s;
+  z-index: 1;
+
+  grid-area: error;
+}
+
+.modal-wrap-hidden {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 200px;
+  height: 30px;
+  background: rgba(255, 34, 119, 0.79);
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid #57606c;
+  border-radius: 10px;
+
+  text-align: center;
+  opacity: 0;
+  transition: .1s;
+  z-index: 1;
+
+  grid-area: error;
+}
+

@@ -13,7 +13,6 @@ class HeaderContainer extends React.Component<AuthPropsType> {
     };
   }
 
-
   componentDidMount() {
     this.props.authThunkCreator()
   }

@@ -3,6 +3,7 @@ import {v1} from 'uuid';
 import {Dispatch} from 'redux';
 import {profileApi} from '../../api/api';
 import {setAppErrorAC} from '../../app/appReducer';
+import {handleServerNetworkError} from '../../utils/error-utils';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
@@ -79,7 +80,7 @@ export const getProfileUserThunkCreator = (userId: string) => async (dispatch: D
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
+    handleServerNetworkError(error, dispatch)
   }
 }
 
@@ -91,7 +92,7 @@ export const getStatusProfileUserThunkCreator = (userId: number) => async (dispa
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
+    handleServerNetworkError(error, dispatch)
   }
 }
 
@@ -102,6 +103,6 @@ export const updateStatusProfileUserThunkCreator = (status: string) => async (di
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
+    handleServerNetworkError(error, dispatch)
   }
 }

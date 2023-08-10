@@ -2,6 +2,7 @@ import {MyUsersPageType, UserType} from '../../type';
 import {profileApi, userApi} from '../../api/api';
 import {Dispatch} from 'redux';
 import {setAppErrorAC} from '../../app/appReducer';
+import {handleServerNetworkError} from '../../utils/error-utils';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
@@ -119,7 +120,9 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => a
     dispatch(setUserAC(data.items))
     dispatch(setTotalUsersCountAC(data.totalCount))
   } catch (e) {
-
+    //Диспатчим ошибку при отсутствии соединения
+    const error = e as { message: string }
+    handleServerNetworkError(error, dispatch)
   }
 }
 
@@ -133,7 +136,7 @@ export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dis
   } catch (e) {
       //Диспатчим ошибку при отсутствии соединения
       const error = e as { message: string }
-      dispatch(setAppErrorAC(error.message))
+      handleServerNetworkError(error, dispatch)
     }
 }
 
@@ -147,7 +150,7 @@ export const followUserThunkCreator = (userId: number) => async (dispatch: Dispa
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
-    dispatch(setAppErrorAC(error.message))
+    handleServerNetworkError(error, dispatch)
   }
 }
 

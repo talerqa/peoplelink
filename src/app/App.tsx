@@ -21,6 +21,8 @@ class App extends React.Component<AppPropsType> {
 
   componentDidMount() {
     this.props.auth()
+
+
   }
 
   render() {
@@ -32,9 +34,18 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className="app-wrapper">
+
+
       <HeaderContainer/>
       <Navbar/>
+
       <div className={'content'}>
+
+        {/*МОДАЛЬНОЕ ОКНО С ОШИБКОЙ*/}
+        <div className={this.props.error ? 'modal-wrap' : 'modal-wrap-hidden'}>
+          {this.props.error}
+        </div>
+        {/*Написать ошибки при неправильных путях*/}
         <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
         <Route path={'/dialogs*/'} render={() => <DialogsContainer/>}/>
         <Route path={'/users*/'} render={() => <UsersContainer/>}/>
@@ -43,10 +54,7 @@ class App extends React.Component<AppPropsType> {
         <Route path={'/news*/'} component={News}/>
         <Route path={'/login*/'} render={() => <LoginContainer/>}/>
       </div>
-      {/*МОДАЛЬНОЕ ОКНО С ОШИБКОЙ*/}
-      <div>
-        {this.props.error}
-      </div>
+
     </div>)
   }
 }
