@@ -111,12 +111,12 @@ export const deleteDataUsersAC = () => ({type: DELETE_DATA_USERS} as const)
 
 //THUNK
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
+export const getUsersThunkCreator = (page: number, pageSize: number) => async (dispatch: Dispatch) => {
   dispatch(fetchUsersCountAC(true))
   try {
-    const data = await userApi.getUsers(currentPage, pageSize)
+    const data = await userApi.getUsers(page, pageSize)
     dispatch(fetchUsersCountAC(false))
-    dispatch(setCurrentPageAC(currentPage))
+    dispatch(setCurrentPageAC(page))
     dispatch(setUserAC(data.items))
     dispatch(setTotalUsersCountAC(data.totalCount))
   } catch (e) {

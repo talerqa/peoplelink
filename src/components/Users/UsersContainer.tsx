@@ -15,25 +15,22 @@ import {
 import {Users} from './Users';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
+import {getCurrentPage, getIsFetching, getPageSize, getTotalCount, getUsers} from './user-selector';
 
 class UsersContainer extends React.Component<UsersPropsType> {
   constructor(props: UsersPropsType) {
     super(props);
   }
 
-
   componentDidMount() {
     this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
   }
-
-
 
   onPageChanged = (pageNumber: number) => {
     this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
   }
 
   render() {
-
     return <>
       <Users
         users={this.props.users}
@@ -62,11 +59,11 @@ type MapStateToPropsType = {
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
   return {
-    users: state.usersReducer.users,
-    pageSize: state.usersReducer.pageSize,
-    totalCount: state.usersReducer.totalUsersCount,
-    currentPage: state.usersReducer.currentPage,
-    isFetching: state.usersReducer.isFetching,
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalCount: getTotalCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
   }
 }
 

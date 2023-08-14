@@ -31,12 +31,9 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className="app-wrapper">
-
       <HeaderContainer/>
       <Navbar/>
-
       <div className={'content'}>
-
         {/*МОДАЛЬНОЕ ОКНО С ОШИБКОЙ*/}
         <div className={this.props.error ? 'modal-wrap' : 'modal-wrap-hidden'}>
           {this.props.error}
@@ -50,7 +47,6 @@ class App extends React.Component<AppPropsType> {
         <Route path={'/news*/'} component={News}/>
         <Route path={'/login*/'} render={() => <LoginContainer/>}/>
       </div>
-
     </div>)
   }
 }
@@ -65,9 +61,9 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsTye = {
-
   initializedApp: () => void
 }
+
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
   return {
     isAuth: state.authReducer.isAuth,
@@ -76,6 +72,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     error: state.appReducer.error,
   }
 }
+
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsTye => {
   return {
     initializedApp: () => {
