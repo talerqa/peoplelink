@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import {Route, withRouter} from 'react-router-dom';
+import {Redirect, Route, withRouter} from 'react-router-dom';
 import News from '../components/News/News';
 import Setting from '../components/Setting/Setting';
 import Music from '../components/Music/Music';
@@ -23,12 +23,18 @@ class App extends React.Component<AppPropsType> {
   }
 
   render() {
+
+
     if (!this.props.isInitialized) {
+      if (!this.props.isAuth) {
+        return <Redirect to={'/login'}/>
+      }
       return <div
         style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
         <Preloader/>
       </div>
     }
+
 
     return (<div className="app-wrapper">
       <HeaderContainer/>
