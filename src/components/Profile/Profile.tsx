@@ -12,8 +12,6 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
-  // const profilePage = useSelector<AppRootStateType, ProfilePageType>(state => state.profileReducer)
-  // const posts = profilePage.posts
 
   return (
     <div className={s.Profile}>

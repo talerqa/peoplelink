@@ -59,8 +59,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
               {...formik.getFieldProps('email')}
             />
             <div className={s.errorTextEmail}>
-              {formik.touched.email && formik.errors.email &&
-                <span className={s.errorText}>{formik.errors.email}</span>}
+              {formik.touched.email && formik.errors.email &&  <span className={s.errorText}>{formik.errors.email}</span>}
             </div>
           </div>
           <div className={s.passwordBlock}>

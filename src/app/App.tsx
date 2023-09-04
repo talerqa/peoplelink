@@ -23,8 +23,6 @@ class App extends React.Component<AppPropsType> {
   }
 
   render() {
-
-
     if (!this.props.isInitialized) {
       if (!this.props.isAuth) {
         return <Redirect to={'/login'}/>
@@ -34,7 +32,6 @@ class App extends React.Component<AppPropsType> {
         <Preloader/>
       </div>
     }
-
 
     return (<div className="app-wrapper">
       <HeaderContainer/>

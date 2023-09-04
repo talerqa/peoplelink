@@ -8,7 +8,7 @@ type MyPostProps = {
   addPost: () => void
   updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>)=>void
 }
-const MyPost = (props: MyPostProps) => {
+const MyPost = React.memo((props: MyPostProps) => {
   return (
     <div className={s.item}>
 
@@ -29,6 +29,6 @@ const MyPost = (props: MyPostProps) => {
       </div>
     </div>
   );
-}
+})
 
 export default MyPost;

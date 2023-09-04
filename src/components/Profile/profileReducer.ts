@@ -61,8 +61,8 @@ export type CommonProfileType =
   | ReturnType<typeof updateNewPostTextAC>
   | ReturnType<typeof getProfileUserAC>
   | ReturnType<typeof setStatusProfileUserAC>
-  | DeleteDataProfileACType
-  | SetPostsProfileACType
+  | ReturnType<typeof deleteDataProfileUserAC>
+  | ReturnType<typeof setPostsAC>
 
 export type DeleteDataProfileACType = ReturnType<typeof deleteDataProfileUserAC>
 export type SetPostsProfileACType = ReturnType<typeof setPostsAC>
