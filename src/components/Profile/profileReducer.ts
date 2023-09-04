@@ -69,6 +69,8 @@ export type SetPostsProfileACType = ReturnType<typeof setPostsAC>
 
 export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
 
+export const deletePostAC = (title: string) => ({type: ADD_POST, title} as const)
+
 export const setPostsAC = () => ({type: SET_POSTS} as const)
 
 export const updateNewPostTextAC = (title: string) => ({type: UPDATE_NEWPOST_TEXT, title} as const)
@@ -82,7 +84,6 @@ export const deleteDataProfileUserAC = () => ({type: DELETE_DATA_PROFILE} as con
 
 //THUNK
 export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
-
   try {
     dispatch(setPostsAC())
     const res = await profileApi.getProfileUser(userId)

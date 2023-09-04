@@ -1,57 +1,60 @@
 import * as React from 'react';
-import {ChangeEvent, useState} from 'react';
-import Post from './Post/Post';
-import {postData} from '../../../type';
-import {addPostAC, updateNewPostTextAC} from '../profileReducer';
-import MyPost from './MyPost';
-import {useDispatch} from 'react-redux';
+import {ProfilePageType} from '../../../type';
+import {addPostAC, deletePostAC} from '../profileReducer';
+import {connect} from 'react-redux';
+import {AppRootStateType} from '../../../app/store';
+import {Dispatch} from 'redux';
+import {MyPosts} from "./MyPosts";
 
-type MyPostProps = {
+
+type  PropsType = {
   profile: any
-  posts: Array<postData>
-  status: string
-  updateStatus: (status: string) => void
-}
+} & MapDispatchToPropsType & MapStateToPropsProfileType
 
-export const MyPostContainer = (props: MyPostProps) => {
-  const {posts} = props
-  const [title, setTitle] = useState<string>('')
 
-  const dispatch = useDispatch()
-  //Добавляем новый пост
-  const addPost = () => {
-    let action = addPostAC(title)
-    dispatch(action)
-    setTitle('')
+class MyPostContainer extends React.Component<PropsType> {
+
+
+  componentDidMount() {
+
   }
 
-  const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.currentTarget.value !== null) {
-      let newPost = e.currentTarget.value
-      setTitle(newPost)
-      const action = updateNewPostTextAC(newPost)
-      dispatch(action)
-    }
+
+  render() {
+    return <MyPosts
+        profilePost={this.props.profilePost}
+        addPost={this.props.addPost}
+        deletePost={this.props.deletePost}
+        profileInfo={this.props.profile}
+    />;
   }
 
-  const postsElement = posts.map(post =>
-    <Post
-      key={post.id}
-      message={post.message}
-      likesCount={post.likesCount}
-      id={post.id}
-      profile={props.profile}
-      status={props.status}
-      updateStatus={props.updateStatus}
-    />
-  )
-
-  return (
-    <MyPost
-      postsElement={postsElement}
-      title={title}
-      addPost={addPost}
-      updateNewPostText={onPostChange}
-    />);
 }
+
+export type MapStateToPropsProfileType = {
+  profilePost: ProfilePageType
+}
+
+export type MapDispatchToPropsType = {
+  addPost: (title: string) => void
+  deletePost: (id: string) => void
+}
+
+
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType => {
+  return {
+    profilePost: state.profileReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+  return {
+    addPost: (title) => dispatch(addPostAC(title)),
+    deletePost: (id) => dispatch(deletePostAC(id)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPostContainer)
+
+
 
