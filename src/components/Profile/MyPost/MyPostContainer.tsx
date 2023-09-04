@@ -21,6 +21,7 @@ class MyPostContainer extends React.Component<PropsType> {
 
 
   render() {
+    console.log(this.props.profilePost)
     return <MyPosts
         profilePost={this.props.profilePost}
         addPost={this.props.addPost}

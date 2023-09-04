@@ -5,6 +5,7 @@ import {profileApi} from '../../api/api';
 import {handleServerNetworkError} from '../../utils/error-utils';
 
 const ADD_POST = 'ADD-POST';
+const DELETE_POST = 'DELETE-POST';
 const UPDATE_NEWPOST_TEXT = 'UPDATE-NEWPOST-TEXT';
 const GET_PROFILE_USERS = 'GET-PROFILE-USERS';
 const SET_STATUS = 'SET-STATUS';
@@ -29,6 +30,12 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
       return {
         ...state,
         posts: [...state.posts, newPost]
+      }
+    }
+
+    case DELETE_POST: {
+      return {...state,
+        posts: state.posts.filter(post => post.id !== action.id)
       }
     }
 
@@ -57,19 +64,20 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
 }
 
 export type CommonProfileType =
-  | ReturnType<typeof addPostAC>
-  | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof getProfileUserAC>
-  | ReturnType<typeof setStatusProfileUserAC>
-  | ReturnType<typeof deleteDataProfileUserAC>
-  | ReturnType<typeof setPostsAC>
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof getProfileUserAC>
+    | ReturnType<typeof setStatusProfileUserAC>
+    | ReturnType<typeof deleteDataProfileUserAC>
+    | ReturnType<typeof setPostsAC>
+    | ReturnType<typeof deletePostAC>
 
 export type DeleteDataProfileACType = ReturnType<typeof deleteDataProfileUserAC>
 export type SetPostsProfileACType = ReturnType<typeof setPostsAC>
 
 export const addPostAC = (title: string) => ({type: ADD_POST, title} as const)
 
-export const deletePostAC = (title: string) => ({type: ADD_POST, title} as const)
+export const deletePostAC = (id: string) => ({type: DELETE_POST, id} as const)
 
 export const setPostsAC = () => ({type: SET_POSTS} as const)
 
