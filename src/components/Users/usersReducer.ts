@@ -135,7 +135,6 @@ export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dis
         handleServerAppError(res.data, dispatch)
       }
   } catch (e) {
-
       const error = e as { message: string }
       handleServerNetworkError(error, dispatch)
     }

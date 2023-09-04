@@ -78,7 +78,6 @@ export const setErrorAC = (error: string) => ({type: 'SET_ERROR', error} as cons
 export const getCaptchaAC = (captcha: string) => ({type: 'GET_CAPTCHA', captcha} as const)
 
 //THUNK
-
 export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthType>) => {
 
   try {
