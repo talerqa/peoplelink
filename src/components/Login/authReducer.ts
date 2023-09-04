@@ -15,6 +15,15 @@ import {handleServerAppError, handleServerNetworkError} from '../../utils/error-
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
+export type AuthType = {
+  id: number | null
+  login: string | null
+  email: string | null
+  isAuth: boolean
+  error: string
+  getCaptcha: string | null
+}
+
 const initState: AuthType = {
   id: null,
   login: null,
@@ -24,14 +33,6 @@ const initState: AuthType = {
   getCaptcha: null
 }
 
-export type AuthType = {
-  id: number | null
-  login: string | null
-  email: string | null
-  isAuth: boolean
-  error: string
-  getCaptcha: string | null
-}
 
 export const authReducer = (state = initState, action: CommonAuthType) => {
   switch (action.type) {
