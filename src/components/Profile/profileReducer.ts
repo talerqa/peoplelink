@@ -83,7 +83,7 @@ export const setPostsAC = () => ({type: SET_POSTS} as const)
 
 export const updateNewPostTextAC = (title: string) => ({type: UPDATE_NEWPOST_TEXT, title} as const)
 
-export const getProfileUserAC = (profile: ProfileType) => ({type: GET_PROFILE_USERS, profile} as const)
+export const getProfileUserAC = (profile: ProfileType | null) => ({type: GET_PROFILE_USERS, profile} as const)
 
 export const setStatusProfileUserAC = (status: string) => ({type: SET_STATUS, status} as const)
 

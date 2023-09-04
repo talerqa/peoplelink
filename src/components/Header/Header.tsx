@@ -26,7 +26,7 @@ type HeaderProps = {
               ? <li className={s.navItem}>{props.login} logged in </li>
               : <button className={s.navItem}>Log in</button>}
           </NavLink>
-          <NavLink to={''}>
+          <NavLink to={'/login'}>
             <button className={s.navItem} onClick={props.logout}>Log out</button>
           </NavLink>
         </ul>

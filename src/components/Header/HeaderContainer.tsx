@@ -18,7 +18,6 @@ class HeaderContainer extends React.Component<AuthPropsType> {
   }
 
   logOutHandler = () => {
-
     this.props.logout()
     this.setState({captcha: ''})
   }

@@ -141,6 +141,7 @@ export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType
       dispatch(deleteDataMessageAC())
       dispatch(deleteDataUsersAC())
       dispatch(deleteDataProfileUserAC())
+
     } else {
       handleServerAppError(res.data, dispatch)
     }

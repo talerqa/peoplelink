@@ -42,12 +42,10 @@ export type InitialStateType = {
   isInitialized: boolean
 }
 
-export const setInitializedAC = () => ({type: 'APP/SET-INITIALIZED'} as const)
 
 export const initializeApp = (): any => async (dispatch: Dispatch) => {
-
   await dispatch(authThunkCreator()).then(() => {
-    dispatch(setInitializedAC())
+    dispatch(setAppInitializedAC(true))
   })
 
 
