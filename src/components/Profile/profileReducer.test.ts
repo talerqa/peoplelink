@@ -1,40 +1,75 @@
-import {addPostAC, profileReducer} from './profileReducer';
+import {
+  addPostAC,
+  deleteDataProfileUserAC,
+  deletePostAC,
+  getProfileUserAC,
+  initState,
+  profileReducer,
+  setPostsAC,
+  setStatusProfileUserAC,
+  updateNewPostTextAC
+} from './profileReducer';
 
-import {v1} from 'uuid';
-import {ProfilePageType} from '../../type';
+describe('profileReducer', () => {
+  it('should add a new post', () => {
+    const newState = profileReducer(initState, addPostAC('New Post Text'));
+    expect(newState.posts.length).toBe(initState.posts.length + 1);
+    expect(newState.posts[newState.posts.length - 1].message).toBe('New Post Text');
+  });
 
-test('new post should be add', () => {
-  let action = addPostAC('IT-KAMASUTRA');
-  let state: ProfilePageType = {
-    posts: [
-      {id: v1(), message: 'Hi how are you', likesCount: 7},
-      {id: v1(), message: 'It\'s my first project', likesCount: 4},
-      {id: v1(), message: 'Its my second project', likesCount: 1},
-    ],
-    profile: null,
-    newPostText: '',
-    status: '',
-  }
-  let newState = profileReducer(state, action)
+  it('should delete a post', () => {
+    const postIdToDelete = initState.posts[0].id;
+    const newState = profileReducer(initState, deletePostAC(postIdToDelete));
+    expect(newState.posts.some(post => post.id === postIdToDelete)).toBe(false);
+  });
 
-  expect(newState.posts.length).toBe(4)
-  expect(newState.posts[3].message).toBe('IT-KAMASUTRA')
-})
+  it('should set posts to initial state', () => {
+    const modifiedState = {...initState, posts: [{id: '1', message: 'Post', likesCount: 0}]};
+    const newState = profileReducer(modifiedState, setPostsAC());
+    expect(newState).toEqual(initState);
+  });
 
-test('post should be delete', () => {
-  let action = addPostAC('IT-KAMASUTRA');
-  let state: ProfilePageType = {
-    posts: [
-      {id: v1(), message: 'Hi how are you', likesCount: 7},
-      {id: v1(), message: 'It\'s my first project', likesCount: 4},
-      {id: v1(), message: 'Its my second project', likesCount: 1},
-    ],
-    profile: null,
-    newPostText: '',
-    status: '',
-  }
-  let newState = profileReducer(state, action)
+  it('should update new post text', () => {
+    const newText = 'New Text';
+    const newState = profileReducer(initState, updateNewPostTextAC(newText));
+    expect(newState.newPostText).toBe(newText);
+  });
 
-  expect(newState.posts.length).toBe(4)
-  expect(newState.posts[3].message).toBe('IT-KAMASUTRA')
-})
+  it('should set profile user data', () => {
+    const profileData = {
+      userId: 1,
+      lookingForAJob: true,
+      lookingForAJobDescription: 'looking',
+      fullName: 'Alex',
+      contacts: null,
+      photos: null,
+      aboutMe: 'none'
+    };
+    const newState = profileReducer(initState, getProfileUserAC(profileData));
+    expect(newState.profile).toEqual(profileData);
+  });
+
+  it('should set status profile user', () => {
+    const status = 'Online';
+    const newState = profileReducer(initState, setStatusProfileUserAC(status));
+    expect(newState.status).toBe(status);
+  });
+
+  it('should delete profile data', () => {
+    const modifiedState = {
+      ...initState, profile: {
+        userId: 1,
+        lookingForAJob: true,
+        lookingForAJobDescription: 'looking',
+        fullName: 'Alex',
+        contacts: null,
+        photos: null,
+        aboutMe: 'none'
+      }
+    };
+    const newState = profileReducer(modifiedState, deleteDataProfileUserAC());
+    expect(newState.posts.length).toBe(0);
+  });
+});
+
+

@@ -1,8 +1,7 @@
 import {MyUsersPageType, UserType} from '../../type';
 import {profileApi, userApi} from '../../api/api';
 import {Dispatch} from 'redux';
-import {setAppErrorAC} from '../../app/appReducer';
-import {handleServerNetworkError} from '../../utils/error-utils';
+import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 
 const FOLLOW_USER = 'FOLLOW-USER';
 const UNFOLLOW_USER = 'UNFOLLOW-USER';
@@ -114,15 +113,15 @@ export const deleteDataUsersAC = () => ({type: DELETE_DATA_USERS} as const)
 export const getUsersThunkCreator = (page: number, pageSize: number) => async (dispatch: Dispatch) => {
   dispatch(fetchUsersCountAC(true))
   try {
-    const data = await userApi.getUsers(page, pageSize)
+    const res = await userApi.getUsers(page, pageSize)
     dispatch(fetchUsersCountAC(false))
     dispatch(setCurrentPageAC(page))
-    dispatch(setUserAC(data.items))
-    dispatch(setTotalUsersCountAC(data.totalCount))
+    dispatch(setUserAC(res.items))
+    dispatch(setTotalUsersCountAC(res.totalCount))
   } catch (e) {
-    //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
+
   }
 }
 
@@ -132,9 +131,11 @@ export const unFollowUserThunkCreator = (userId: number) => async (dispatch: Dis
       const res = await  profileApi.unfollowUser(userId)
       if (res.data.resultCode === ResultCode.OK) {
         dispatch(unFollowUserAC(userId))
+      } else {
+        handleServerAppError(res.data, dispatch)
       }
   } catch (e) {
-      //Диспатчим ошибку при отсутствии соединения
+
       const error = e as { message: string }
       handleServerNetworkError(error, dispatch)
     }
@@ -146,9 +147,10 @@ export const followUserThunkCreator = (userId: number) => async (dispatch: Dispa
     const res = await profileApi.followUser(userId)
     if (res.data.resultCode === ResultCode.OK) {
       dispatch(followUserAC(userId))
+    } else {
+      handleServerAppError(res.data, dispatch)
     }
   } catch (e) {
-    //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
   }

@@ -63,8 +63,8 @@ export type ProfileType = {
   lookingForAJob: boolean | null
   lookingForAJobDescription: string | null
   fullName: string
-  contacts: ContactsProfileType
-  photos: PhotosProfileType
+  contacts: ContactsProfileType | null
+  photos: PhotosProfileType | null
   aboutMe: string | null
 }
 

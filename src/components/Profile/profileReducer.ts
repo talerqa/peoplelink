@@ -12,7 +12,7 @@ const SET_STATUS = 'SET-STATUS';
 const DELETE_DATA_PROFILE = 'DELETE-DATA-PROFILE';
 const SET_POSTS = 'SET-POSTS';
 
-const initState: ProfilePageType = {
+export const initState: ProfilePageType = {
   posts: [
     {id: v1(), message: 'Hi how are you', likesCount: 7},
     {id: v1(), message: 'It\'s my first project', likesCount: 4},
@@ -109,7 +109,6 @@ export const getStatusProfileUserThunkCreator = (userId: number) => async (dispa
     const res = await profileApi.getStatus(userId)
     dispatch(setStatusProfileUserAC(res.data))
   } catch (e) {
-    //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
   }
@@ -120,7 +119,6 @@ export const updateStatusProfileUserThunkCreator = (status: string) => async (di
     const res = await profileApi.updateStatus(status)
     dispatch(setStatusProfileUserAC(status))
   } catch (e) {
-    //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
   }

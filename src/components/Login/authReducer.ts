@@ -2,17 +2,16 @@ import {authApi} from '../../api/api';
 import {Dispatch} from 'redux';
 import {LoginFormType} from './Login';
 import {
-  setAppErrorAC,
   SetAppErrorActionType,
   SetAppInitializeActionType,
   setAppInitializedAC,
   setAppStatusAC,
   SetAppStatusActionType
 } from '../../app/appReducer';
-import {deleteDataUsersAC, DeleteDataUsersACType, getUsersThunkCreator, ResultCode} from '../Users/usersReducer';
+import {deleteDataUsersAC, DeleteDataUsersACType, ResultCode} from '../Users/usersReducer';
 import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsReducer';
-import {DeleteDataProfileACType, deleteDataProfileUserAC, getProfileUserThunkCreator} from '../Profile/profileReducer';
-import {handleServerNetworkError} from '../../utils/error-utils';
+import {DeleteDataProfileACType, deleteDataProfileUserAC} from '../Profile/profileReducer';
+import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
@@ -85,24 +84,14 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
   try {
     dispatch(setAppStatusAC('loading'))
     const res = await authApi.getAuthMe()
-
     if (res.data.resultCode === ResultCode.OK) {
       dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true, ''))
       dispatch(setAppStatusAC('succeeded'))
-
-    }
-    else if (res.data.resultCode === ResultCode.ERROR) {
+    } else if (res.data.resultCode === ResultCode.ERROR) {
       dispatch(setAppStatusAC('failed'))
+    } else {
+      handleServerAppError(res.data, dispatch)
     }
-    else {
-      if (res.data.messages.length) {
-        dispatch(setAppErrorAC(res.data.messages[0]))
-      } else {
-        dispatch(setAppErrorAC('Some error occurred'))
-      }
-      dispatch(setAppStatusAC('failed'))
-    }
-
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
@@ -129,12 +118,7 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
       dispatch(setErrorAC(res.data.messages[0]))
       dispatch(setAppStatusAC('succeeded'))
     } else {
-      if (res.data.messages.length) {
-        dispatch(setAppErrorAC(res.data.messages[0]))
-      } else {
-        dispatch(setAppErrorAC('Some error occurred'))
-      }
-      dispatch(setAppStatusAC('failed'))
+      handleServerAppError(res.data, dispatch)
     }
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
@@ -154,13 +138,13 @@ export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType
       dispatch(setUserDataAC(null, null, null, false, null))
       dispatch(getCaptchaAC(''))
       dispatch(setAppStatusAC('succeeded'))
-      //////////
       dispatch(deleteDataMessageAC())
       dispatch(deleteDataUsersAC())
       dispatch(deleteDataProfileUserAC())
+    } else {
+      handleServerAppError(res.data, dispatch)
     }
   } catch (e) {
-    //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
   }
@@ -172,6 +156,7 @@ export const setCaptchaThunkCreator = (): any => async (dispatch: Dispatch<Commo
     const res = await authApi.getCaptcha()
     dispatch(getCaptchaAC(res.data.url))
     dispatch(setAppStatusAC('succeeded'))
+
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
