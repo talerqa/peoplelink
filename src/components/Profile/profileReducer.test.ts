@@ -9,34 +9,19 @@ import {
   setStatusProfileUserAC,
   updateNewPostTextAC
 } from './profileReducer';
+import {ProfilePageType} from "../../type";
+import {v1} from "uuid";
 
-describe('profileReducer', () => {
-  it('should add a new post', () => {
-    const newState = profileReducer(initState, addPostAC('New Post Text'));
-    expect(newState.posts.length).toBe(initState.posts.length + 1);
-    expect(newState.posts[newState.posts.length - 1].message).toBe('New Post Text');
-  });
+let state: ProfilePageType
 
-  it('should delete a post', () => {
-    const postIdToDelete = initState.posts[0].id;
-    const newState = profileReducer(initState, deletePostAC(postIdToDelete));
-    expect(newState.posts.some(post => post.id === postIdToDelete)).toBe(false);
-  });
-
-  it('should set posts to initial state', () => {
-    const modifiedState = {...initState, posts: [{id: '1', message: 'Post', likesCount: 0}]};
-    const newState = profileReducer(modifiedState, setPostsAC());
-    expect(newState).toEqual(initState);
-  });
-
-  it('should update new post text', () => {
-    const newText = 'New Text';
-    const newState = profileReducer(initState, updateNewPostTextAC(newText));
-    expect(newState.newPostText).toBe(newText);
-  });
-
-  it('should set profile user data', () => {
-    const profileData = {
+beforeEach(() => {
+  state = {
+    posts: [
+      {id: v1(), message: 'Hi how are you', likesCount: 7},
+      {id: v1(), message: 'It\'s my first project', likesCount: 4},
+      {id: v1(), message: 'Its my second project', likesCount: 1},
+    ],
+    profile: {
       userId: 1,
       lookingForAJob: true,
       lookingForAJobDescription: 'looking',
@@ -44,9 +29,39 @@ describe('profileReducer', () => {
       contacts: null,
       photos: null,
       aboutMe: 'none'
-    };
-    const newState = profileReducer(initState, getProfileUserAC(profileData));
-    expect(newState.profile).toEqual(profileData);
+    },
+    newPostText: '',
+    status: '',
+  }
+})
+
+describe('profileReducer', () => {
+  it('should add a new post', () => {
+    const newState = profileReducer(state, addPostAC('New Post Text'));
+    expect(newState.posts.length).toBe(state.posts.length + 1);
+    expect(newState.posts[newState.posts.length - 1].message).toBe('New Post Text');
+  });
+
+  it('should delete a post', () => {
+    const postIdToDelete = state.posts[0].id;
+    const newState = profileReducer(state, deletePostAC(postIdToDelete));
+    expect(newState.posts.some(post => post.id === postIdToDelete)).toBe(false);
+  });
+
+  it('should set posts to initial state', () => {
+    const newState = profileReducer(state, setPostsAC());
+    expect(newState.posts).toBe(state.posts);
+  });
+
+  it('should update new post text', () => {
+    const newText = 'New Text';
+    const newState = profileReducer(state, updateNewPostTextAC(newText));
+    expect(newState.newPostText).toBe(newText);
+  });
+
+  it('should set profile user data', () => {
+    const newState = profileReducer(state, getProfileUserAC(state.profile));
+    expect(newState.profile).toEqual(state.profile);
   });
 
   it('should set status profile user', () => {
@@ -56,18 +71,7 @@ describe('profileReducer', () => {
   });
 
   it('should delete profile data', () => {
-    const modifiedState = {
-      ...initState, profile: {
-        userId: 1,
-        lookingForAJob: true,
-        lookingForAJobDescription: 'looking',
-        fullName: 'Alex',
-        contacts: null,
-        photos: null,
-        aboutMe: 'none'
-      }
-    };
-    const newState = profileReducer(modifiedState, deleteDataProfileUserAC());
+    const newState = profileReducer(state, deleteDataProfileUserAC());
     expect(newState.posts.length).toBe(0);
   });
 });

@@ -40,7 +40,7 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
     }
 
     case SET_POSTS: {
-      return initState
+      return state
     }
 
     case UPDATE_NEWPOST_TEXT : {
@@ -102,7 +102,6 @@ export const getProfileUserThunkCreator = (userId: string) => async (dispatch: D
     handleServerNetworkError(error, dispatch)
   }
 }
-
 
 export const getStatusProfileUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
   try {
