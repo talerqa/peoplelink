@@ -45,7 +45,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
       props.onSubmit(values)
     },
   })
-  console.log(props.status)
+
   return (
     <div className={s.contactForm}>
       <form action="" onSubmit={formik.handleSubmit} className={props.captcha ? s.formWithCaptcha : s.form}>
@@ -76,13 +76,15 @@ export const LoginForm = (props: LoginPropsFormType) => {
           </div>
           <div className={s.submitBlock}>
             <div className={s.rememberMe}>
-              <input
-                className={s.checkbox}
-                type="checkbox"
-                checked={formik.values.rememberMe}
-                {...formik.getFieldProps('rememberMe')}
-              />
-              <span>Remember me</span>
+              <label>
+                <input
+                  className={s.checkbox}
+                  type="checkbox"
+                  checked={formik.values.rememberMe}
+                  {...formik.getFieldProps('rememberMe')}
+                />
+                Remember me
+              </label>
             </div>
             <button className={s.buttonSend} type={'submit'}>
               <span className={s.buttonSendLink}>
@@ -90,12 +92,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
             </button>
           </div>
           <div className={s.errorLoginOrPass}>
-            {
-
-            props.error
-
-
-            }
+            {props.error}
           </div>
           <div>
             <div className={s.setCaptcha}>

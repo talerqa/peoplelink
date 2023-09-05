@@ -107,6 +107,7 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
     if (res.data.resultCode === ResultCode.OK) {
       dispatch(setPostsAC())
       dispatch(authThunkCreator())
+      dispatch(setErrorAC(''))
       dispatch(setAppStatusAC('succeeded'))
     } else if (res.data.resultCode === ResultCode.ERROR) {
       dispatch(setErrorAC(res.data.messages[0]))

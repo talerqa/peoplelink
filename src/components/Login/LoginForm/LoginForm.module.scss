@@ -1,7 +1,12 @@
-.contactForm {
-  margin: 0 auto 10px;
-}
 
+.contactForm {
+  display: flex;
+  margin: 0 auto 10px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 350px;
+}
 input {
   font-size: 20px;
   width: 100%;
@@ -15,43 +20,43 @@ input {
   flex-grow: 1;
   outline: none;
   width: 100%;
+  border: none;
+
+  &:hover {
+    outline: 1px solid black;
+  }
+
+  &:focus {
+    outline: 1px solid black;
+  }
 }
 
-.email::placeholder, .password::placeholder {
-  font-size: 20px;
-  padding: 0;
+.email, .password {
+  &::placeholder {
+    margin: 0;
+    font-size: 16px;
+    padding: 0;
+  }
 }
-
-
 
 .emailError {
   display: block;
   font-size: 20px;
   font-weight: 400;
-  border: 1px solid red;
+  outline: 1px solid red;
   flex: 0 0 auto;
   flex-grow: 1;
-  outline: none;
-
+  border: none;
 }
 
 .passwordError {
   display: block;
   font-size: 20px;
   font-weight: 400;
-  border: 1px solid red;
+  outline: 1px solid red;
   flex: 0 0 auto;
   flex-grow: 1;
-  outline: none;
-}
-
-.contactForm {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  width: 350px;
+  border: none;
 }
 
 .form {
@@ -62,6 +67,7 @@ input {
   margin: 0 auto;
   font-size: 20px;
   width: 100%;
+
 }
 
 .formWithCaptcha {
@@ -84,8 +90,23 @@ input {
   height: 30px;
   align-self: center;
   background-color: transparent;
+  border: none;
   outline: none;
-  font-family: inherit;
+  .buttonSendLink {
+    list-style-type: none;
+    background: transparent;
+    padding: 10px 20px;
+    border: 1px solid #0a66c2;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif, monospace;
+    &:hover {
+      box-shadow: 0 0 0 1px;
+      background-color: rgba(112, 181, 249, 0.1);
+      scroll-behavior: smooth;
+    }
+  }
 }
 
 .errorText {
@@ -122,11 +143,22 @@ input {
 }
 
 .loginBlock {
+  font-size: 16px;
+
+  .loginText {
+    margin: 0;
+    text-align: left;
+  }
 
 }
 
 .passwordBlock {
+  font-size: 16px;
 
+  .loginPassword {
+    margin: 0;
+    text-align: left;
+  }
 }
 
 .setCaptcha {
@@ -138,6 +170,19 @@ input {
   }
 
   .captcha {
+    border: none;
+
+    &::placeholder {
+      text-align: center;
+    }
+
+    &:hover {
+      outline: 1px solid black;
+    }
+
+    &:focus {
+      outline: 1px solid black;
+    }
   }
 
 }
@@ -149,19 +194,19 @@ input {
 }
 
 
-/*input:-webkit-autofill,*/
-/*input:-webkit-autofill:hover,*/
-/*input:-webkit-autofill:focus*/
-/*input:-webkit-autofill,*/
-/*textarea:-webkit-autofill,*/
-/*textarea:-webkit-autofill:hover*/
-/*textarea:-webkit-autofill:focus,*/
-/*select:-webkit-autofill,*/
-/*select:-webkit-autofill:hover,*/
-/*select:-webkit-autofill:focus {*/
-/*  border: 0;*/
-/*  -webkit-text-fill-color: #1f1f20;*/
-/*  -webkit-box-shadow: 0 0 0 1000px #1aff00 inset;*/
-/*  transition: background-color 5000s ease-in-out 0s;*/
-/*  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);*/
-/*}*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 0;
+  -webkit-text-fill-color: #1f1f20;
+  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.07) inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);
+}
