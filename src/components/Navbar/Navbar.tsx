@@ -1,16 +1,10 @@
 import * as React from 'react';
-import s from './Navbar.module.css';
+import s from './Navbar.module.scss';
 import {NavLink} from 'react-router-dom';
-import {MyUsersPageType} from '../../type';
 
-// type NavbarPropsType = {
-//   state: MyFrinedPageType
-// }
 
 const Navbar = () => {
-
   const conditionChangeColorLink = (isActive: boolean) => isActive ? s.active + ' ' + s.link : s.link
-
   return (<div className={s.navbarWrapper}>
       <nav className={s.navbarMenu}>
         <ul className={s.navbarItems}>

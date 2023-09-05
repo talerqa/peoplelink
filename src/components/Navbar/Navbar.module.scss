@@ -3,23 +3,25 @@ a {
 }
 
 .navbarWrapper{
+  margin: 0;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.9);
-  grid-area: nav;
+
 }
 
 .navbarMenu {
-
+  margin: 0;
 }
 
 .navbarItems {
+  margin: 0;
   text-align: center;
   padding-right: 10px;
   padding-left: 10px;
 }
 
 .navbarItem {
-
+  margin: 0;
   list-style: none;
 }
 

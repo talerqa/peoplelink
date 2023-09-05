@@ -1,6 +1,6 @@
 import * as React from 'react';
 import logo from '../../img/logo.png';
-import s from './Header.module.css'
+import s from './Header.module.scss'
 import {NavLink} from 'react-router-dom';
 
 type HeaderProps = {
@@ -20,15 +20,18 @@ type HeaderProps = {
       <p className={s.headerTitle}> Social Network</p>
       <nav className={s.navMenu}>
         <ul className={s.navItems}>
-          <button className={s.navItem}>
-            <NavLink to={'/login'}>
-              {props.isAuth ? `${props.login} logged in` : 'Log in'}
-            </NavLink>
-          </button>
-          <button className={s.navItem} onClick={props.logout}>
-            <NavLink to={'/login'}> Log out</NavLink>
-          </button>
-
+          {!props.isAuth ?
+            <>
+              <a href='https://social-network.samuraijs.com/' target='_blank' className={s.navLink}>
+                Join in
+              </a>
+              <NavLink to={'/login'} className={s.navLink}> Log in</NavLink>
+            </>
+            : <>
+              <p className={s.logged}>{props.login} logged in</p>
+              <NavLink to={'/login'} onClick={props.logout} className={s.navLink}> Log out</NavLink>
+            </>
+          }
         </ul>
       </nav>
     </div>
