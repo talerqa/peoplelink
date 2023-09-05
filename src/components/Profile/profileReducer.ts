@@ -18,32 +18,32 @@ export const initState: ProfilePageType = {
 
 export const profileReducer = (state = initState, action: CommonProfileType) => {
   switch (action.type) {
-    case 'ADD-POST': {
+    case 'profile/ADD-POST': {
       const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
       return {
         ...state,
         posts: [...state.posts, newPost]
       }
     }
-    case 'DELETE-POST': {
+    case 'profile/DELETE-POST': {
       return {
         ...state,
         posts: state.posts.filter(post => post.id !== action.id)
       }
     }
-    case 'SET-POSTS': {
+    case 'profile/SET-POSTS': {
       return state
     }
-    case 'UPDATE-NEWPOST-TEXT' : {
+    case 'profile/UPDATE-NEWPOST-TEXT' : {
       return {...state, newPostText: action.title}
     }
-    case 'GET-PROFILE-USERS': {
+    case 'profile/GET-PROFILE-USERS': {
       return {...state, profile: action.profile}
     }
-    case 'SET-STATUS': {
+    case 'profile/SET-STATUS': {
       return {...state, status: action.status}
     }
-    case 'DELETE-DATA-PROFILE': {
+    case 'profile/DELETE-DATA-PROFILE': {
       return {...state, posts: [], newPostText: '', status: ''}
     }
     default:
@@ -63,13 +63,13 @@ export type CommonProfileType =
 export type DeleteDataProfileACType = ReturnType<typeof deleteDataProfileUserAC>
 export type SetPostsProfileACType = ReturnType<typeof setPostsAC>
 
-export const addPostAC = (title: string) => ({type: 'ADD-POST', title} as const)
-export const deletePostAC = (id: string) => ({type: 'DELETE-POST', id} as const)
-export const setPostsAC = () => ({type: 'SET-POSTS'} as const)
-export const updateNewPostTextAC = (title: string) => ({type: 'UPDATE-NEWPOST-TEXT', title} as const)
-export const getProfileUserAC = (profile: ProfileType | null) => ({type: 'GET-PROFILE-USERS', profile} as const)
-export const setStatusProfileUserAC = (status: string) => ({type: 'SET-STATUS', status} as const)
-export const deleteDataProfileUserAC = () => ({type: 'DELETE-DATA-PROFILE'} as const)
+export const addPostAC = (title: string) => ({type: 'profile/ADD-POST', title} as const)
+export const deletePostAC = (id: string) => ({type: 'profile/DELETE-POST', id} as const)
+export const setPostsAC = () => ({type: 'profile/SET-POSTS'} as const)
+export const updateNewPostTextAC = (title: string) => ({type: 'profile/UPDATE-NEWPOST-TEXT', title} as const)
+export const getProfileUserAC = (profile: ProfileType | null) => ({type: 'profile/GET-PROFILE-USERS', profile} as const)
+export const setStatusProfileUserAC = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
+export const deleteDataProfileUserAC = () => ({type: 'profile/DELETE-DATA-PROFILE'} as const)
 
 //THUNK
 export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {

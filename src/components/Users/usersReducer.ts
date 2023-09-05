@@ -14,34 +14,34 @@ const initState: MyUsersPageType = {
 
 export const usersReducer = (state = initState, action: CommonUserType): MyUsersPageType => {
   switch (action.type) {
-    case 'FOLLOW-USER': {
+    case 'users/FOLLOW-USER': {
       return {
         ...state,
         users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
       }
     }
-    case 'UNFOLLOW-USER': {
+    case 'users/UNFOLLOW-USER': {
       return {
         ...state,
         users: state.users.map(user => user.id === action.userID ? {...user, followed: false} : user)
       }
     }
-    case 'SET-USER': {
+    case 'users/SET-USER': {
       return {...state, users: [...action.users]}
     }
-    case 'SET-CURRENT-PAGE' : {
+    case 'users/SET-CURRENT-PAGE' : {
       return {...state, currentPage: action.currentPage}
     }
-    case 'TOTAL-USERS-COUNT': {
+    case 'users/TOTAL-USERS-COUNT': {
       return {...state, totalUsersCount: action.count}
     }
-    case 'SET-PAGE-SIZE': {
+    case 'users/SET-PAGE-SIZE': {
       return {...state, pageSize: action.pageSize}
     }
-    case 'FETCHING-USERS': {
+    case 'users/FETCHING-USERS': {
       return {...state, isFetching: action.isFetching}
     }
-    case 'DELETE-DATA-USERS': {
+    case 'users/DELETE-DATA-USERS': {
       return {
         ...state,
         users: [],
@@ -80,14 +80,14 @@ export type SetTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
 export type FetchUsersType = ReturnType<typeof fetchUsersCountAC>
 export type DeleteDataUsersACType = ReturnType<typeof deleteDataUsersAC>
 
-export const followUserAC = (userID: number) => ({type: 'FOLLOW-USER', userID} as const)
-export const unFollowUserAC = (userID: number) => ({type: 'UNFOLLOW-USER', userID} as const)
-export const setUserAC = (users: UserType[]) => ({type: 'SET-USER', users} as const)
-export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const)
-export const setPageSizeAC = (pageSize: number) => ({type: 'SET-PAGE-SIZE', pageSize} as const)
-export const setTotalUsersCountAC = (count: number) => ({type: 'TOTAL-USERS-COUNT', count} as const)
-export const fetchUsersCountAC = (isFetching: boolean) => ({type: 'FETCHING-USERS', isFetching} as const)
-export const deleteDataUsersAC = () => ({type: 'DELETE-DATA-USERS'} as const)
+export const followUserAC = (userID: number) => ({type: 'users/FOLLOW-USER', userID} as const)
+export const unFollowUserAC = (userID: number) => ({type: 'users/UNFOLLOW-USER', userID} as const)
+export const setUserAC = (users: UserType[]) => ({type: 'users/SET-USER', users} as const)
+export const setCurrentPageAC = (currentPage: number) => ({type: 'users/SET-CURRENT-PAGE', currentPage} as const)
+export const setPageSizeAC = (pageSize: number) => ({type: 'users/SET-PAGE-SIZE', pageSize} as const)
+export const setTotalUsersCountAC = (count: number) => ({type: 'users/TOTAL-USERS-COUNT', count} as const)
+export const fetchUsersCountAC = (isFetching: boolean) => ({type: 'users/FETCHING-USERS', isFetching} as const)
+export const deleteDataUsersAC = () => ({type: 'users/DELETE-DATA-USERS'} as const)
 
 export const getUsersThunkCreator = (page: number, pageSize: number) => async (dispatch: Dispatch) => {
   dispatch(fetchUsersCountAC(true))
