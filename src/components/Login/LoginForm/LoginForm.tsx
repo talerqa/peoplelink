@@ -44,6 +44,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
     },
     onSubmit: values => {
       props.onSubmit(values)
+
     },
   })
 

@@ -13,9 +13,7 @@ import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsRe
 import {DeleteDataProfileACType, deleteDataProfileUserAC} from '../Profile/profileReducer';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 
-const SET_USER_DATA = 'SET-USER-DATA'
-
-export type AuthType = {
+export type InitialStateAuthType = {
   id: number | null
   login: string | null
   email: string | null
@@ -24,7 +22,7 @@ export type AuthType = {
   getCaptcha: string | null
 }
 
-const initState: AuthType = {
+const initState: InitialStateAuthType = {
   id: null,
   login: null,
   email: null,
@@ -33,19 +31,18 @@ const initState: AuthType = {
   getCaptcha: null
 }
 
-
-export const authReducer = (state = initState, action: CommonAuthType) => {
+export const authReducer = (state = initState, action: CommonAuthType): InitialStateAuthType => {
   switch (action.type) {
-    case (SET_USER_DATA): {
+    case 'auth/SET-USER-DATA': {
       return {
         ...state,
         ...action.data
       }
     }
-    case 'SET_ERROR': {
+    case 'auth/SET_ERROR': {
       return {...state, error: action.error}
     }
-    case 'GET_CAPTCHA': {
+    case 'auth/GET_CAPTCHA': {
       return {...state, getCaptcha: action.captcha}
     }
     default:
@@ -68,19 +65,15 @@ export type SetUserDataType = ReturnType<typeof setUserDataAC>
 export type SetErrorType = ReturnType<typeof setErrorAC>
 export type GetCaptchaType = ReturnType<typeof getCaptchaAC>
 
-
-export const setUserDataAC = (id: number | null , email: string | null, login: string | null, isAuth: boolean, captcha: null | string) => ({
-  type: SET_USER_DATA,
+export const setUserDataAC = (id: number | null, email: string | null,
+                              login: string | null, isAuth: boolean, captcha: null | string) => ({
+  type: 'auth/SET-USER-DATA',
   data: {id, email, login, isAuth, captcha}
 } as const)
+export const setErrorAC = (error: string) => ({type: 'auth/SET_ERROR', error} as const)
+export const getCaptchaAC = (captcha: string) => ({type: 'auth/GET_CAPTCHA', captcha} as const)
 
-export const setErrorAC = (error: string) => ({type: 'SET_ERROR', error} as const)
-
-export const getCaptchaAC = (captcha: string) => ({type: 'GET_CAPTCHA', captcha} as const)
-
-//THUNK
 export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthType>) => {
-
   try {
     dispatch(setAppStatusAC('loading'))
     const res = await authApi.getAuthMe()
@@ -88,7 +81,7 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
       dispatch(setUserDataAC(res.data.data.id, res.data.data.email, res.data.data.login, true, ''))
       dispatch(setAppStatusAC('succeeded'))
     } else if (res.data.resultCode === ResultCode.ERROR) {
-      dispatch(setAppStatusAC('failed'))
+      dispatch(setAppStatusAC('succeeded'))
     } else {
       handleServerAppError(res.data, dispatch)
     }
@@ -97,9 +90,8 @@ export const authThunkCreator = (): any => async (dispatch: Dispatch<CommonAuthT
     handleServerNetworkError(error, dispatch)
   } finally {
     dispatch(setAppInitializedAC(true))
-    dispatch(setAppStatusAC('succeeded'))
+    dispatch(setAppStatusAC('idle'))
   }
-
 }
 
 export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: Dispatch<CommonAuthType>) => {
@@ -111,7 +103,7 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
       dispatch(authThunkCreator())
     } else if (res.data.resultCode === ResultCode.ERROR) {
       dispatch(setErrorAC(res.data.messages[0]))
-      dispatch(setAppStatusAC('idle'))
+      dispatch(setAppStatusAC('succeeded'))
     } else if (res.data.resultCode === ResultCode.CAPTCHA) {
       dispatch(setCaptchaThunkCreator())
       dispatch(authThunkCreator())
@@ -121,12 +113,11 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
       handleServerAppError(res.data, dispatch)
     }
   } catch (e) {
-    //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
   }  finally {
     dispatch(setAppInitializedAC(true))
-    dispatch(setAppStatusAC('succeeded'))
+    dispatch(setAppStatusAC('idle'))
   }
 }
 
@@ -137,17 +128,19 @@ export const logOutThunkCreator = () => async (dispatch: Dispatch<CommonAuthType
     if (res.data.resultCode === ResultCode.OK) {
       dispatch(setUserDataAC(null, null, null, false, null))
       dispatch(getCaptchaAC(''))
-      dispatch(setAppStatusAC('succeeded'))
       dispatch(deleteDataMessageAC())
       dispatch(deleteDataUsersAC())
       dispatch(deleteDataProfileUserAC())
-
+      dispatch(setAppStatusAC('succeeded'))
     } else {
       handleServerAppError(res.data, dispatch)
     }
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
+  } finally {
+    dispatch(setAppInitializedAC(true))
+    dispatch(setAppStatusAC('idle'))
   }
 }
 
@@ -156,14 +149,14 @@ export const setCaptchaThunkCreator = (): any => async (dispatch: Dispatch<Commo
   try {
     const res = await authApi.getCaptcha()
     dispatch(getCaptchaAC(res.data.url))
-    dispatch(setAppStatusAC('succeeded'))
-
+    dispatch(setAppStatusAC('idle'))
   } catch (e) {
     //Диспатчим ошибку при отсутствии соединения
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
   } finally {
     dispatch(setAppInitializedAC(true))
+    dispatch(setAppStatusAC('idle'))
   }
 }
 

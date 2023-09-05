@@ -1,6 +1,6 @@
-import {authReducer, AuthType, getCaptchaAC, setErrorAC, setUserDataAC,} from './authReducer';
+import {authReducer, InitialStateAuthType, getCaptchaAC, setErrorAC, setUserDataAC,} from './authReducer';
 
-let state: AuthType
+let state: InitialStateAuthType
 beforeEach(() => {
   state = {
     id: null,

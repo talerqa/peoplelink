@@ -15,6 +15,7 @@ import {connect} from 'react-redux';
 import {initializeApp, RequestStatusType} from './appReducer';
 import Preloader from '../components/Preloader/Preloader';
 import Error from "../components/Error";
+import HeaderContainer from "../components/Header/HeaderContainer";
 
 class App extends React.Component<AppPropsType> {
 
@@ -34,9 +35,10 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className="app-wrapper">
-
-      {/*<HeaderContainer/>*/}
-      {/*<Navbar/>*/}
+      {this.props.isAuth && <>
+        <HeaderContainer/>
+        <Navbar/>
+      </>}
       <main>
         <div className={this.props.error ? 'modal-wrap' : 'modal-wrap-hidden'}>
           {this.props.error}
