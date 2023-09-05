@@ -73,6 +73,7 @@ export const deleteDataProfileUserAC = () => ({type: 'DELETE-DATA-PROFILE'} as c
 
 //THUNK
 export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatusAC('loading'))
   try {
     dispatch(setPostsAC())
     const res = await profileApi.getProfileUser(userId)
@@ -87,9 +88,11 @@ export const getProfileUserThunkCreator = (userId: string) => async (dispatch: D
 }
 
 export const getStatusProfileUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatusAC('loading'))
   try {
     const res = await profileApi.getStatus(userId)
     dispatch(setStatusProfileUserAC(res.data))
+    dispatch(setAppStatusAC('succeeded'))
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
@@ -99,9 +102,11 @@ export const getStatusProfileUserThunkCreator = (userId: number) => async (dispa
 }
 
 export const updateStatusProfileUserThunkCreator = (status: string) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatusAC('loading'))
   try {
     await profileApi.updateStatus(status)
     dispatch(setStatusProfileUserAC(status))
+    dispatch(setAppStatusAC('succeeded'))
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
