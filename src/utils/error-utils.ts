@@ -9,7 +9,6 @@ export const handleServerNetworkError = (error: { message: string }, dispatch: D
     }, 2000)
 }
 
-
 export type BaseResponseType<D = {}> = {
     resultCode: number;
     messages: Array<string>;
