@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './App.css';
+import  s from './App.module.scss';
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import News from '../components/News/News';
 import Setting from '../components/Setting/Setting';
@@ -31,7 +31,7 @@ class App extends React.Component<AppPropsType> {
       </div>
     }
 
-    return (<div className="app-wrapper">
+    return (<div className={s.app}>
       {this.props.isAuth && <>
           <HeaderContainer/>
           <Navbar/>

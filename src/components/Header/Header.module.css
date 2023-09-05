@@ -1,18 +1,25 @@
 .header {
-  margin-top: 5px;
-  border-radius: 25px;
+  width: 100%;
+  margin: 0 auto;
+  height: 60px;
   background-color: rgba(255, 255, 255, 0.9);
-  grid-area: header;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, .2);
+  position: fixed;
+  z-index: 10;
 }
 
-.header_wrapper {
+.headerContainer {
   display: flex;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 .logo {
-  padding-top: 20px;
+  margin: 0 auto;
   width: 100px;
+  cursor: pointer;
+  display: flex
 }
 
 .logo_img {
@@ -20,6 +27,14 @@
   margin: 0 auto;
   width: 50px;
   height: 50px;
+  padding: 3px;
+}
+
+.headerTitle {
+  margin: 0;
+  font-weight: bold;
+  color: #0a66c2;
+  font-size: 20px;
 }
 
 .navMenu {

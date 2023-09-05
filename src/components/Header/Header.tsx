@@ -13,22 +13,22 @@ type HeaderProps = {
 
  const Header = (props: HeaderProps) => {
   return <header className={s.header}>
-    <div className={s.header_wrapper}>
+    <div className={s.headerContainer}>
       <div className={s.logo}>
-        {/*NAVLINK ROUTE Будет для обновления*/}
         <img className={s.logo_img} src={logo} alt="logo"/>
       </div>
+      <p className={s.headerTitle}> Social Network</p>
       <nav className={s.navMenu}>
-
         <ul className={s.navItems}>
-          <NavLink to={'/login'}>
-            {props.isAuth
-              ? <li className={s.navItem}>{props.login} logged in </li>
-              : <button className={s.navItem}>Log in</button>}
-          </NavLink>
-          <NavLink to={'/login'}>
-            <button className={s.navItem} onClick={props.logout}>Log out</button>
-          </NavLink>
+          <button className={s.navItem}>
+            <NavLink to={'/login'}>
+              {props.isAuth ? `${props.login} logged in` : 'Log in'}
+            </NavLink>
+          </button>
+          <button className={s.navItem} onClick={props.logout}>
+            <NavLink to={'/login'}> Log out</NavLink>
+          </button>
+
         </ul>
       </nav>
     </div>
