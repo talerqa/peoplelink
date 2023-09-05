@@ -25,11 +25,12 @@ export const Users = (props: UsersComponentPropsType) => {
     unfollow, setUsers
   } = props
 
+
+
+
   return (
     <div className={s.wrapper}>
-      <div className={''}>
-        <Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged}/>
-      </div>
+      <Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged}/>
       <p className={s.title}>Friends:</p>
 
       <div className={s.wrapper_item}>

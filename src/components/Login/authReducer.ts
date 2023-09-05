@@ -10,7 +10,12 @@ import {
 } from '../../app/appReducer';
 import {deleteDataUsersAC, DeleteDataUsersACType, ResultCode} from '../Users/usersReducer';
 import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsReducer';
-import {DeleteDataProfileACType, deleteDataProfileUserAC} from '../Profile/profileReducer';
+import {
+  DeleteDataProfileACType,
+  deleteDataProfileUserAC,
+  setPostsAC,
+  SetPostsProfileACType
+} from '../Profile/profileReducer';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 
 export type InitialStateAuthType = {
@@ -56,6 +61,7 @@ export type CommonAuthType =
   | GetCaptchaType
   | SetAppErrorActionType
   | SetAppStatusActionType
+  | SetPostsProfileACType
   | SetAppInitializeActionType
   | DeleteDataMessageACType
   | DeleteDataUsersACType
@@ -99,8 +105,9 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
   try {
     const res = await authApi.login(data)
     if (res.data.resultCode === ResultCode.OK) {
-      dispatch(setAppStatusAC('succeeded'))
+      dispatch(setPostsAC())
       dispatch(authThunkCreator())
+      dispatch(setAppStatusAC('succeeded'))
     } else if (res.data.resultCode === ResultCode.ERROR) {
       dispatch(setErrorAC(res.data.messages[0]))
       dispatch(setAppStatusAC('succeeded'))

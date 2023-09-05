@@ -25,19 +25,16 @@ class App extends React.Component<AppPropsType> {
 
   render() {
     if (!this.props.isInitialized) {
-      if (!this.props.isAuth) {
-        return <Redirect to={'/login'}/>
-      }
       return <div
-          style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+        style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
         <Preloader/>
       </div>
     }
 
     return (<div className="app-wrapper">
       {this.props.isAuth && <>
-        <HeaderContainer/>
-        <Navbar/>
+          <HeaderContainer/>
+          <Navbar/>
       </>}
       <main>
         <div className={this.props.error ? 'modal-wrap' : 'modal-wrap-hidden'}>
