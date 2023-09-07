@@ -1,5 +1,5 @@
 import * as React from 'react';
-import  s from './App.module.scss';
+import s from './App.module.scss';
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import News from '../components/News/News';
 import Setting from '../components/Setting/Setting';
@@ -16,6 +16,7 @@ import {initializeApp, RequestStatusType} from './appReducer';
 import Preloader from '../components/Preloader/Preloader';
 import Error from "../components/Error";
 import HeaderContainer from "../components/Header/HeaderContainer";
+import Footer from "../components/Footer/Footer";
 
 class App extends React.Component<AppPropsType> {
 
@@ -32,6 +33,7 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className={s.app}>
+
       {this.props.isAuth && <>
           <HeaderContainer/>
           <Navbar/>
@@ -54,6 +56,7 @@ class App extends React.Component<AppPropsType> {
           <Route render={() => <Redirect to={'/error404'}/>}/>
         </Switch>
       </main>
+      <Footer/>
     </div>)
   }
 }
