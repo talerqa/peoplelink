@@ -6,7 +6,7 @@ export const handleServerNetworkError = (error: { message: string }, dispatch: D
     dispatch(setAppStatusAC('failed'))
     setTimeout(() => {
         dispatch(setAppErrorAC(null))
-    }, 2000)
+    }, 1000000)
 }
 
 export type BaseResponseType<D = {}> = {

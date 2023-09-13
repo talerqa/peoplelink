@@ -3,7 +3,6 @@ import s from "./Footer.module.scss";
 
 const Footer = () => {
   return (
-    <>
       <footer className={s.footerBlock}>
         <div className={s.footerСontainer}>
           <div className={s.information}>
@@ -12,7 +11,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    </>
   );
 };
 

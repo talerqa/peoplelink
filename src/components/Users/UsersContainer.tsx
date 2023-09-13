@@ -32,19 +32,17 @@ class UsersContainer extends React.Component<UsersPropsType> {
   }
 
   render() {
-    return <>
-      <Users
-        users={this.props.users}
-        pageSize={this.props.pageSize}
-        totalCount={this.props.totalCount}
-        currentPage={this.props.currentPage}
-        onPageChanged={this.onPageChanged}
-        follow={this.props.follow}
-        unfollow={this.props.unfollow}
-        setUsers={this.props.setUsers}
-        isFetching={this.props.isFetching}
-      />
-    </>
+    return <Users
+      users={this.props.users}
+      pageSize={this.props.pageSize}
+      totalCount={this.props.totalCount}
+      currentPage={this.props.currentPage}
+      onPageChanged={this.onPageChanged}
+      follow={this.props.follow}
+      unfollow={this.props.unfollow}
+      setUsers={this.props.setUsers}
+      isFetching={this.props.isFetching}
+    />
   }
 }
 

@@ -9,4 +9,37 @@
   color: rgba(86, 81, 81, 0.82);
   font-family: 'Poppins', sans-serif;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  min-height: 95vh;
+}
+
+.mainComponents {
+  margin-top: 80px;
+  margin-left: 40px;
+  //margin-right: auto;
+  height: 100%;
+
+}
+
+.modalWrap {
+  margin: 0 auto;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  color: red;
+  width: 80px;
+  border: 1px solid red;
+}
+
+.modalHidden{
+ //display: none;
 }

@@ -33,28 +33,31 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className={s.app}>
-
-      {this.props.isAuth && <>
-          <HeaderContainer/>
-          <Navbar/>
-      </>}
-      <main>
-        <div className={this.props.error ? 'modal-wrap' : 'modal-wrap-hidden'}>
-          {this.props.error}
+      {this.props.isAuth && <HeaderContainer/>}
+      <main className={s.main}>
+        {/*/////ERRRRORR*/}
+        <div className={s.navbar}>
+          {this.props.isAuth && <Navbar/>}
+        </div>
+        <div className={this.props.error ? s.modalWrap : s.modalHidden}>
+          {/*<div className={s.modalWrap}>*/}
+          {this.props.error}11111111111
         </div>
         {/*Написать ошибки при неправильных путях*/}
-        <Switch>
-          <Route exact path='/' render={() => <Redirect to={'/login'}/>}/>
-          <Route path={'/login/'} render={() => <LoginContainer/>}/>
-          <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
-          <Route path={'/dialogs/'} render={() => <DialogsContainer/>}/>
-          <Route path={'/users/'} render={() => <UsersContainer/>}/>
-          <Route path={'/music/'} component={Music}/>
-          <Route path={'/setting/'} component={Setting}/>
-          <Route path={'/news/'} component={News}/>
-          <Route path={'/error404'} render={() => <Error/>}/>
-          <Route render={() => <Redirect to={'/error404'}/>}/>
-        </Switch>
+        <div className={s.mainComponents}>
+          <Switch>
+            <Route exact path='/' render={() => <Redirect to={'/login'}/>}/>
+            <Route path={'/login/'} render={() => <LoginContainer/>}/>
+            <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
+            <Route path={'/dialogs/'} render={() => <DialogsContainer/>}/>
+            <Route path={'/users/'} render={() => <UsersContainer/>}/>
+            <Route path={'/music/'} component={Music}/>
+            <Route path={'/setting/'} component={Setting}/>
+            <Route path={'/news/'} component={News}/>
+            <Route path={'/error404'} render={() => <Error/>}/>
+            <Route render={() => <Redirect to={'/error404'}/>}/>
+          </Switch>
+        </div>
       </main>
       <Footer/>
     </div>)

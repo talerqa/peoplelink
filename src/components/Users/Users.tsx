@@ -26,8 +26,6 @@ export const Users = (props: UsersComponentPropsType) => {
   } = props
 
 
-
-
   return (
     <div className={s.wrapper}>
       <Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged}/>
