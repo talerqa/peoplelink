@@ -6,7 +6,7 @@ import {setAppStatusAC} from "../../app/appReducer";
 
 const initState: MyUsersPageType = {
   users: [],
-  pageSize: 28,
+  pageSize: 20,
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,

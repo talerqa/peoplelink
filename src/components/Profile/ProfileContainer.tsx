@@ -18,18 +18,24 @@ class ProfileContainer extends React.Component<PropsType> {
     super(props);
   }
 
-  componentDidMount() {
+  refreshProfile() {
     let userId = this.props.match.params.userId
-
     if (!userId) {
       userId = `${this.props.userId}`
-      if(!userId) {
+      if (!userId) {
         this.props.history.push('/profile')
       }
     }
-
     this.props.getProfileUserThunkCreator(userId)
     this.props.getStatusProfile(userId)
+  }
+
+  componentDidMount() {
+    this.refreshProfile()
+  }
+
+  componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+    if (this.props.match.params.userId !== prevProps.match.params.userId) return this.refreshProfile()
   }
 
   render() {
@@ -63,7 +69,6 @@ export type MapDispatchToPropsProfileType = {
   getStatusProfile: (userId: number | null | string) => void
   updateStatusProfile: (status: string) => void
 }
-
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType => {
   return {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import logo from '../../img/logo.png';
 import s from './Header.module.scss'
 import {NavLink} from 'react-router-dom';
+import Navbar from "../Navbar/Navbar";
 
 type HeaderProps = {
   id: number | null
@@ -12,12 +13,14 @@ type HeaderProps = {
 }
 
  const Header = (props: HeaderProps) => {
+
   return <header className={s.header}>
     <div className={s.headerContainer}>
-      <div className={s.logo}>
+      <NavLink className={s.logo} to={`/profile/${props.id}`}>
         <img className={s.logo_img} src={logo} alt="logo"/>
-      </div>
-      <p className={s.headerTitle}> Social Network</p>
+        <p className={s.headerTitle}> Social Network</p>
+      </NavLink>
+      <Navbar userId={props.id}/>
       <nav className={s.navMenu}>
         <ul className={s.navItems}>
           {!props.isAuth ?

@@ -2,16 +2,9 @@ a {
   text-decoration: none;
 }
 
-.navbarWrapper{
-  margin-top: 80px;
-  position: fixed;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.9);
-  flex: 1 0 0;
-}
-
 .navbarMenu {
   margin: 0;
+  display: flex;
 }
 
 .navbarItems {
@@ -19,6 +12,7 @@ a {
   text-align: center;
   padding-right: 10px;
   padding-left: 10px;
+  display: flex;
 }
 
 .navbarItem {
@@ -31,6 +25,7 @@ a {
 }
 
 .link {
+  cursor: pointer;
   font-size: 20px;
   font-weight: 500;
   color: rgba(86, 81, 81, 0.82);

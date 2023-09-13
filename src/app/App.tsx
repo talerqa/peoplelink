@@ -33,17 +33,15 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className={s.app}>
-      {this.props.isAuth && <HeaderContainer/>}
+      {this.props.isAuth && <div>
+          <HeaderContainer/>
+      </div>}
+
       <main className={s.main}>
-        {/*/////ERRRRORR*/}
-        <div className={s.navbar}>
-          {this.props.isAuth && <Navbar/>}
-        </div>
         <div className={this.props.error ? s.modalWrap : s.modalHidden}>
           {/*<div className={s.modalWrap}>*/}
           {this.props.error}11111111111
         </div>
-        {/*Написать ошибки при неправильных путях*/}
         <div className={s.mainComponents}>
           <Switch>
             <Route exact path='/' render={() => <Redirect to={'/login'}/>}/>
@@ -57,9 +55,11 @@ class App extends React.Component<AppPropsType> {
             <Route path={'/error404'} render={() => <Error/>}/>
             <Route render={() => <Redirect to={'/error404'}/>}/>
           </Switch>
+
         </div>
+
       </main>
-      <Footer/>
+      {/*<Footer/>*/}
     </div>)
   }
 }
