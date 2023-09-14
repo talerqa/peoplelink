@@ -14,15 +14,13 @@ type HeaderProps = {
 
  const Header = (props: HeaderProps) => {
 
-
-
   return <header className={s.header}>
     <div className={s.headerContainer}>
-      <NavLink className={s.logo} to={`/profile/${props.id}`}>
+      <NavLink className={s.logo} to={'/profile/'}>
         <img className={s.logo_img} src={logo} alt="logo"/>
         <p className={s.headerTitle}> Social Network</p>
       </NavLink>
-      {props.isAuth && <Navbar id={props.id}/>}
+      {props.isAuth && <Navbar/>}
       <nav className={s.navMenu}>
         <ul className={s.navItems}>
           {!props.isAuth ?

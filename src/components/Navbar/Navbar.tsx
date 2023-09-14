@@ -2,8 +2,7 @@ import * as React from 'react';
 import s from './Navbar.module.scss';
 import {NavLink} from 'react-router-dom';
 
-
-const Navbar = (props: any) => {
+const Navbar = () => {
   const conditionChangeColorLink = (isActive: boolean) => isActive ? s.active + ' ' + s.link : s.link
   return (<nav className={s.navbarMenu}>
       <ul className={s.navbarItems}>
