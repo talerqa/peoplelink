@@ -41,28 +41,20 @@ export type MyUsersPageType = {
   isFetching: boolean
 }
 
-//Тип State
-export type StateType = {
-  profilePage: ProfilePageType
-  dialogsPage: DialogsPageType
-  MyFriendPage: MyUsersPageType
-  addPost?: any
-}
-
 //Типы Profile
 
 export type ProfilePageType = {
   posts: Array<postData>
-  profile: ProfileType | null
+  profile: any
   newPostText: string
   status: string
 }
 
 export type ProfileType = {
-  userId: number
+  userId: number | null
   lookingForAJob: boolean | null
   lookingForAJobDescription: string | null
-  fullName: string
+  fullName: string | null
   contacts: ContactsProfileType | null
   photos: PhotosProfileType | null
   aboutMe: string | null

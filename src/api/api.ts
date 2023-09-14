@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 import {LoginFormType} from '../components/Login/Login';
-import {ProfileType, UserType} from '../type';
+import {PhotosProfileType, ProfileType, UserType} from '../type';
 
 
 const instance = axios.create({
@@ -24,16 +24,23 @@ export const profileApi = {
     return instance.get<ProfileType>(`profile/` + userId)
   },
   followUser: (userId: number) => {
-    return instance.post<ResponseType<{ followed: boolean }>, AxiosResponse<ResponseType<{ followed: boolean }>>, { userId: number  }>('follow/' + userId, {userId})
+    return instance.post<ResponseType<{ followed: boolean }>, AxiosResponse<ResponseType<{ followed: boolean }>>, { userId: number }>('follow/' + userId, {userId})
   },
   unfollowUser: (userId: number) => {
     return instance.delete<ResponseType>('follow/' + userId)
   },
-  getStatus: (userId : number) => {
+  getStatus: (userId: number) => {
     return instance.get<string>('profile/status/' + userId)
   },
   updateStatus: (status: string) => {
     return instance.put<ResponseType<string>, AxiosResponse<ResponseType<string>>, { status: string }>('profile/status', {status})
+  },
+  setPhoto: (photo: File) => {
+    const formData = new FormData()
+    formData.append('image', photo as any)
+    return instance.put<ResponseType<{ photos: PhotosProfileType }>, AxiosResponse<ResponseType<{ photos: PhotosProfileType }>>, {}>('profile/photo', formData, {
+      headers: {'Content-Type': 'multipart/form-data'}
+    })
   }
 }
 

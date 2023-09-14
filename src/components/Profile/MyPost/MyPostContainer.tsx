@@ -11,16 +11,11 @@ type  PropsType = {
   profile: any
 } & MapDispatchToPropsType & MapStateToPropsProfileType
 
-
 class MyPostContainer extends React.Component<PropsType> {
-
-
   componentDidMount() {
-
   }
 
   render() {
-
     return <MyPosts
         profilePost={this.props.profilePost}
         addPost={this.props.addPost}
@@ -28,7 +23,6 @@ class MyPostContainer extends React.Component<PropsType> {
         profileInfo={this.props.profile}
     />;
   }
-
 }
 
 export type MapStateToPropsProfileType = {

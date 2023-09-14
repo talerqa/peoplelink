@@ -19,12 +19,18 @@ export const MyPosts = (props: MyPostProps) => {
     return (
         <div>
             <AddPost addPost={props.addPost}/>
-            {props.profilePost.posts.map(post => {
+            {props.profilePost.posts.map((post, index) => {
                 return (<>
-                    <ProfileNameAndPhoto name={props.profileInfo.fullName}
-                                         photo={props.profileInfo.photos}/>
-                    <Post key={post.id} message={post.message} likesCount={post.likesCount} id={post.id}
-                          status={props.profilePost.status} deletePost={props.deletePost}/>
+                    <ProfileNameAndPhoto
+                      key={index}
+                      name={props.profileInfo.fullName}
+                      photo={props.profileInfo.photos}/>
+                    <Post key={post.id}
+                          message={post.message}
+                          likesCount={post.likesCount}
+                          id={post.id}
+                          status={props.profilePost.status}
+                          deletePost={props.deletePost}/>
                 </>)
             })}
         </div>)

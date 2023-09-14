@@ -6,6 +6,7 @@ import {
   getProfileUserAC,
   getProfileUserThunkCreator,
   getStatusProfileUserThunkCreator,
+  setPhotoThunkCreator,
   updateStatusProfileUserThunkCreator
 } from './profileReducer';
 import {AppRootStateType} from '../../app/store';
@@ -41,23 +42,21 @@ class ProfileContainer extends React.Component<PropsType> {
   render() {
     return (<Profile {...this.props}
                      profile={this.props.profile}
+                     isOwner={!this.props.match.params.userId}
                      posts={this.props.post}
                      status={this.props.status}
                      updateStatus={this.props.updateStatusProfile}
+                     savePhoto={this.props.setPhotoProfile}
     />)
   }
 }
 
-type PathParamsType = {
-  userId: string
-}
-
+type PathParamsType = { userId: string }
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
-
 type OwnPropsType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
 
 type MapStateToPropsProfileType = {
-  profile: null | ProfileType
+  profile: ProfileType | null
   post: Array<postData>
   status: string
   userId: number | null
@@ -68,6 +67,7 @@ export type MapDispatchToPropsProfileType = {
   getProfileUserThunkCreator: (userId: number | null | string) => void
   getStatusProfile: (userId: number | null | string) => void
   updateStatusProfile: (status: string) => void
+  setPhotoProfile: (photo: File) => void
 }
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType => {
@@ -85,10 +85,9 @@ export default compose<React.ComponentType>(
     getProfileUserThunkCreator: getProfileUserThunkCreator,
     getStatusProfile: getStatusProfileUserThunkCreator,
     updateStatusProfile: updateStatusProfileUserThunkCreator,
+    setPhotoProfile: setPhotoThunkCreator,
   }),
   withRouter,
   WithAuthRedirect
 )(ProfileContainer)
 
-
-// <MapStateToPropsProfileType, MapDispatchToPropsProfileType, PropsType, AppRootStateType>

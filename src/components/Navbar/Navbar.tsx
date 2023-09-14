@@ -3,12 +3,12 @@ import s from './Navbar.module.scss';
 import {NavLink} from 'react-router-dom';
 
 
-const Navbar = () => {
+const Navbar = (props: any) => {
   const conditionChangeColorLink = (isActive: boolean) => isActive ? s.active + ' ' + s.link : s.link
   return (<nav className={s.navbarMenu}>
       <ul className={s.navbarItems}>
         <li className={s.navbarItem}>
-          <NavLink className={conditionChangeColorLink} to={'/profile'}>Profile</NavLink>
+          <NavLink className={conditionChangeColorLink} to={`/profile/`}>Profile</NavLink>
         </li>
         <li className={s.navbarItem}>
           <NavLink className={conditionChangeColorLink} to={'/dialogs'}>Dialogs</NavLink>
