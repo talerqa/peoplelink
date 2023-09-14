@@ -3,7 +3,7 @@ import {
   deleteDataProfileUserAC,
   deletePostAC,
   getProfileUserAC,
-  initState,
+  initStateProfilePage,
   profileReducer,
   setPostsAC,
   setStatusProfileUserAC,
@@ -49,7 +49,7 @@ describe('profileReducer', () => {
   });
 
   it('should set posts to initial state', () => {
-    const newState = profileReducer(state, setPostsAC());
+    const newState = profileReducer(state, setPostsAC(initStateProfilePage.posts));
     expect(newState.posts).toBe(state.posts);
   });
 
@@ -66,7 +66,7 @@ describe('profileReducer', () => {
 
   it('should set status profile user', () => {
     const status = 'Online';
-    const newState = profileReducer(initState, setStatusProfileUserAC(status));
+    const newState = profileReducer(initStateProfilePage, setStatusProfileUserAC(status));
     expect(newState.status).toBe(status);
   });
 

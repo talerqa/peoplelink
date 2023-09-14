@@ -2,3 +2,7 @@
   color: #000000;
   font-weight: 600;
 }
+
+.profile {
+  display: flex;
+}

@@ -4,7 +4,10 @@
     "module": "commonjs",
     "target": "es5",
     "sourceMap": true,
-    "jsx": "react"
+    "jsx": "react",
+    "paths": {
+      "react": [ "./node_modules/@types/react" ]
+    }
   },
   "exclude": [
     "node_modules"

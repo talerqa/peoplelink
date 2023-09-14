@@ -6,7 +6,6 @@ import {AppRootStateType} from '../../app/store';
 import {Redirect} from 'react-router-dom';
 import s from './Login.module.scss'
 import {RequestStatusType} from '../../app/appReducer';
-import HeaderContainer from "../Header/HeaderContainer";
 import background from './../../img/backgroundLogin.png'
 import {LoginForm} from "./LoginForm/LoginForm";
 import {LoginInfo} from "./LoginInfo/LoginInfo";
@@ -21,26 +20,21 @@ export const Login = (props: LoginPropsType) => {
     return <Redirect to={'/profile'}/>
   }
 
-  return (<>
-      <HeaderContainer/>
-      <div className={s.loginBlock}>
-        <div className={s.loginContainer}>
-          <div className={s.login}>
-            <LoginForm
-              onSubmit={onSubmitHandler}
-              error={props.error}
-              status={props.status}
-              captcha={props.getCaptcha}/>
-            <LoginInfo/>
-          </div>
-          <div className={s.background}>
-            <img src={background} alt='backround-image' className={s.backgroundImg}/>
-          </div>
-        </div>
+  return (<div className={s.loginBlock}>
+    <div className={s.loginContainer}>
+      <div className={s.login}>
+        <LoginForm
+          onSubmit={onSubmitHandler}
+          error={props.error}
+          status={props.status}
+          captcha={props.getCaptcha}/>
+        <LoginInfo/>
       </div>
-    </>
-
-  );
+      <div className={s.background}>
+        <img src={background} alt='backround-image' className={s.backgroundImg}/>
+      </div>
+    </div>
+  </div>);
 };
 
 export type LoginPropsType = mapDispatchToPropsType & mapStatePropsType

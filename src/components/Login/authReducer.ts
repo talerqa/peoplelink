@@ -12,7 +12,7 @@ import {deleteDataUsersAC, DeleteDataUsersACType, ResultCode} from '../Users/use
 import {deleteDataMessageAC, DeleteDataMessageACType} from '../Dialogs/dialogsReducer';
 import {
   DeleteDataProfileACType,
-  deleteDataProfileUserAC,
+  deleteDataProfileUserAC, initStateProfilePage,
   setPostsAC,
   SetPostsProfileACType
 } from '../Profile/profileReducer';
@@ -105,7 +105,7 @@ export const loginThunkCreator = (data: LoginFormType): any => async (dispatch: 
   try {
     const res = await authApi.login(data)
     if (res.data.resultCode === ResultCode.OK) {
-      dispatch(setPostsAC())
+      dispatch(setPostsAC(initStateProfilePage.posts))
       dispatch(authThunkCreator())
       dispatch(setErrorAC(''))
       dispatch(setAppStatusAC('succeeded'))

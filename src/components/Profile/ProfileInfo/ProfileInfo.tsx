@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import s from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
-import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
+import {ProfileStatus} from './ProfileStatus';
 import {ProfileNameAndPhoto} from "./ProfileNameAndPhoto";
 
 type ProfileInfoProps = {
@@ -30,7 +30,7 @@ const ProfileInfo = (props: ProfileInfoProps) => {
     <div className={s.item}>
       <ProfileNameAndPhoto name={props.profile.fullName} photo={props.profile.photos}/>
       {props.isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
-      <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
     </div>)
 }
 

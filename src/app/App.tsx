@@ -4,7 +4,6 @@ import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import News from '../components/News/News';
 import Setting from '../components/Setting/Setting';
 import Music from '../components/Music/Music';
-import Navbar from '../components/Navbar/Navbar';
 import DialogsContainer from '../components/Dialogs/DialogsContainer';
 import UsersContainer from '../components/Users/UsersContainer';
 import ProfileContainer from '../components/Profile/ProfileContainer';
@@ -16,7 +15,6 @@ import {initializeApp, RequestStatusType} from './appReducer';
 import Preloader from '../components/Preloader/Preloader';
 import Error from "../components/Error";
 import HeaderContainer from "../components/Header/HeaderContainer";
-import Footer from "../components/Footer/Footer";
 
 class App extends React.Component<AppPropsType> {
 
@@ -33,13 +31,12 @@ class App extends React.Component<AppPropsType> {
     }
 
     return (<div className={s.app}>
-      {this.props.isAuth && <div>
+
           <HeaderContainer/>
-      </div>}
+
 
       <main className={s.main}>
         <div className={this.props.error ? s.modalWrap : s.modalHidden}>
-          {/*<div className={s.modalWrap}>*/}
           {this.props.error}11111111111
         </div>
         <div className={s.mainComponents}>

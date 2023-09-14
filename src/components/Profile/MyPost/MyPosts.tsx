@@ -4,6 +4,7 @@ import {AddPost} from "./AddPost/AddPost";
 import Post from "./Post/Post";
 import {ProfileNameAndPhoto} from "../ProfileInfo/ProfileNameAndPhoto";
 import Preloader from "../../Preloader/Preloader";
+import s from './MyPosts.module.css'
 
 type MyPostProps = {
     profilePost: ProfilePageType,
@@ -17,7 +18,7 @@ export const MyPosts = (props: MyPostProps) => {
         return <Preloader/>
     }
     return (
-        <div>
+        <div className={s.myPostsBlock}>
             <AddPost addPost={props.addPost}/>
             {props.profilePost.posts.map((post, index) => {
                 return (<>

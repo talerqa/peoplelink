@@ -6,7 +6,7 @@ import {handleServerAppError, handleServerNetworkError} from '../../utils/error-
 import {setAppStatusAC} from "../../app/appReducer";
 import {ResultCode} from "../Users/usersReducer";
 
-export const initState: ProfilePageType = {
+export const initStateProfilePage: ProfilePageType = {
   posts: [
     {id: v1(), message: 'Hi how are you', likesCount: 7},
     {id: v1(), message: 'It\'s my first project', likesCount: 4},
@@ -27,7 +27,7 @@ export type CommonProfileType =
   | ReturnType<typeof deletePostAC>
   | ReturnType<typeof setPhotoAC>
 
-export const profileReducer = (state = initState, action: CommonProfileType) => {
+export const profileReducer = (state = initStateProfilePage, action: CommonProfileType) => {
   switch (action.type) {
     case 'profile/ADD-POST': {
       const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
@@ -43,7 +43,7 @@ export const profileReducer = (state = initState, action: CommonProfileType) => 
       }
     }
     case 'profile/SET-POSTS': {
-      return {...state, posts: state.posts}
+      return {...state, posts: action.posts}
     }
     case 'profile/UPDATE-NEWPOST-TEXT' : {
       return {...state, newPostText: action.title}
@@ -70,7 +70,7 @@ export type SetPostsProfileACType = ReturnType<typeof setPostsAC>
 
 export const addPostAC = (title: string) => ({type: 'profile/ADD-POST', title} as const)
 export const deletePostAC = (id: string) => ({type: 'profile/DELETE-POST', id} as const)
-export const setPostsAC = () => ({type: 'profile/SET-POSTS'} as const)
+export const setPostsAC = (posts: Array<postData>) => ({type: 'profile/SET-POSTS', posts} as const)
 export const updateNewPostTextAC = (title: string) => ({type: 'profile/UPDATE-NEWPOST-TEXT', title} as const)
 export const getProfileUserAC = (profile: ProfileType | null) => ({type: 'profile/GET-PROFILE-USERS', profile} as const)
 export const setStatusProfileUserAC = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
@@ -81,7 +81,7 @@ export const setPhotoAC = (photos: PhotosProfileType) => ({type: 'profile/SET-PH
 export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC('loading'))
   try {
-    dispatch(setPostsAC())
+    dispatch(setPostsAC(initStateProfilePage.posts))
     const res = await profileApi.getProfileUser(userId)
     dispatch(getProfileUserAC(res.data))
     dispatch(setAppStatusAC('succeeded'))
