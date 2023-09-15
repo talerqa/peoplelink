@@ -33,7 +33,7 @@ export const profileReducer = (state = initStateProfilePage, action: CommonProfi
       const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
       return {
         ...state,
-        posts: [...state.posts, newPost]
+        posts: [newPost, ...state.posts]
       }
     }
     case 'profile/DELETE-POST': {
