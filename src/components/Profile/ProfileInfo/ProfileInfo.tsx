@@ -4,6 +4,7 @@ import s from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
 import {ProfileStatus} from './ProfileStatus';
 import {ProfileNameAndPhoto} from "./ProfileNameAndPhoto";
+import {SvgSelectors} from "../../common/SvGSelectors/SvgSelectors";
 
 type ProfileInfoProps = {
   profile: any
@@ -29,7 +30,20 @@ const ProfileInfo = (props: ProfileInfoProps) => {
   return (
     <div className={s.item}>
       <ProfileNameAndPhoto name={props.profile.fullName} photo={props.profile.photos}/>
-      {props.isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
+      {props.isOwner && <div>
+          <label className={s.addPhoto}>
+              <div  className={s.svgSelector}>
+                  <SvgSelectors svgImage='ADD_PHOTO'/>
+              </div>
+              <input
+                  type="file"
+                  name='file'
+                  id="file"
+                  style={{display: 'none'}}
+                  accept=".jpg, .jpeg, .png, .gif, .bmp"
+                  onChange={onMainPhotoSelected}/>
+          </label>
+      </div>}
       <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
     </div>)
 }
