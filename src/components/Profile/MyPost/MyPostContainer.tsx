@@ -6,7 +6,6 @@ import {AppRootStateType} from '../../../app/store';
 import {Dispatch} from 'redux';
 import {MyPosts} from "./MyPosts";
 
-
 type  PropsType = {
   profile: any
 } & MapDispatchToPropsType & MapStateToPropsProfileType

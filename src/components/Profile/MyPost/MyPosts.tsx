@@ -17,6 +17,7 @@ export const MyPosts = (props: MyPostProps) => {
     if (!props.profileInfo) {
         return <Preloader/>
     }
+
     return (
         <div className={s.myPostsBlock}>
             <AddPost addPost={props.addPost}/>
