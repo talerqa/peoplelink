@@ -28,7 +28,7 @@ const ProfileInfo = (props: ProfileInfoProps) => {
   }
 
   return (
-    <div className={s.item}>
+    <div className={s.profileInfo}>
       <ProfileNameAndPhoto name={props.profile.fullName} photo={props.profile.photos}/>
       {props.isOwner && <div>
           <label className={s.addPhoto}>

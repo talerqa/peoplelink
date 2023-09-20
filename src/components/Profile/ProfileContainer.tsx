@@ -18,7 +18,6 @@ class ProfileContainer extends React.Component<PropsType> {
   constructor(props: PropsType) {
     super(props);
   }
-
   refreshProfile() {
     let userId = this.props.match.params.userId
     if (!userId) {

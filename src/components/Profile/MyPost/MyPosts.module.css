@@ -1,6 +1,7 @@
 .myPostsBlock {
   display: flex;
-  width: 50%;
+  flex-shrink: 0;
+  width: 80%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
