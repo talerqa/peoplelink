@@ -1,7 +1,7 @@
 .addPostBlock {
   color: black;
   margin: 0 auto;
-  width: 70%;
+  width: 77%;
 }
 
 .formPost {
@@ -14,7 +14,7 @@
 }
 
 .textarea {
-  margin: 20px auto 20px;
+  margin: 30px auto 30px;
   display: block;
   width: 400px;
   height: auto;
@@ -24,7 +24,7 @@
   resize: none;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
-  padding: 20px 20px 0 20px;
+  padding: 10px 20px 0 20px;
   font-size: 20px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .textarea:focus {
-  padding: 20px 20px 0 20px;
+  padding: 10px 20px 0 20px;
   outline: none;
   font-size: 20px;
   font-family: 'Poppins', sans-serif;
@@ -50,4 +50,32 @@
 
 .buttonAddPost {
   display: block;
+  font-family: 'Poppins', sans-serif;
+  list-style-type: none;
+  background: transparent;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 1px solid #0a66c2;
+  border-radius: 40px;
+  cursor: pointer;
+  margin: 30px 5px 0 5px;
+  align-self: flex-start;
+  &:hover {
+    box-shadow: 0 0 0 1px;
+    background-color: rgba(112, 181, 249, 0.1);
+    scroll-behavior: smooth;
+  }
+
+}
+
+.avatar {
+  margin: 20px auto 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  background: none;
+  width: 60px;
+  height: 80px;
+  border-radius: 50%;
+  align-self: flex-start;
 }

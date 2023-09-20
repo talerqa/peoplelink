@@ -20,7 +20,7 @@ export const MyPosts = (props: MyPostProps) => {
 
   return (
     <div className={s.myPostsBlock}>
-      <AddPost addPost={props.addPost}/>
+      <AddPost addPost={props.addPost}  photo={props.profileInfo.photos}/>
       <div> {props.profilePost.posts.map((post, index) => {
         return (<>
           <ProfileNameAndPhoto
