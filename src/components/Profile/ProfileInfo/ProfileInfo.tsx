@@ -1,10 +1,8 @@
 import * as React from 'react';
-
 import s from './ProfileInfo.module.css';
 import Preloader from '../../Preloader/Preloader';
-import {ProfileStatus} from './ProfileStatus';
-import {ProfileNameAndPhoto} from "./ProfileNameAndPhoto";
-import {SvgSelectors} from "../../common/SvGSelectors/SvgSelectors";
+import {ProfileStatus} from './ProfileStatus/ProfileStatus';
+import {ProfileNameAndPhoto} from "./ProfileNameAndPhoto/ProfileNameAndPhoto";
 
 type ProfileInfoProps = {
   profile: any
@@ -20,30 +18,13 @@ const ProfileInfo = (props: ProfileInfoProps) => {
     return <Preloader/>
   }
 
-  const onMainPhotoSelected = (e: any) => {
-    if (e.target.files && e.target.files.length) {
-      const file = e.target.files[0]
-      props.savePhoto(file)
-    }
-  }
 
   return (
     <div className={s.profileInfo}>
-      <ProfileNameAndPhoto name={props.profile.fullName} photo={props.profile.photos}/>
-      {props.isOwner && <div>
-          <label className={s.addPhoto}>
-              <div  className={s.svgSelector}>
-                  <SvgSelectors svgImage='ADD_PHOTO'/>
-              </div>
-              <input
-                  type="file"
-                  name='file'
-                  id="file"
-                  style={{display: 'none'}}
-                  accept=".jpg, .jpeg, .png, .gif, .bmp"
-                  onChange={onMainPhotoSelected}/>
-          </label>
-      </div>}
+      <ProfileNameAndPhoto name={props.profile.fullName}
+                           photo={props.profile.photos}
+                           isOwner={props.isOwner}
+                           savePhoto={props.savePhoto}/>
       <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
     </div>)
 }

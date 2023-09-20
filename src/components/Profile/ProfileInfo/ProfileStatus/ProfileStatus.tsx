@@ -32,7 +32,9 @@ export const ProfileStatus = (props: ProfileStatusType) => {
         {!editMode
           ? <span onDoubleClick={activateEditMode}>{props.status ? props.status : '......'} </span>
           :
-          <input type="text"
+          <input
+            className={s.inputChangeStatus}
+            type="text"
                  onChange={onStatusChange}
                  onBlur={deactivateEditMode}
                  autoFocus={true}
