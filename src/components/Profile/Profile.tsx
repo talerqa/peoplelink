@@ -24,6 +24,9 @@ const Profile = (props: ProfilePropsType) => {
                    updateStatus={props.updateStatus}
                    savePhoto={props.savePhoto}/>
       <MyPostContainer profile={props.profile}/>
+    <div>
+      dfsdfsdfsdfsdfsdfs
+    </div>
     </div>
   );
 }

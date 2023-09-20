@@ -1,0 +1,53 @@
+.addPostBlock {
+  color: black;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.formPost {
+  min-height: 200px;
+  border-radius: 20px;
+  background-color: white;
+  border: 1px solid rgba(182, 182, 182, 0.82);
+  display: flex;
+  justify-content: center;
+}
+
+.textarea {
+  margin: 20px auto 20px;
+  display: block;
+  width: 400px;
+  height: auto;
+  border: 1px solid rgba(182, 182, 182, 0.92);
+  border-radius: 40px;
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px 20px 0 20px;
+  font-size: 20px;
+}
+
+.textarea::placeholder {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.textarea:hover {
+  background: rgba(182, 182, 182, 0.32);
+}
+
+.textarea:focus {
+  padding: 20px 20px 0 20px;
+  outline: none;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.textarea:focus::placeholder {
+  color: transparent;
+}
+
+.buttonAddPost {
+  display: block;
+}
