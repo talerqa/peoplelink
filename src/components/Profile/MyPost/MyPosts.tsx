@@ -2,7 +2,6 @@ import * as React from 'react'
 import {ProfilePageType} from "../../../type";
 import {AddPost} from "./AddPost/AddPost";
 import Post from "./Post/Post";
-import {ProfileNameAndPhoto} from "../ProfileInfo/ProfileNameAndPhoto/ProfileNameAndPhoto";
 import Preloader from "../../Preloader/Preloader";
 import s from './MyPosts.module.scss'
 import profileLogo from "../../../img/profileLogo.png";
