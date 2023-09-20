@@ -1,6 +1,7 @@
 .blockNamePhoto {
   display: flex;
   flex-direction: column;
+
 }
 
 .avatar {
@@ -16,7 +17,7 @@
 
 .firstName {
   padding-top: 10px;
-  font-size: 26px;
+  font-size: inherit;
   color: #1f1f20;
 }
 

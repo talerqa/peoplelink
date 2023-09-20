@@ -1,5 +1,6 @@
 .profileInfo {
     font-weight: 600;
+    font-size: 26px;;
     color: black;
     display: flex;
     flex-direction: column;

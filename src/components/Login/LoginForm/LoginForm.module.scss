@@ -7,6 +7,7 @@
   box-sizing: border-box;
   width: 350px;
 }
+
 input {
   font-size: 20px;
   width: 100%;
@@ -92,6 +93,7 @@ input {
   background-color: transparent;
   border: none;
   outline: none;
+
   .buttonSendLink {
     list-style-type: none;
     background: transparent;
@@ -101,6 +103,7 @@ input {
     font-size: 14px;
     font-weight: 400;
     font-family: 'Poppins', sans-serif, monospace;
+
     &:hover {
       box-shadow: 0 0 0 1px;
       background-color: rgba(112, 181, 249, 0.1);
@@ -119,7 +122,7 @@ input {
   height: 30px;
 }
 
-.errorTextPassword{
+.errorTextPassword {
   color: red;
   height: 30px;
 }
@@ -139,7 +142,7 @@ input {
 
 .checkbox {
   align-self: center;
-  width:20px;
+  width: 20px;
 }
 
 .loginBlock {

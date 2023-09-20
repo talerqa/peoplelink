@@ -11,7 +11,6 @@ type  ProfileNameAndPhotoType = {
 }
 
 export const ProfileNameAndPhoto = (props: ProfileNameAndPhotoType) => {
-
   const onMainPhotoSelected = (e: any) => {
     if (e.target.files && e.target.files.length && props.savePhoto) {
       const file = e.target.files[0]

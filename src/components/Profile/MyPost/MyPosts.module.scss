@@ -1,0 +1,40 @@
+.myPostsBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.myPosts {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto 0;
+  width: 700px;
+  min-height: 200px;
+  justify-content: center;
+}
+
+.myPost {
+  border-radius: 20px;
+  margin-top: 10px;
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  background-color: white;
+
+}
+
+.photoAndName {
+  padding-top: 20px;
+  width: 200px;
+  font-size: 15px;
+
+  .avatar {
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    background: none;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+  }
+}
