@@ -1,8 +1,17 @@
 .myPostsBlock {
   display: flex;
-
-  width: 75%;
   flex-direction: column;
   justify-content: center;
+}
 
+.myPosts {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 700px;
+  min-height: 300px;
+  border-radius: 20px;
+  background-color: white;
+  border: 1px solid rgba(182, 182, 182, 0.82);
+  justify-content: center;
 }

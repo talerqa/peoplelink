@@ -1,7 +1,6 @@
 import * as React from 'react';
-import s from './Post.module.css'
+import s from './Post.module.scss'
 
-//
 type PostPropsType = {
     message: string
     likesCount: number
@@ -11,12 +10,9 @@ type PostPropsType = {
 }
 
 const Post = (props: PostPropsType) => {
-
     return (<div className={s.item}>
-
             <div className={s.post}>
                 <button onClick={() => {
-
                     props.deletePost(props.id)
                     console.log(props.id)
                 }}>X</button>
