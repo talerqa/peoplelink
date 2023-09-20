@@ -1,1 +1,19 @@
-.inputChangeStatus {}
+.profileStatus {
+  padding-top: 10px;
+}
+
+.inputChangeStatus {
+  width: 70%;
+}
+
+.status {
+  font-size: 16px;
+  color: rgba(86, 81, 81, 0.82);
+  font-weight: 600;
+}
+
+.error {
+  color: red;
+  margin: 0 auto;
+  font-weight: 300;
+}
