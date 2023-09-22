@@ -11,13 +11,21 @@ type Props = {
 export const AddPost = (props: Props) => {
 
   const [title, setTitle] = useState<string>('')
+  const [error,setError] = useState<string>('')
   const addPostHandler = (title: string) => {
-    props.addPost(title)
-    setTitle('')
+    setError('')
+    if (title.trim() === '') {
+      setError('write a post')
+    } else {
+      props.addPost(title)
+      setTitle('')
+      setError('')
+    }
   }
   const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (e.currentTarget.value !== null) {
       setTitle(e.currentTarget.value)
+      setError('')
     }
   }
 
@@ -29,11 +37,14 @@ export const AddPost = (props: Props) => {
               src={props.photo.large ? props.photo.large : profileLogo}
               alt={'profileLogo'}
         />
-        <textarea
-          className={s.textarea}
-          placeholder={'Start a post'}
-          value={title}
-          onChange={onPostChange}></textarea>
+        <div>
+          <textarea
+            className={s.textarea}
+            placeholder={'Start a post'}
+            value={title}
+            onChange={onPostChange}></textarea>
+          <p className={s.error}>{error}</p>
+        </div>
         <button
           onClick={() => addPostHandler(title)}
           className={s.buttonAddPost}

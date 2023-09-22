@@ -13,8 +13,8 @@ import {compose, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {initializeApp, RequestStatusType} from './appReducer';
 import Preloader from '../components/Preloader/Preloader';
-import Error from "../components/Error";
 import HeaderContainer from "../components/Header/HeaderContainer";
+import {Error} from "../components/common/Error/Error";
 
 class App extends React.Component<AppPropsType> {
 
