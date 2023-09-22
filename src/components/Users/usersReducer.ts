@@ -11,7 +11,6 @@ const initState: MyUsersPageType = {
   currentPage: 1,
   isFetching: true,
 }
-
 export const usersReducer = (state = initState, action: CommonUserType): MyUsersPageType => {
   switch (action.type) {
     case 'users/FOLLOW-USER': {

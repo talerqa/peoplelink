@@ -55,12 +55,16 @@
       height: 20px;
       cursor: pointer;
 
+      &:hover {
+        stroke: #000000;
+      }
+
       path {
         fill: transparent;
 
-        &:hover {
-          fill: #ff001e;
-        }
+        //&:hover {
+        //  fill: #ff001e;
+        //}
 
         transition: all ease 0.5s;
       }

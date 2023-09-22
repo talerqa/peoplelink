@@ -35,8 +35,8 @@ const Post = (props: PostPropsType) => {
         </button>
         <div className={s.likeBlock}>
           <div className={s.likeCount}>{like}</div>
-          <svg className={like === props.likesCount ? s.svgLike : s.svgLikeActive} onClick={likePostHandler} width="320px" height="320pxpx" viewBox="0 0 1024.00 1024.00"
-               version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000" strokeWidth="22">
+          <svg className={like === props.likesCount ? s.svgLike : s.svgLikeActive} onClick={likePostHandler} width="320px" height="320px" viewBox="0 0 1024.00 1024.00"
+               version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#80808070" strokeWidth="22">
             <g id="SVGRepo_bgCarrier" strokeWidth="1">
             </g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>

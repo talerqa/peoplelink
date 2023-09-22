@@ -25,6 +25,7 @@ export const Users = (props: UsersComponentPropsType) => {
     unfollow, setUsers
   } = props
 
+  console.log(users)
 
   return (
     <div className={s.wrapper}>

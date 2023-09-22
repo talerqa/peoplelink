@@ -16,6 +16,9 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
+
+  console.log(props)
+
   return (
     <div className={s.profile}>
       <ProfileInfo isOwner={props.isOwner}
@@ -24,7 +27,7 @@ const Profile = (props: ProfilePropsType) => {
                    updateStatus={props.updateStatus}
                    savePhoto={props.savePhoto}/>
       <MyPostContainer profile={props.profile}/>
-    <div>
+    <div >
       dfsdfsdfsdfsdfsdfs
     </div>
     </div>
