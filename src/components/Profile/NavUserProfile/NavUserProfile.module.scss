@@ -1,0 +1,42 @@
+.navUserProfileBlock {
+  font-weight: 600;
+  font-size: 26px;;
+  color: black;
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  min-height: 250px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  border: 1px solid rgba(182, 182, 182, 0.82);
+  padding-bottom: 20px;
+
+  .titleNav {
+    margin: 0 auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .user {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+
+
+    .nameUser {
+      padding-left: 5px;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .profileImg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+}
+
+
+

@@ -37,7 +37,7 @@ class App extends React.Component<AppPropsType> {
 
       <main className={s.main}>
         <div className={this.props.error ? s.modalWrap : s.modalHidden}>
-          {this.props.error}11111111111
+          {this.props.error}
         </div>
         <div className={s.mainComponents}>
           <Switch>

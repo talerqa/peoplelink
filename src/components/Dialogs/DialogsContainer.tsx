@@ -26,7 +26,6 @@ class DialogsContainer extends React.Component<DialogsType> {
 
   render() {
     return (<Dialogs
-
       dialogPage={this.props.dialogsPage}
       isAuth={this.props.isAuth}
       newMessageText={this.props.newMessageText}

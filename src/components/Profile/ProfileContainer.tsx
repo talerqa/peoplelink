@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {postData, ProfileType} from '../../type';
+import {postData, ProfileType, UserType} from '../../type';
 import {
   getProfileUserAC,
   getProfileUserThunkCreator,
@@ -13,11 +13,13 @@ import {AppRootStateType} from '../../app/store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {compose} from 'redux';
+import {getUsersThunkCreator} from "../Users/usersReducer";
 
 class ProfileContainer extends React.Component<PropsType> {
   constructor(props: PropsType) {
     super(props);
   }
+
   refreshProfile() {
     let userId = this.props.match.params.userId
     if (!userId) {
@@ -32,6 +34,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
   componentDidMount() {
     this.refreshProfile()
+    this.props.getUsers()
   }
 
   componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
@@ -40,6 +43,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
   render() {
     return (<Profile {...this.props}
+                     users={this.props.users}
                      profile={this.props.profile}
                      isOwner={!this.props.match.params.userId}
                      posts={this.props.post}
@@ -59,6 +63,7 @@ type MapStateToPropsProfileType = {
   post: Array<postData>
   status: string
   userId: number | null
+  users: UserType[]
 }
 
 export type MapDispatchToPropsProfileType = {
@@ -67,6 +72,7 @@ export type MapDispatchToPropsProfileType = {
   getStatusProfile: (userId: number | null | string) => void
   updateStatusProfile: (status: string) => void
   setPhotoProfile: (photo: File) => void
+  getUsers: () => void
 }
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType => {
@@ -75,6 +81,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
     post: state.profileReducer.posts,
     status: state.profileReducer.status,
     userId: state.authReducer.id,
+    users: state.usersReducer.users
   }
 }
 
@@ -85,6 +92,7 @@ export default compose<React.ComponentType>(
     getStatusProfile: getStatusProfileUserThunkCreator,
     updateStatusProfile: updateStatusProfileUserThunkCreator,
     setPhotoProfile: setPhotoThunkCreator,
+    getUsers: getUsersThunkCreator,
   }),
   withRouter,
   WithAuthRedirect
