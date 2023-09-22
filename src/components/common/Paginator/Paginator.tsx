@@ -9,11 +9,15 @@ type PaginatorType = {
   onPageChanged: (page: number) => void
 }
 
-
 export const Paginator = (props: PaginatorType) => {
-  const {totalCount, pageSize, currentPage, onPageChanged} = props
-
+  const {totalCount, pageSize, currentPage = 1, onPageChanged} = props
+  const [portionNumber, serPortionNumber] = useState(1)
   let portionSize = 10
+
+  useEffect(() => {
+    return serPortionNumber(Math.ceil(currentPage / portionSize))
+  }, [portionSize, currentPage]);
+
 
   let pagesCount = Math.ceil(totalCount / pageSize)
   let pages = []
@@ -22,11 +26,10 @@ export const Paginator = (props: PaginatorType) => {
   }
 
   const portionCount = Math.ceil(pagesCount / portionSize)
-  const [portionNumber, serPortionNumber] = useState(1)
+
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
   const rightPortionPageNumber = portionNumber * portionSize
-
-  useEffect(() => serPortionNumber(Math.ceil(currentPage / portionSize)), [currentPage]);
+  debugger
 
   return (
     <div>

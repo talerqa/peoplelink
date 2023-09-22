@@ -27,8 +27,9 @@ export const Users = (props: UsersComponentPropsType) => {
 
   return (
     <div className={s.wrapper}>
-      <Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged}/>
       <p className={s.title}>Friends:</p>
+
+      <Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged}/>
 
       <div className={s.wrapper_item}>
         {isFetching
