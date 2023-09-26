@@ -1,11 +1,11 @@
 import * as React from 'react';
+import {Development} from "../common/Development/Development";
 
-const News = (props: any) => {
+export const News = () => {
   return (
     <div>
-      Newавва
+      <Development/>
     </div>
   );
 }
 
-export default News;

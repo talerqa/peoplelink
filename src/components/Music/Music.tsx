@@ -1,11 +1,10 @@
 import * as React from 'react';
+import {Development} from "../common/Development/Development";
 
-const Music = (props: any) => {
+export const Music = () => {
   return (
     <div>
-dfsdfsdfsdf
+      <Development/>
     </div>
   );
 }
-
-export default Music;

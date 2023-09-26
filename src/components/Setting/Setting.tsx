@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
+import {Development} from "../common/Development/Development";
 
-const Setting = (props: any) => {
+export const Setting = () => {
   return (
     <div>
+      <Development/>
 
     </div>
   );
-}
-
-export default Setting;
+};
