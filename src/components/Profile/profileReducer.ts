@@ -8,11 +8,11 @@ import {ResultCode} from "../Users/usersReducer";
 
 export const initStateProfilePage: ProfilePageType = {
   posts: [
-    {id: v1(), message: 'Hi how are you', likesCount: 7},
-    {id: v1(), message: 'It\'s my first project', likesCount: 4},
-    {id: v1(), message: 'Its my second project', likesCount: 1},
+    {id: v1(), message: 'Hi how are you', likesCount: 7, liked: false},
+    {id: v1(), message: 'It\'s my first project', likesCount: 4, liked: true},
+    {id: v1(), message: 'Its my second project', likesCount: 1, liked: false},
   ],
-  profile: null as ProfileType | null ,
+  profile: null as ProfileType | null,
   newPostText: '',
   status: '',
 }
@@ -26,11 +26,13 @@ export type CommonProfileType =
   | ReturnType<typeof setPostsAC>
   | ReturnType<typeof deletePostAC>
   | ReturnType<typeof setPhotoAC>
+  | ReturnType<typeof decLikeCountPostAC>
+  | ReturnType<typeof incLikeCountPostAC>
 
 export const profileReducer = (state = initStateProfilePage, action: CommonProfileType) => {
   switch (action.type) {
     case 'profile/ADD-POST': {
-      const newPost: postData = {id: v1(), message: action.title, likesCount: 0};
+      const newPost: postData = {id: v1(), message: action.title, likesCount: 0, liked: false};
       return {
         ...state,
         posts: [newPost, ...state.posts]
@@ -40,6 +42,19 @@ export const profileReducer = (state = initStateProfilePage, action: CommonProfi
       return {
         ...state,
         posts: state.posts.filter(post => post.id !== action.id)
+      }
+    }
+    case 'profile/INC-LIKE' : {
+
+      return {
+        ...state,
+        posts: [...state.posts].map(post => post.id === action.id ? {...post, likesCount: action.likeCount} : post)
+      }
+    }
+    case 'profile/DEC-LIKE' : {
+      return {
+        ...state,
+        posts: [...state.posts].map(post => post.id === action.id ? {...post, likesCount: action.likeCount} : post)
       }
     }
     case 'profile/SET-POSTS': {
@@ -76,6 +91,17 @@ export const getProfileUserAC = (profile: ProfileType | null) => ({type: 'profil
 export const setStatusProfileUserAC = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
 export const deleteDataProfileUserAC = () => ({type: 'profile/DELETE-DATA-PROFILE'} as const)
 export const setPhotoAC = (photos: PhotosProfileType) => ({type: 'profile/SET-PHOTO', photos} as const)
+export const decLikeCountPostAC = (id: string, likeCount: number) => ({
+  type: 'profile/DEC-LIKE',
+  id,
+  likeCount
+} as const)
+export const incLikeCountPostAC = (id: string, likeCount: number) => ({
+  type: 'profile/INC-LIKE',
+  id,
+  likeCount
+} as const)
+
 
 //THUNK
 export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {

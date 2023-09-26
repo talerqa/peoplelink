@@ -3,6 +3,7 @@ export type postData = {
   id: string
   message: string
   likesCount: number
+  liked: boolean
 }
 
 //Типы Dialogs

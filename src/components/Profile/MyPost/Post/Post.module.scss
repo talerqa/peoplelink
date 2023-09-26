@@ -32,6 +32,7 @@
     padding-right: 60px;
     word-break: break-word;
     text-align: left;
+    width: 250px;
   }
 
   .likeDeleteBlock {
@@ -61,14 +62,8 @@
 
       path {
         fill: transparent;
-
-        //&:hover {
-        //  fill: #ff001e;
-        //}
-
         transition: all ease 0.5s;
       }
-
     }
 
     .svgLikeActive {

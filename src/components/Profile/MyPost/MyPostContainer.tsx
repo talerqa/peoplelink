@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ProfilePageType} from '../../../type';
-import {addPostAC, deletePostAC} from '../profileReducer';
+import {addPostAC, decLikeCountPostAC, deletePostAC, incLikeCountPostAC} from '../profileReducer';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../../app/store';
 import {Dispatch} from 'redux';
@@ -20,6 +20,8 @@ class MyPostContainer extends React.Component<PropsType> {
         addPost={this.props.addPost}
         deletePost={this.props.deletePost}
         profileInfo={this.props.profile}
+        incLike={this.props.incLikeCount}
+        decLike={this.props.decLikeCount}
     />;
   }
 }
@@ -31,6 +33,8 @@ export type MapStateToPropsProfileType = {
 export type MapDispatchToPropsType = {
   addPost: (title: string) => void
   deletePost: (id: string) => void
+  incLikeCount: (id: string, likeCount: number) => void
+  decLikeCount: (id: string, likeCount: number) => void
 }
 
 
@@ -43,6 +47,8 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
   return {
     addPost: (title) => dispatch(addPostAC(title)),
+    incLikeCount: (id, likeCount) => dispatch(incLikeCountPostAC(id, likeCount)),
+    decLikeCount: (id, likeCount) => dispatch(decLikeCountPostAC(id, likeCount)),
     deletePost: (id) => dispatch(deletePostAC(id)),
   }
 }

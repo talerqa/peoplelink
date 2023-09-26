@@ -17,9 +17,9 @@ let state: ProfilePageType
 beforeEach(() => {
   state = {
     posts: [
-      {id: v1(), message: 'Hi how are you', likesCount: 7},
-      {id: v1(), message: 'It\'s my first project', likesCount: 4},
-      {id: v1(), message: 'Its my second project', likesCount: 1},
+      {id: v1(), message: 'Hi how are you', likesCount: 7, liked: false},
+      {id: v1(), message: 'It\'s my first project', likesCount: 4, liked: true},
+      {id: v1(), message: 'Its my second project', likesCount: 1, liked: true},
     ],
     profile: {
       userId: 1,

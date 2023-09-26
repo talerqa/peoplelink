@@ -20,7 +20,7 @@ const Dialogs = (props: DialogsPropsType) => {
 
   const dialogsElement = state.dialogsData
     .map((dialog: DialogsDataType) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
-  const messageElement = state.message.map((message: MessageType) => <Message message={message.message}/>)
+  const messageElement = state.message.map((message: MessageType, index) => <Message message={message.message} key={index}/>)
 
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {

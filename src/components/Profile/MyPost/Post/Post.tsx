@@ -6,22 +6,15 @@ type PostPropsType = {
   message: string
   likesCount: number
   id: string
+  liked: boolean
   status: string
   deletePost: (id: string) => void
+  incLike: (id: string, likeCount: number) => void
+  decLike: (id: string, likeCount: number) => void
 }
 
 const Post = (props: PostPropsType) => {
 
-
-  const [like, setLike] = useState(props.likesCount)
-
-  const likePostHandler = () => {
-    if (like === props.likesCount) {
-      setLike(like => like + 1)
-    } else  {
-      setLike(like => like - 1)
-    }
-  }
 
   return (<div className={s.post}>
       <p className={s.messagePost}>{props.message}</p>
@@ -30,12 +23,13 @@ const Post = (props: PostPropsType) => {
           className={s.buttonDelete}
           onClick={() => {
             props.deletePost(props.id)
-            console.log(props.id)
           }}>X
         </button>
         <div className={s.likeBlock}>
-          <div className={s.likeCount}>{like}</div>
-          <svg className={like === props.likesCount ? s.svgLike : s.svgLikeActive} onClick={likePostHandler} width="320px" height="320px" viewBox="0 0 1024.00 1024.00"
+
+          <div className={s.likeCount}>{props.likesCount}</div>
+
+          <svg className={s.svgLike} width="320px" height="320px" viewBox="0 0 1024.00 1024.00"
                version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#80808070" strokeWidth="22">
             <g id="SVGRepo_bgCarrier" strokeWidth="1">
             </g>

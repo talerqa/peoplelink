@@ -16,7 +16,6 @@ type UsersComponentPropsType = {
   setUsers: (users: UserType[]) => void
   isFetching: boolean
 }
-
 export const Users = (props: UsersComponentPropsType) => {
 
   const {
@@ -35,15 +34,14 @@ export const Users = (props: UsersComponentPropsType) => {
         {isFetching
           ? <Preloader/>
           : users.map((user) => {
-            return (<>
-                <User
-                  key={user.id}
-                  user={user}
-                  follow={follow}
-                  unfollow={unfollow}
-                  setUsers={setUsers}
-                />
-              </>
+            return (<User
+                key={user.id}
+                user={user}
+                follow={follow}
+                unfollow={unfollow}
+                setUsers={setUsers}
+              />
+
             )
           })}
       </div>

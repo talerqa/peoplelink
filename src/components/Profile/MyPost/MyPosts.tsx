@@ -11,6 +11,8 @@ type MyPostProps = {
   addPost: (title: string) => void
   deletePost: (id: string) => void
   profileInfo: any
+  incLike: (id: string, likeCount: number) => void
+  decLike: (id: string, likeCount: number) => void
 }
 
 export const MyPosts = (props: MyPostProps) => {
@@ -22,7 +24,7 @@ export const MyPosts = (props: MyPostProps) => {
     <div className={s.myPostsBlock}>
       <AddPost addPost={props.addPost} photo={props.profileInfo.photos}/>
       <div className={s.myPosts}> {props.profilePost.posts.map((post, index) => {
-        return (<div className={s.myPost}>
+        return (<div className={s.myPost} key={index}>
           <div className={s.photoAndName}>
             < img className={s.avatar}
                   src={props.profileInfo.photos.large ? props.profileInfo.photos.large : profileLogo}
@@ -30,12 +32,16 @@ export const MyPosts = (props: MyPostProps) => {
             />
             <span className={s.firstName}> {props.profileInfo.fullName} </span>
           </div>
-          <Post key={post.id}
+          <Post key={index}
                 message={post.message}
                 likesCount={post.likesCount}
+                liked={post.liked}
                 id={post.id}
                 status={props.profilePost.status}
-                deletePost={props.deletePost}/>
+                deletePost={props.deletePost}
+                incLike={props.incLike}
+                decLike={props.decLike}
+          />
         </div>)
       })}
       </div>

@@ -21,7 +21,7 @@ export const NavUserProfile = (props: Props) => {
   return (
     <div className={s.navUserProfileBlock}>
       <p className={s.titleNav} onClick={redirectToUsers}>User</p>
-      {firstUsers.map(user => <div className={s.user}>
+      {firstUsers.map((user, index) => <div className={s.user} key={index}>
         <img className={s.profileImg} src={user.photos.small != null ? user.photos.small : profileLogo}
              alt=""/>
         <span className={s.nameUser}>{user.name}</span>

@@ -2,10 +2,11 @@ import {ChangeEvent, useState} from "react";
 import s from "./AddPost.module.scss";
 import * as React from "react";
 import profileLogo from "../../../../img/profileLogo.png";
+import {PhotosProfileType} from "../../../../type";
 
 type Props = {
   addPost: (title: string) => void
-  photo: { small: string | null, large: string | null }
+  photo: PhotosProfileType
 }
 
 export const AddPost = (props: Props) => {
@@ -32,7 +33,6 @@ export const AddPost = (props: Props) => {
   return (
     <div className={s.addPostBlock}>
       <div className={s.formPost}>
-
         < img className={s.avatar}
               src={props.photo.large ? props.photo.large : profileLogo}
               alt={'profileLogo'}

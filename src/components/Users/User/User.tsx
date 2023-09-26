@@ -11,7 +11,6 @@ type UserPropsType = {
   setUsers: (users: UserType[]) => void
 }
 
-
 const User = (props: UserPropsType) => {
 
   const onClickFollowHandler = () => {
@@ -29,7 +28,7 @@ const User = (props: UserPropsType) => {
       <NavLink to={'profile/' + props.user.id}>
         <img className={s.profileImg} src={props.user.photos.small != null ? props.user.photos.small : profileLogo}
              alt=""/>
-        <a href={'#'}>{props.user.name}</a>
+        <span>{props.user.name}</span>
       </NavLink>
       <div>{props.user.followed
         ? <button onClick={onClickUnFollowHandler}>Unfollow</button>

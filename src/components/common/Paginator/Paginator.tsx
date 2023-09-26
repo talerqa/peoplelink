@@ -26,10 +26,8 @@ export const Paginator = (props: PaginatorType) => {
   }
 
   const portionCount = Math.ceil(pagesCount / portionSize)
-
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
   const rightPortionPageNumber = portionNumber * portionSize
-  debugger
 
   return (
     <div>

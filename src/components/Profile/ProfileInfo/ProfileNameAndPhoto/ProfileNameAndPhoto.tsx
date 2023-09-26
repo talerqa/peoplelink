@@ -2,10 +2,11 @@ import * as React from 'react';
 import profileLogo from "../../../../img/profileLogo.png";
 import s from './ProfileNameAndPhoto.module.css';
 import {SvgSelectors} from "../../../common/SvGSelectors/SvgSelectors";
+import {PhotosProfileType} from "../../../../type";
 
 type  ProfileNameAndPhotoType = {
   name: string | null
-  photo: { small: string | null, large: string | null }
+  photo: PhotosProfileType | null
   isOwner?: boolean
   savePhoto?: (photo: File) => void
 }
@@ -21,7 +22,7 @@ export const ProfileNameAndPhoto = (props: ProfileNameAndPhotoType) => {
   return (<div className={s.blockNamePhoto}>
       <div>
         < img className={s.avatar}
-              src={props.photo.large ? props.photo.large : profileLogo}
+              src={props.photo?.large ? props.photo.large : profileLogo}
               alt={'profileLogo'}
         />
         {props.isOwner && <label className={s.addPhoto}>
