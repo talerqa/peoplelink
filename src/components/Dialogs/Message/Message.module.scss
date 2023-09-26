@@ -1,0 +1,46 @@
+.dialogs {
+  display: flex;
+}
+
+.dialogsItem {
+  min-width: 300px;
+}
+
+.dialog {
+  color: aqua;
+}
+
+.active {
+  color: darkorchid;
+}
+
+.image {
+  display: block;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.messagesBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 10px;
+
+  &:first-child {
+    justify-content: flex-start;
+  }
+}
+
+.message {
+  display: flex;
+  padding: 7px;
+  flex-direction: row;
+  text-align: left;
+  width: 400px;
+  background-color: #e8e8e8;
+  border: 1px solid rgba(182, 182, 182, 0.82);
+  border-radius: 5px;
+}
+
+

@@ -1,0 +1,45 @@
+.dialogsItem {
+  min-width: 300px;
+
+}
+
+.dialog {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 40px;
+}
+
+
+.image {
+  display: block;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.name {
+  align-self: center;
+  font-weight: 500;
+  margin: 0;
+  justify-content: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+
+  &:hover {
+    font-weight: 600;
+  }
+}
+
+.nameActive {
+  align-self: center;
+  font-weight: 700;
+  margin: 0;
+  justify-content: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+
+  &:hover {
+    font-weight: 600;
+  }
+}
+

@@ -8,19 +8,17 @@ const SET_DATA_MESSAGE = 'SET-DATA-MESSAGE';
 
 const initState: DialogsPageType = {
   message: [
+    {id: v1(), message: 'Hello friend, you have a great social network.\n'},
     {id: v1(), message: 'Hello'},
-    {id: v1(), message: 'Whatsup'},
-    {id: v1(), message: 'Hi everyone'},
-    {id: v1(), message: 'Yo'},
-    {id: v1(), message: 'Hello'}],
+    {id: v1(), message: 'Thanks, I\'m trying hard to make the social network better.\n'}],
   newMessageText: '',
   dialogsData: [
-    {id: 1, name: 'Dimych'},
-    {id: 2, name: 'Andrew'},
-    {id: 3, name: 'Jon'},
-    {id: 4, name: 'Max'},
-    {id: 5, name: 'Andrew'},
-    {id: 6, name: 'Viktor'}
+    {id: v1(), name: 'Dimych'},
+    {id: v1(), name: 'Andrew'},
+    {id: v1(), name: 'Jon'},
+    {id: v1(), name: 'Max'},
+    {id: v1(), name: 'Andrew'},
+    {id: v1(), name: 'Viktor'}
   ]
 }
 

@@ -8,7 +8,7 @@ export type postData = {
 
 //Типы Dialogs
 export type DialogsDataType = {
-  id: number
+  id: string
   name: string
 }
 export type MessageType = {

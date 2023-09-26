@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ChangeEvent} from 'react';
-import s from './Dialogs.module.css'
+import s from './Dialogs.module.scss'
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
 import {DialogsDataType, DialogsPageType, MessageType} from '../../type';
@@ -19,7 +19,8 @@ const Dialogs = (props: DialogsPropsType) => {
   const state = props.dialogPage
   const dialogsElement = state.dialogsData
     .map((dialog: DialogsDataType) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
-  const messageElement = state.message.map((message: MessageType, index) => <Message message={message.message} key={index}/>)
+  const messageElement = state.message.map((message: MessageType, index) => <Message message={message.message}
+                                                                                     key={index}/>)
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (e.currentTarget.value !== null) {
@@ -33,17 +34,19 @@ const Dialogs = (props: DialogsPropsType) => {
     props.changeTextArea('')
   }
 
-   return (<div className={s.dialogs}>
+  return (<div className={s.dialogs}>
     <div className={s.dialogsItem}>
       {dialogsElement}
     </div>
-    <div className={s.messages}>
-      {messageElement}
-    </div>
-    <div>
-      <textarea onChange={changeTextArea} value={props.newMessageText}
+    <div className={s.dialogsBlock}>
+      <div className={s.messages}>
+        {messageElement}
+      </div>
+      <div className={s.addMessage}>
+      <textarea  className={s.textarea} onChange={changeTextArea} value={props.newMessageText}
                 placeholder={'Enter your message'}></textarea>
-      <button onClick={addPost}>Add post</button>
+        <button className={s.addMessageButton} onClick={addPost}>Send message</button>
+      </div>
     </div>
   </div>)
 }
