@@ -1,9 +1,9 @@
 import * as React from 'react';
 import s from './App.module.scss';
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
-import News from '../components/News/News';
-import Setting from '../components/Setting/Setting';
-import Music from '../components/Music/Music';
+import {News} from '../components/News/News';
+import {Setting} from '../components/Setting/Setting';
+import {Music} from '../components/Music/Music';
 import DialogsContainer from '../components/Dialogs/DialogsContainer';
 import UsersContainer from '../components/Users/UsersContainer';
 import ProfileContainer from '../components/Profile/ProfileContainer';

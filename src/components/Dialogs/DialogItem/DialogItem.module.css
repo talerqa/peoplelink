@@ -1,13 +1,23 @@
-.dialogs {
-  display: flex;
-}
-
 .dialogsItem {
   min-width: 300px;
 }
 
 .dialog {
-  color: aqua;
+  display: flex;
+
+  justify-content: flex-start;
+  padding: 5px 40px;
+}
+
+.image {
+  display: block;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.name {
+  align-self: center;
 }
 
 .active {

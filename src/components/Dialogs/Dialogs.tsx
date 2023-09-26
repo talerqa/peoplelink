@@ -17,11 +17,9 @@ type DialogsPropsType = {
 const Dialogs = (props: DialogsPropsType) => {
 
   const state = props.dialogPage
-
   const dialogsElement = state.dialogsData
     .map((dialog: DialogsDataType) => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
   const messageElement = state.message.map((message: MessageType, index) => <Message message={message.message} key={index}/>)
-
 
   const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (e.currentTarget.value !== null) {
