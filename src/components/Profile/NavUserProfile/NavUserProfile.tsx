@@ -10,7 +10,6 @@ type  Props = {
 export const NavUserProfile = (props: Props) => {
 
   const history = useHistory(); // Get the history object
-
   const redirectToUsers = () => {
     history.push('/users'); // Use history.push to redirect to '/users'
   };

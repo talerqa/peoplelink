@@ -3,6 +3,7 @@ import {profileApi, userApi} from '../../api/api';
 import {Dispatch} from 'redux';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 import {setAppStatusAC} from "../../app/appReducer";
+import {AppRootStateType} from "../../app/store";
 
 const initState: MyUsersPageType = {
   users: [],
@@ -91,6 +92,7 @@ export const deleteDataUsersAC = () => ({type: 'users/DELETE-DATA-USERS'} as con
 export const getUsersThunkCreator = (page: number, pageSize: number) => async (dispatch: Dispatch) => {
   dispatch(fetchUsersCountAC(true))
   dispatch(setAppStatusAC('loading'))
+
   try {
     const res = await userApi.getUsers(page, pageSize)
     dispatch(fetchUsersCountAC(false))

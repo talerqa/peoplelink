@@ -4,7 +4,8 @@ import {Dispatch} from 'redux';
 import {profileApi} from '../../api/api';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 import {setAppStatusAC} from "../../app/appReducer";
-import {ResultCode} from "../Users/usersReducer";
+import {ResultCode, setCurrentPageAC} from "../Users/usersReducer";
+import {AppRootStateType} from "../../app/store";
 
 export const initStateProfilePage: ProfilePageType = {
   posts: [
@@ -104,13 +105,16 @@ export const incLikeCountPostAC = (id: string, likeCount: number) => ({
 
 
 //THUNK
-export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
+export const getProfileUserThunkCreator = (page: number, userId: string) => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC('loading'))
+
   try {
     dispatch(setPostsAC(initStateProfilePage.posts))
     const res = await profileApi.getProfileUser(userId)
     dispatch(getProfileUserAC(res.data))
     dispatch(setAppStatusAC('succeeded'))
+    dispatch(setCurrentPageAC(page))
+
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)

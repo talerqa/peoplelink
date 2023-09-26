@@ -29,6 +29,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
   onPageChanged = (pageNumber: number) => {
     this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
+
   }
 
   render() {

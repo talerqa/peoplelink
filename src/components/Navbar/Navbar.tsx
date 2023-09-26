@@ -14,6 +14,12 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className={s.navbarItem}>
+          <NavLink className={conditionChangeColorLink} to={'/users'}>
+            <SvgSelectors svgImage={'USERS'}/>
+            <span className={s.linkText}>Users</span>
+          </NavLink>
+        </li>
+        <li className={s.navbarItem}>
           <NavLink className={conditionChangeColorLink} to={'/dialogs'}>
             <SvgSelectors svgImage={'DIALOGS'}/>
             <span className={s.linkText}>Messages</span>
@@ -37,14 +43,9 @@ const Navbar = () => {
             <span className={s.linkText}>News</span>
           </NavLink>
         </li>
-        <li className={s.navbarItem}>
-          <NavLink className={conditionChangeColorLink} to={'/users'}>
-            <SvgSelectors svgImage={'USERS'}/>
-            <span className={s.linkText}>Users</span>
-          </NavLink>
-        </li>
+
       </ul>
-      </nav>
+    </nav>
   )
 }
 

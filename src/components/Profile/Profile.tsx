@@ -4,10 +4,7 @@ import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostContainer from "./MyPost/MyPostContainer";
 import {postData, ProfileType, UserType} from "../../type";
-import profileLogo from "../../img/profileLogo.png";
-import { useHistory} from "react-router-dom";
 import {NavUserProfile} from "./NavUserProfile/NavUserProfile";
-import Post from "./MyPost/Post/Post";
 
 
 type ProfilePropsType = {
@@ -21,6 +18,8 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
+
+
   return <div className={s.profile}>
     <ProfileInfo isOwner={props.isOwner}
                  profile={props.profile}

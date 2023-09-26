@@ -28,13 +28,13 @@ class ProfileContainer extends React.Component<PropsType> {
         this.props.history.push('/profile/')
       }
     }
-    this.props.getProfileUserThunkCreator(userId)
+    this.props.getProfileUserThunkCreator(this.props.page, userId)
     this.props.getStatusProfile(userId)
   }
 
   componentDidMount() {
     this.refreshProfile()
-    this.props.getUsers()
+    this.props.getUsers(this.props.page, this.props.pageSize)
   }
 
   componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
@@ -64,15 +64,17 @@ type MapStateToPropsProfileType = {
   status: string
   userId: number | null
   users: UserType[]
+  page: number
+  pageSize: number
 }
 
 export type MapDispatchToPropsProfileType = {
   getProfileUserAC: (profile: ProfileType) => void
-  getProfileUserThunkCreator: (userId: number | null | string) => void
+  getProfileUserThunkCreator: (page: number, userId: number | null | string) => void
   getStatusProfile: (userId: number | null | string) => void
   updateStatusProfile: (status: string) => void
   setPhotoProfile: (photo: File) => void
-  getUsers: () => void
+  getUsers: (page: number, pageSize: number) => void
 }
 
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType => {
@@ -81,7 +83,9 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType =>
     post: state.profileReducer.posts,
     status: state.profileReducer.status,
     userId: state.authReducer.id,
-    users: state.usersReducer.users
+    users: state.usersReducer.users,
+    page: state.usersReducer.currentPage,
+    pageSize: state.usersReducer.pageSize,
   }
 }
 

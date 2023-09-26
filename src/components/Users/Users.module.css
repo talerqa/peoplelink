@@ -3,6 +3,10 @@
   margin: 0 auto;
   height: 100%;
 }
+.wrapper {
+  margin: 0 auto;
+  max-width: 1440px;
+}
 
 .wrapper_item {
   max-width: 600px;

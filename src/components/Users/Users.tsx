@@ -41,7 +41,6 @@ export const Users = (props: UsersComponentPropsType) => {
                 unfollow={unfollow}
                 setUsers={setUsers}
               />
-
             )
           })}
       </div>
