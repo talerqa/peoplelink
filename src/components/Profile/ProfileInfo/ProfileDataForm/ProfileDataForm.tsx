@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useFormik} from "formik";
+import {Field, useFormik} from "formik";
 import s from "../../../Login/LoginForm/LoginForm.module.scss";
 
 export const ProfileDataForm = (props: any) => {
@@ -7,17 +7,19 @@ export const ProfileDataForm = (props: any) => {
   const formik = useFormik({
     initialValues: {
       aboutMe: '',
-      lookingJob: '',
-      lookingDescription: '',
+      lookingJob: false,
+      lookingForAJobDescription: '',
       fullName: '',
-      facebook: '',
-      website: '',
-      vk: '',
-      twitter: '',
-      instagram: '',
-      youtube: '',
-      github: '',
-      mainLink: '',
+      contacts: {
+        facebook: '',
+        website: '',
+        vk: '',
+        twitter: '',
+        instagram: '',
+        youtube: '',
+        github: '',
+        mainLink: '',
+      }
     },
     validate: (values) => {
       // const errors: FormikErrorType = {}
@@ -35,9 +37,8 @@ export const ProfileDataForm = (props: any) => {
     },
     onSubmit: values => {
       props.editMode()
-      debugger
-      console.log(values)
 
+      props.submitForm(values)
     },
   })
 
@@ -46,11 +47,11 @@ export const ProfileDataForm = (props: any) => {
       <button type={'submit'}>Save</button>
       <div className={s.inputName}>
         <div className={s.loginBlock}>
-
           <p className={s.loginPassword}>Full Name:</p>
           <input
             // className={formik.touched.email && formik.errors.email ? s.emailError : s.email}
             type="fullName"
+
             {...formik.getFieldProps('fullName')}
           />
           <p className={s.loginPassword}>About me:</p>
@@ -62,20 +63,20 @@ export const ProfileDataForm = (props: any) => {
           <p className={s.loginPassword}>lookingJob</p>
           <input
             // className={formik.touched.email && formik.errors.email ? s.emailError : s.email}
-            type="lookingJob"
+            type="checkbox"
             {...formik.getFieldProps('lookingJob')}
           />
           <p className={s.loginPassword}>lookingDescription</p>
           <input
             // className={formik.touched.email && formik.errors.email ? s.emailError : s.email}
-            type="lookingDescription"
-            {...formik.getFieldProps('lookingDescription')}
+            type="lookingForAJobDescription"
+            {...formik.getFieldProps('lookingForAJobDescription')}
           />
           <p className={s.loginPassword}>facebook</p>
           <input
             // className={formik.touched.email && formik.errors.email ? s.emailError : s.email}
             type="facebook"
-            {...formik.getFieldProps('facebook')}
+            {...formik.getFieldProps('contacts.facebook')}
           />
           <p className={s.loginPassword}>website</p>
           <input

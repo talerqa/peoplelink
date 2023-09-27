@@ -5,6 +5,7 @@ import {profileApi} from '../../api/api';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 import {setAppStatusAC} from "../../app/appReducer";
 import {ResultCode, setCurrentPageAC} from "../Users/usersReducer";
+import {getUsers} from "../Users/user-selector";
 import {AppRootStateType} from "../../app/store";
 
 export const initStateProfilePage: ProfilePageType = {
@@ -29,6 +30,7 @@ export type CommonProfileType =
   | ReturnType<typeof setPhotoAC>
   | ReturnType<typeof decLikeCountPostAC>
   | ReturnType<typeof incLikeCountPostAC>
+  | ReturnType<typeof updateProfileAC>
 
 export const profileReducer = (state = initStateProfilePage, action: CommonProfileType) => {
   switch (action.type) {
@@ -76,6 +78,10 @@ export const profileReducer = (state = initStateProfilePage, action: CommonProfi
     case 'profile/DELETE-DATA-PROFILE': {
       return {...state, posts: [], newPostText: '', status: ''}
     }
+    case "profile/UPDATE-DATA": {
+      debugger
+      return {...state, profile: action.data}
+    }
     default:
       return state
   }
@@ -103,16 +109,18 @@ export const incLikeCountPostAC = (id: string, likeCount: number) => ({
   likeCount
 } as const)
 
+export const updateProfileAC = (data: any) => ({type: 'profile/UPDATE-DATA', data} as const)
+
 
 //THUNK
-export const getProfileUserThunkCreator = (page: number, userId: string) => async (dispatch: Dispatch) => {
+export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC('loading'))
   try {
     dispatch(setPostsAC(initStateProfilePage.posts))
     const res = await profileApi.getProfileUser(userId)
     dispatch(getProfileUserAC(res.data))
     dispatch(setAppStatusAC('succeeded'))
-    dispatch(setCurrentPageAC(page))
+   // dispatch(setCurrentPageAC(page))
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
@@ -120,8 +128,6 @@ export const getProfileUserThunkCreator = (page: number, userId: string) => asyn
     dispatch(setAppStatusAC('idle'))
   }
 }
-
-
 
 export const getStatusProfileUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC('loading'))
@@ -167,4 +173,30 @@ export const setPhotoThunkCreator = (photo: File) => async (dispatch: Dispatch) 
   } finally {
     dispatch(setAppStatusAC('idle'))
   }
+}
+
+export const updateProfileData = (data: any): any  => async (dispatch: Dispatch , getState: () => AppRootStateType)=> {
+
+  dispatch(setAppStatusAC('loading'))
+  const res = await profileApi.putProfileData(data)
+
+  const userId= getState().authReducer.id
+  try {
+
+    if (res.data.resultCode === ResultCode.OK) {
+      // dispatch(updateProfileAC(data))
+       // @ts-ignore
+      dispatch(getProfileUserThunkCreator(userId))
+
+      dispatch(setAppStatusAC('succeeded'))
+    } else {
+      handleServerAppError(res.data, dispatch)
+    }
+  } catch (e) {
+    const error = e as { message: string }
+    handleServerNetworkError(error, dispatch)
+  } finally {
+    dispatch(setAppStatusAC('idle'))
+  }
+
 }

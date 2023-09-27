@@ -13,6 +13,7 @@ type ProfileInfoProps = {
   status: string
   updateStatus: (status: string) => void
   savePhoto: (photo: File) => void
+  submitForm: any
 }
 
 const ProfileInfo = (props: ProfileInfoProps) => {
@@ -36,6 +37,7 @@ const ProfileInfo = (props: ProfileInfoProps) => {
         <ProfileDataForm
           isOwner={props.isOwner}
           profile={props.profile}
+          submitForm={props.submitForm}
           editMode={() => setEditMode(!editMode)}/> :
         <ProfileData
           editMode={() => setEditMode(!editMode)}

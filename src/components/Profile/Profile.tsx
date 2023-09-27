@@ -15,6 +15,7 @@ type ProfilePropsType = {
   updateStatus: (status: string) => void
   savePhoto: (photo: File) => void
   users: UserType[]
+  submitForm: any
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -25,7 +26,9 @@ const Profile = (props: ProfilePropsType) => {
                  profile={props.profile}
                  status={props.status}
                  updateStatus={props.updateStatus}
-                 savePhoto={props.savePhoto}/>
+                 savePhoto={props.savePhoto}
+                 submitForm={props.submitForm}
+    />
     <MyPostContainer profile={props.profile}/>
     <NavUserProfile users={props.users}/>
   </div>

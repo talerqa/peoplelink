@@ -21,7 +21,7 @@ export const userApi = {
 
 export const profileApi = {
   putProfileData: (data: any) => {
-    return instance.put<ResponseType<any>, AxiosResponse<ResponseType<any>>, {}>(`profile/`)
+    return instance.put(`profile`, data)
   },
   getProfileUser: (userId: string) => {
     return instance.get<ProfileType>(`profile/` + userId)
