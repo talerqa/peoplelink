@@ -6,6 +6,7 @@ import {ProfileStatus} from './ProfileStatus/ProfileStatus';
 import {ProfileNameAndPhoto} from "./ProfileNameAndPhoto/ProfileNameAndPhoto";
 import {ContactsProfileType, ProfileType} from "../../../type";
 import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
+import {loginThunkCreator} from "../../Login/authReducer";
 
 type ProfileInfoProps = {
   profile: ProfileType | null
@@ -49,16 +50,20 @@ const ProfileInfo = (props: ProfileInfoProps) => {
 
 
 const ProfileData = (props: any) => {
-  return <div>
 
+  console.log(props.profile.lookingForAJob)
+
+  return <div>
     {props.isOwner && <div>
         <button onClick={props.editMode}>EDIT</button>
     </div>
     }
-    Full Name: {props.profile.fullName}
-    About me: {props.profile.aboutMe}
-    Looking for a job: {props.profile.lookingForAJob}
-    My profession skill: {props.profile.lookingForAJobDescription}
+    <div>
+      <span>Full Name: </span> {props.profile.fullName}
+    </div>
+    <div><span>About me: </span>{props.profile.aboutMe}</div>
+    <div><span>Looking for a job:  </span> {props.profile.lookingForAJob ? 'yes' : 'no'}</div>
+    <div><span>My profession skill: </span>{props.profile.lookingForAJobDescription}</div>
 
     Contacts : {props.profile.contacts ? (
     Object.keys(props.profile.contacts).map((key) => (
@@ -74,7 +79,7 @@ const ProfileData = (props: any) => {
 
 const Contacts = (props: any) => {
   return <div>
-    {props.contactTitle} : {props.contactValue}
+    <p>   {props.contactTitle} : {props.contactValue}</p>
   </div>
 }
 
