@@ -107,14 +107,12 @@ export const incLikeCountPostAC = (id: string, likeCount: number) => ({
 //THUNK
 export const getProfileUserThunkCreator = (page: number, userId: string) => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC('loading'))
-
   try {
     dispatch(setPostsAC(initStateProfilePage.posts))
     const res = await profileApi.getProfileUser(userId)
     dispatch(getProfileUserAC(res.data))
     dispatch(setAppStatusAC('succeeded'))
     dispatch(setCurrentPageAC(page))
-
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
@@ -122,6 +120,8 @@ export const getProfileUserThunkCreator = (page: number, userId: string) => asyn
     dispatch(setAppStatusAC('idle'))
   }
 }
+
+
 
 export const getStatusProfileUserThunkCreator = (userId: number) => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC('loading'))

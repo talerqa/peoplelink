@@ -63,7 +63,6 @@ export type LoginFormType = {
   password: string | null
   rememberMe: boolean
   captcha?: string | null
-
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
