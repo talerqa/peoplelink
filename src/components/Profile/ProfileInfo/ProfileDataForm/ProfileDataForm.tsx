@@ -14,7 +14,6 @@ type FormikErrorsType = {
 export const ProfileDataForm = (props: any) => {
 
 
-
   const formik = useFormik({
     initialValues: {
       aboutMe: props.profile.aboutMe,
@@ -22,18 +21,18 @@ export const ProfileDataForm = (props: any) => {
       lookingForAJobDescription: props.profile.lookingForAJobDescription,
       fullName: props.profile.fullName,
       contacts: {
-        facebook: 'https://facebook.com/',
-        website: '',
-        vk: 'https://vk.com',
-        twitter: 'https://twitter.com',
-        instagram: 'https://instagram.com',
-        youtube: 'https://youtube.com',
-        github: 'https://github.com',
-        mainLink: '',
+        facebook: props.profile.contacts.facebook,
+        vk:  props.profile.contacts.vk,
+        twitter: props.profile.contacts.twitter,
+        instagram: props.profile.contacts.instagram,
+        youtube: props.profile.contacts.youtube,
+        github: props.profile.contacts.github,
+        mainLink: props.profile.contacts.mainLink,
+        website: props.profile.contacts.website,
       }
     },
     validate: (values) => {
-      let errors: FormikErrorsType = {}
+      let errors: any = {}
 
       if (!values.fullName) {
         errors.fullName = 'Required'
@@ -44,25 +43,9 @@ export const ProfileDataForm = (props: any) => {
       if (!values.lookingForAJobDescription) {
         errors.lookingForAJobDescription = 'Required'
       }
-
-      // if (values.contacts.facebook.length > 5) {
-      //   errors.contacts.facebook = 'reqeqweqw'
-      // }
-
-      // if (values.aboutMe) {
-      //   errors.email = 'Required'
-      // } else if (values.aboutMe.length > 5) {
-      //   errors.email = 'Invalid email address'
-      // }
-      // if (!values.fullName) {
-      //   errors.password = 'Required'
-      // } else if (values.fullName.length < 4) {
-      //   errors.password = 'Invalid password'
-      // }
       return errors
     },
     onSubmit: values => {
-      console.log(values)
       props.editMode()
       props.submitForm(values)
     },
@@ -123,55 +106,79 @@ export const ProfileDataForm = (props: any) => {
             </div>
           </div>
 
-          {/*<p className={s.loginPassword}>facebook</p>*/}
-          {/*<input*/}
-          {/*  className={formik.touched.contacts?.facebook && formik.errors.contacts?.facebook ? s.errorInput : s.email}*/}
-          {/*  type="facebook"*/}
-          {/*  {...formik.getFieldProps('contacts.facebook')}*/}
-          {/*/>*/}
+          <div>
+            <p className={s.loginPassword}>facebook</p>
+            <input
+              className={formik.touched?.contacts?.facebook && formik.errors?.contacts?.facebook ? s.errorInput : s.email}
+              type="facebook"
+              {...formik.getFieldProps('contacts.facebook')}
+            />
+          </div>
 
-          {/*<p className={s.loginPassword}>website</p>*/}
-          {/*<input*/}
-          {/*className={formik.touched.contacts.website && formik.errors.contacts.website ? s.errorInput : s.email}*/}
-          {/*  type="website"*/}
-          {/*  {...formik.getFieldProps('contacts.website')}*/}
-          {/*/>*/}
-          {/*<p className={s.loginPassword}>vk</p>*/}
-          {/*<input*/}
-          {/*className={formik.touched.contacts.vk && formik.errors.contacts.vk ? s.errorInput : s.email}*/}
-          {/*  type="vk"*/}
-          {/*  {...formik.getFieldProps('contacts.vk')}*/}
-          {/*/>*/}
-          {/*<p className={s.loginPassword}>twitter</p>*/}
-          {/*<input*/}
-          {/*   className={formik.touched.contacts.twitter && formik.errors.contacts.twitter ? s.errorInput : s.email}*/}
-          {/*  type="twitter"*/}
-          {/*  {...formik.getFieldProps('contacts.twitter')}*/}
-          {/*/>*/}
-          {/*<p className={s.loginPassword}>instagram</p>*/}
-          {/*<input*/}
-          {/*   className={formik.touched.contacts.instagram && formik.errors.contacts.instagram ? s.errorInput : s.email}*/}
-          {/*  type="instagram"*/}
-          {/*  {...formik.getFieldProps('contacts.instagram')}*/}
-          {/*/>*/}
-          {/*<p className={s.loginPassword}>youtube</p>*/}
-          {/*<input*/}
-          {/*  className={formik.touched.contacts.youtube && formik.errors.contacts.youtube ? s.errorInput : s.email}*/}
-          {/*  type="youtube"*/}
-          {/*  {...formik.getFieldProps('contacts.youtube')}*/}
-          {/*/>*/}
-          {/*<p className={s.loginPassword}>github</p>*/}
-          {/*<input*/}
-          {/* className={formik.touched.contacts.github && formik.errors.contacts.github ? s.errorInput : s.email}*/}
-          {/*  type="github"*/}
-          {/*  {...formik.getFieldProps('contacts.github')}*/}
-          {/*/>*/}
-          {/*<p className={s.loginPassword}>mainLink</p>*/}
-          {/*<input*/}
-          {/* className={formik.touched.contacts.mainLink && formik.errors.contacts.mainLink ? s.errorInput : s.email}*/}
-          {/*  type="mainLink"*/}
-          {/*  {...formik.getFieldProps('contacts.mainLink')}*/}
-          {/*/>*/}
+          <div>
+            <p className={s.loginPassword}>website</p>
+            <input
+              className={formik.touched?.contacts?.website && formik.errors?.contacts?.website ? s.errorInput : s.email}
+              type="website"
+              {...formik.getFieldProps('contacts.website')}
+            />
+          </div>
+
+          <div>
+            <p className={s.loginPassword}>vk</p>
+            <input
+              className={formik.touched?.contacts?.vk && formik.errors?.contacts?.vk ? s.errorInput : s.email}
+              type="vk"
+              {...formik.getFieldProps('contacts.vk')}
+            />
+          </div>
+
+
+          <div>
+            <p className={s.loginPassword}>twitter</p>
+            <input
+              className={formik.touched?.contacts?.twitter && formik.errors?.contacts?.twitter ? s.errorInput : s.email}
+              type="twitter"
+              {...formik.getFieldProps('contacts.twitter')}
+            />
+          </div>
+
+          <div>
+            <p className={s.loginPassword}>instagram</p>
+            <input
+              className={formik.touched?.contacts?.instagram && formik.errors?.contacts?.instagram ? s.errorInput : s.email}
+              type="instagram"
+              {...formik.getFieldProps('contacts.instagram')}
+            />
+          </div>
+
+          <div>
+            <p className={s.loginPassword}>youtube</p>
+            <input
+              className={formik.touched?.contacts?.youtube && formik.errors?.contacts?.youtube ? s.errorInput : s.email}
+              type="youtube"
+              {...formik.getFieldProps('contacts.youtube')}
+            />
+          </div>
+
+          <div>
+            <p className={s.loginPassword}>github</p>
+            <input
+              className={formik.touched?.contacts?.github && formik.errors?.contacts?.github ? s.errorInput : s.email}
+              type="github"
+              {...formik.getFieldProps('contacts.github')}
+            />
+          </div>
+
+
+          <div>
+            <p className={s.loginPassword}>mainLink</p>
+            <input
+              className={formik.touched?.contacts?.mainLink && formik.errors?.contacts?.mainLink ? s.errorInput : s.email}
+              type="mainLink"
+              {...formik.getFieldProps('contacts.mainLink')}
+            />
+          </div>
 
 
           {/*  */}

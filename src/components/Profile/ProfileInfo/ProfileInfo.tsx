@@ -6,7 +6,7 @@ import {ProfileStatus} from './ProfileStatus/ProfileStatus';
 import {ProfileNameAndPhoto} from "./ProfileNameAndPhoto/ProfileNameAndPhoto";
 import {ContactsProfileType, ProfileType} from "../../../type";
 import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
-import {loginThunkCreator} from "../../Login/authReducer";
+
 
 type ProfileInfoProps = {
   profile: ProfileType | null
@@ -79,7 +79,7 @@ const ProfileData = (props: any) => {
 
 const Contacts = (props: any) => {
   return <div>
-    <p>   {props.contactTitle} : {props.contactValue}</p>
+    <p>   {props.contactTitle} : {props.contactValue.length > 0 ? props.contactValue : 'none'}</p>
   </div>
 }
 
