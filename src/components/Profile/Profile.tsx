@@ -29,7 +29,7 @@ const Profile = (props: ProfilePropsType) => {
                  savePhoto={props.savePhoto}
                  submitForm={props.submitForm}
     />
-    <MyPostContainer profile={props.profile}/>
+    <MyPostContainer profile={props.profile} isOwner={props.isOwner}/>
     <NavUserProfile users={props.users}/>
   </div>
 }

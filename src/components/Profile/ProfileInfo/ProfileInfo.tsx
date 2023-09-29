@@ -32,9 +32,7 @@ export const ProfileInfo = (props: ProfileInfoProps) => {
                            photo={props.profile.photos}
                            isOwner={props.isOwner}
                            savePhoto={props.savePhoto}/>
-
       <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-
       {editMode ?
         <ProfileDataForm
           isOwner={props.isOwner}

@@ -16,12 +16,8 @@ import {compose} from 'redux';
 import {getUsersThunkCreator} from "../Users/usersReducer";
 
 class ProfileContainer extends React.Component<PropsType> {
-  constructor(props: PropsType) {
-    super(props);
-  }
 
   refreshProfile() {
-    debugger
     let userId = this.props.match.params.userId
     if (!userId) {
       userId = `${this.props.userId}`

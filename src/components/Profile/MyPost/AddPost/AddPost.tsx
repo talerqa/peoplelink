@@ -1,18 +1,18 @@
+import * as React from "react";
 import {ChangeEvent, useState} from "react";
 import s from "./AddPost.module.scss";
-import * as React from "react";
 import profileLogo from "../../../../img/profileLogo.png";
 import {PhotosProfileType} from "../../../../type";
 
 type Props = {
   addPost: (title: string) => void
   photo: PhotosProfileType
+  isOwner: boolean
 }
 
 export const AddPost = (props: Props) => {
-
   const [title, setTitle] = useState<string>('')
-  const [error,setError] = useState<string>('')
+  const [error, setError] = useState<string>('')
   const addPostHandler = (title: string) => {
     setError('')
     if (title.trim() === '') {
@@ -47,6 +47,7 @@ export const AddPost = (props: Props) => {
         </div>
         <button
           onClick={() => addPostHandler(title)}
+          disabled={!props.isOwner}
           className={s.buttonAddPost}
         ><span>
           Add post

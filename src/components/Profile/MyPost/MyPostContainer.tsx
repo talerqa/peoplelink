@@ -8,6 +8,7 @@ import {MyPosts} from "./MyPosts";
 
 type  PropsType = {
   profile: any
+  isOwner: boolean
 } & MapDispatchToPropsType & MapStateToPropsProfileType
 
 class MyPostContainer extends React.Component<PropsType> {
@@ -16,12 +17,13 @@ class MyPostContainer extends React.Component<PropsType> {
 
   render() {
     return <MyPosts
-        profilePost={this.props.profilePost}
-        addPost={this.props.addPost}
-        deletePost={this.props.deletePost}
-        profileInfo={this.props.profile}
-        incLike={this.props.incLikeCount}
-        decLike={this.props.decLikeCount}
+      isOwner={this.props.isOwner}
+      profilePost={this.props.profilePost}
+      addPost={this.props.addPost}
+      deletePost={this.props.deletePost}
+      profileInfo={this.props.profile}
+      incLike={this.props.incLikeCount}
+      decLike={this.props.decLikeCount}
     />;
   }
 }

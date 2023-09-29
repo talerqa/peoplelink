@@ -13,6 +13,7 @@ type MyPostProps = {
   profileInfo: any
   incLike: (id: string, likeCount: number) => void
   decLike: (id: string, likeCount: number) => void
+  isOwner: boolean
 }
 
 export const MyPosts = (props: MyPostProps) => {
@@ -22,7 +23,7 @@ export const MyPosts = (props: MyPostProps) => {
 
   return (
     <div className={s.myPostsBlock}>
-      <AddPost addPost={props.addPost} photo={props.profileInfo.photos}/>
+      <AddPost addPost={props.addPost} photo={props.profileInfo.photos} isOwner={props.isOwner}/>
       <div className={s.myPosts}> {props.profilePost.posts.map((post, index) => {
         return (<div className={s.myPost} key={index}>
           <div className={s.photoAndName}>
