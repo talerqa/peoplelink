@@ -1,55 +1,99 @@
-
-.contactForm {
+.profileDataForm {
   display: flex;
   margin: 0 auto 10px;
   flex-direction: column;
   flex-wrap: wrap;
   box-sizing: border-box;
-  width: 350px;
-}
-
-input {
-  font-size: 20px;
   width: 100%;
-}
 
-.email, .password {
-
-  display: block;
-  font-size: 20px;
-  font-weight: 400;
-  flex: 0 0 auto;
-  flex-grow: 1;
-  outline: none;
-  width: 100%;
-  border: none;
-
-  &:hover {
-    outline: 1px solid black;
-  }
-
-  &:focus {
-    outline: 1px solid black;
-  }
-}
-
-.email, .password {
-  &::placeholder {
-    margin: 0;
+  .saveProfileDataBtn {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    list-style-type: none;
+    background: transparent;
     font-size: 16px;
-    padding: 0;
+    padding: 2px 20px;;
+    border: 1px solid #0a66c2;
+    border-radius: 40px;
+    cursor: pointer;
+    margin: 0 auto 10px;
+    align-self: flex-start;
+
+    &:hover {
+      box-shadow: 0 0 0 1px;
+      background-color: rgba(112, 181, 249, 0.1);
+      scroll-behavior: smooth;
+    }
   }
+
+  .profileDataFormBlock {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    .profileDataFormItem {
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+
+      .titleProfileData {
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .input {
+        display: block;
+        padding: 5px;
+        margin: 0 auto;
+        font-size: 18px;
+        outline: none;
+        border: 1px solid rgba(0, 0, 0, 0.6);
+
+        &:hover {
+          outline: none
+        }
+
+        &:focus {
+          outline: none
+        }
+
+        &::placeholder {
+          margin: 0;
+          font-size: 16px;
+          padding: 0;
+        }
+
+      }
+
+      .inputCheckbox {
+        height: 20px;
+        margin-top: 5px;
+        display: block
+      }
+      .errorInput {
+        display: block;
+        font-size: 20px;
+        font-weight: 400;
+        outline: 1px solid red;
+        flex: 0 0 auto;
+        flex-grow: 1;
+        border: none;
+      }
+
+      .errorText {
+        margin: 0;
+        font-size: 13px;
+        color: red;
+        font-weight: 500;
+        height: 20px;
+
+      }
+
+
+    }
+  }
+
 }
 
-.errorInput {
-  display: block;
-  font-size: 20px;
-  font-weight: 400;
-  outline: 1px solid red;
-  flex: 0 0 auto;
-  flex-grow: 1;
-  border: none;
-}
 
 .passwordError {
   display: block;
@@ -113,20 +157,6 @@ input {
   }
 }
 
-.errorText {
-  margin: 0;
-  font-size: 20px;
-}
-
-.errorTextEmail {
-  color: red;
-  height: 30px;
-}
-
-.errorTextPassword {
-  color: red;
-  height: 30px;
-}
 
 .submitBlock {
   display: flex;
@@ -159,7 +189,7 @@ input {
 .passwordBlock {
   font-size: 16px;
 
-  .loginPassword {
+  .titleProfileData {
     margin: 0;
     text-align: left;
   }

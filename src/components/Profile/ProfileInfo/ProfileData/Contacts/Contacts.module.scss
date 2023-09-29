@@ -1,0 +1,22 @@
+.contactsBlock {
+  display: flex;
+
+
+  font-size: 16px;
+  padding: 3px 5px;
+  align-items: flex-start;
+  .titleContacts {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 700;
+    width: 55%
+  }
+
+  .valueContacts {
+    font-size: 12px;
+    padding-left: 5px;
+    font-weight: 400;
+    text-align: left;
+    width: 100%;
+  }
+}

@@ -1,27 +1,26 @@
 import s from './ProfileData.module.scss'
 import {ContactsProfileType} from "../../../../type";
 import * as React from "react";
-import {Contacts} from "./Contacts";
+import {Contacts} from "./Contacts/Contacts";
 
-
+type Props = {}
 export const ProfileData = (props: any) => {
   return <div className={s.profileData}>
-    {props.isOwner && <button onClick={props.editMode}>EDIT</button>}
     <div className={s.profileDataInfo}>
       <div className={`${s.fullName} ${s.itemProfileData}`}>
         <span className={s.titleProfileData}>Full Name: </span>
         <span className={s.valueProfileData}>{props.profile.fullName}</span>
       </div>
       <div className={`${s.aboutMe} ${s.itemProfileData}`}>
-        <span className={s.titleAboutMe}>About me: </span>
+        <span className={s.titleProfileData}>About me: </span>
         <span className={s.valueProfileData}>{props.profile.aboutMe} </span>
       </div>
       <div className={`${s.lookingJob} ${s.itemProfileData}`}>
-        <span className={s.titleLookingJob}>Looking for a job: </span>
-        <span className={s.valueProfileData}>{props.profile.lookingForAJob ? 'yes' : 'no'} </span>
+        <span className={s.titleProfileData}>Looking for a job: </span>
+        <span className={s.valueProfileData}>{props.profile.lookingForAJob ? 'Yes' : 'No'} </span>
       </div>
       <div className={`${s.jobDescription} ${s.itemProfileData}`}>
-        <span className={s.titleJobDescription}>My skills: </span>
+        <span className={s.titleProfileData}>My skills: </span>
         <span className={s.valueProfileData}>{props.profile.lookingForAJobDescription}</span>
       </div>
     </div>
@@ -36,8 +35,9 @@ export const ProfileData = (props: any) => {
           />
         ))
       ) : null}
-
     </div>
+    {props.isOwner && <button className={s.button} onClick={props.editMode}>edit</button>}
+
   </div>
 }
 

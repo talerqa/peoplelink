@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react';
-import s from './ProfileStatus.module.css'
+import s from './ProfileStatus.module.scss'
 
 type ProfileStatusType = {
   status: string
@@ -8,7 +8,6 @@ type ProfileStatusType = {
 }
 
 export const ProfileStatus = (props: ProfileStatusType) => {
-
   const [editMode, setEditMode] = useState<boolean>(false)
   const [status, setStatus] = useState<string>(props.status)
   const [error, setError] = useState<string>('')
@@ -42,7 +41,7 @@ export const ProfileStatus = (props: ProfileStatusType) => {
   return (<div className={s.profileStatus}>
     {!editMode
       ? <span className={s.status} onDoubleClick={activateEditMode}>{props.status ? props.status : '......'} </span>
-      : <div>
+      : <div className={s.statusChangeBlock}>
         <input
           className={s.inputChangeStatus}
           type="text"
@@ -52,6 +51,7 @@ export const ProfileStatus = (props: ProfileStatusType) => {
           onKeyPress={onKeyPressHandler}
           value={status}
         />
+        <button className={s.buttonSaveStatus} onClick={deactivateEditMode}>Save</button>
       </div>}
     <p className={s.error}>{error}</p>
   </div>)

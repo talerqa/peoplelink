@@ -1,39 +1,39 @@
 import * as React from "react";
 import {useFormik} from "formik";
 import s from './ProfileDataForm.module.scss';
+import {ProfileType, SubmitForm} from "../../../../type";
 
-type FormikErrorsType = {
-  fullName?: string
-  aboutMe?: string
-  lookingForAJobDescription?: string
-  contacts?: {
-    facebook?: string
-  }
+type FormikType = {
+  isOwner: boolean
+  profile: ProfileType | null
+  submitForm: (values: Partial<SubmitForm>) => void
+  editMode: () => void
 }
 
-export const ProfileDataForm = (props: any) => {
+export const ProfileDataForm = (props: FormikType) => {
 
+  const {profile} = props
 
+  console.log(props.profile)
   const formik = useFormik({
     initialValues: {
-      aboutMe: props.profile.aboutMe,
-      lookingForAJob: props.profile.lookingForAJob,
-      lookingForAJobDescription: props.profile.lookingForAJobDescription,
-      fullName: props.profile.fullName,
+      aboutMe: profile?.aboutMe,
+      lookingForAJob: profile?.lookingForAJob,
+      lookingForAJobDescription: profile?.lookingForAJobDescription,
+      fullName: profile?.fullName,
       contacts: {
-        facebook: props.profile.contacts.facebook,
-        vk:  props.profile.contacts.vk,
-        twitter: props.profile.contacts.twitter,
-        instagram: props.profile.contacts.instagram,
-        youtube: props.profile.contacts.youtube,
-        github: props.profile.contacts.github,
-        mainLink: props.profile.contacts.mainLink,
-        website: props.profile.contacts.website,
+        facebook: profile?.contacts?.facebook,
+        vk: profile?.contacts?.vk,
+        twitter: profile?.contacts?.twitter,
+        instagram: profile?.contacts?.instagram,
+        youtube: profile?.contacts?.youtube,
+        github: profile?.contacts?.github,
+        mainLink: profile?.contacts?.mainLink,
+        website: profile?.contacts?.website,
       }
     },
     validate: (values) => {
       let errors: any = {}
-
       if (!values.fullName) {
         errors.fullName = 'Required'
       }
@@ -46,182 +46,120 @@ export const ProfileDataForm = (props: any) => {
       return errors
     },
     onSubmit: values => {
+      console.log(values)
       props.editMode()
       props.submitForm(values)
     },
   })
 
-  return <div className={s.contactForm}>
+  return <div className={s.profileDataForm}>
     <form action="" onSubmit={formik.handleSubmit}>
-      <button type={'submit'}>Save</button>
-      <div className={s.inputName}>
-        <div className={s.loginBlock}>
-          <div>
-            <span className={s.loginPassword}>Full Name:</span>
-            <input
-              className={formik.touched.fullName && formik.errors.fullName ? s.errorInput : s.email}
-              type="fullName"
-              {...formik.getFieldProps('fullName')}
-            />
-            <div className={s.errorTextPassword}>
-              {formik.touched.fullName && formik.errors.fullName &&
-                  <span className={s.errorText}>{formik.errors.fullName}</span>}
-            </div>
-          </div>
-
-          <div>
-            <span className={s.loginPassword}>About me:</span>
-            <input
-              className={formik.touched.aboutMe && formik.errors.aboutMe ? s.errorInput : s.email}
-              type="aboutMe"
-              {...formik.getFieldProps('aboutMe')}
-            />
-            <div className={s.errorTextPassword}>
-              {formik.touched.aboutMe && formik.errors.aboutMe &&
-                  <span className={s.errorText}>{formik.errors.aboutMe}</span>}
-            </div>
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>lookingJob</p>
-            <input
-              className={s.email}
-              type="checkbox"
-              checked={formik.values.lookingForAJob}
-              {...formik.getFieldProps('lookingForAJob')}
-            />
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>lookingDescription</p>
-            <input
-              className={formik.touched.lookingForAJobDescription && formik.errors.lookingForAJobDescription ? s.errorInput : s.email}
-              type="lookingForAJobDescription"
-              {...formik.getFieldProps('lookingForAJobDescription')}
-            />
-
-            <div className={s.errorTextPassword}>
-              {formik.touched.lookingForAJobDescription && formik.errors.lookingForAJobDescription &&
-                  <span className={s.errorText}>{formik.errors.lookingForAJobDescription}</span>}
-            </div>
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>facebook</p>
-            <input
-              className={formik.touched?.contacts?.facebook && formik.errors?.contacts?.facebook ? s.errorInput : s.email}
-              type="facebook"
-              {...formik.getFieldProps('contacts.facebook')}
-            />
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>website</p>
-            <input
-              className={formik.touched?.contacts?.website && formik.errors?.contacts?.website ? s.errorInput : s.email}
-              type="website"
-              {...formik.getFieldProps('contacts.website')}
-            />
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>vk</p>
-            <input
-              className={formik.touched?.contacts?.vk && formik.errors?.contacts?.vk ? s.errorInput : s.email}
-              type="vk"
-              {...formik.getFieldProps('contacts.vk')}
-            />
-          </div>
-
-
-          <div>
-            <p className={s.loginPassword}>twitter</p>
-            <input
-              className={formik.touched?.contacts?.twitter && formik.errors?.contacts?.twitter ? s.errorInput : s.email}
-              type="twitter"
-              {...formik.getFieldProps('contacts.twitter')}
-            />
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>instagram</p>
-            <input
-              className={formik.touched?.contacts?.instagram && formik.errors?.contacts?.instagram ? s.errorInput : s.email}
-              type="instagram"
-              {...formik.getFieldProps('contacts.instagram')}
-            />
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>youtube</p>
-            <input
-              className={formik.touched?.contacts?.youtube && formik.errors?.contacts?.youtube ? s.errorInput : s.email}
-              type="youtube"
-              {...formik.getFieldProps('contacts.youtube')}
-            />
-          </div>
-
-          <div>
-            <p className={s.loginPassword}>github</p>
-            <input
-              className={formik.touched?.contacts?.github && formik.errors?.contacts?.github ? s.errorInput : s.email}
-              type="github"
-              {...formik.getFieldProps('contacts.github')}
-            />
-          </div>
-
-
-          <div>
-            <p className={s.loginPassword}>mainLink</p>
-            <input
-              className={formik.touched?.contacts?.mainLink && formik.errors?.contacts?.mainLink ? s.errorInput : s.email}
-              type="mainLink"
-              {...formik.getFieldProps('contacts.mainLink')}
-            />
-          </div>
-
-
-          {/*  */}
-          {/*  <input*/}
-          {/*    className={formik.touched.email && formik.errors.email ? s.emailError : s.email}*/}
-          {/*    type="email"*/}
-          {/*    {...formik.getFieldProps('email')}*/}
-          {/*  />*/}
-          {/*  <div className={s.errorTextEmail}>*/}
-          {/*    {formik.touched.email && formik.errors.email &&*/}
-          {/*        <span className={s.errorText}>{formik.errors.email}</span>}*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-          {/*<div className={s.passwordBlock}>*/}
-          {/*  <p className={s.loginPassword}>Password</p>*/}
-          {/*  <input*/}
-          {/*    className={formik.touched.password && formik.errors.password ? s.passwordError : s.password}*/}
-          {/*    type="password"*/}
-          {/*    {...formik.getFieldProps('password')}*/}
-          {/*  />*/}
-          {/*  <div className={s.errorTextPassword}>*/}
-          {/*    {formik.touched.password && formik.errors.password &&*/}
-          {/*        <span className={s.errorText}>{formik.errors.password}</span>}*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-          {/*<div className={s.submitBlock}>*/}
-          {/*  <div className={s.rememberMe}>*/}
-          {/*    <label>*/}
-          {/*      <input*/}
-          {/*        className={s.checkbox}*/}
-          {/*        type="checkbox"*/}
-          {/*        checked={formik.values.rememberMe}*/}
-          {/*        {...formik.getFieldProps('rememberMe')}*/}
-          {/*      />*/}
-          {/*      Remember me*/}
-          {/*    </label>*/}
-          {/*  </div>*/}
-          {/*  <button className={s.buttonSend} type={'submit'}>*/}
-          {/*      <span className={s.buttonSendLink}>*/}
-          {/*        Submit</span>*/}
-          {/*  </button>*/}
+      <div className={s.profileDataFormBlock}>
+        <div className={s.profileDataFormItem}>
+          <span className={s.titleProfileData}>Full Name:</span>
+          <input
+            className={formik.touched.fullName && formik.errors.fullName ? s.errorInput : s.input}
+            type="fullName"
+            {...formik.getFieldProps('fullName')}
+          />
+          {formik.touched.fullName && formik.errors.fullName &&
+              <span className={s.errorText}>{formik.errors.fullName}</span>}
+        </div>
+        <div className={s.profileDataFormItem}>
+          <span className={s.titleProfileData}>About me:</span>
+          <input
+            className={formik.touched.aboutMe && formik.errors.aboutMe ? s.errorInput : s.input}
+            type="aboutMe"
+            {...formik.getFieldProps('aboutMe')}
+          />
+          {formik.touched.aboutMe && formik.errors.aboutMe &&
+              <span className={s.errorText}>{formik.errors.aboutMe}</span>}
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>lookingJob</p>
+          <input
+            className={`${s.input}  ${s.inputCheckbox}`}
+            type="checkbox"
+            checked={formik.values.lookingForAJob as boolean | undefined}
+            {...formik.getFieldProps('lookingForAJob')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>lookingDescription</p>
+          <input
+            className={formik.touched.lookingForAJobDescription && formik.errors.lookingForAJobDescription ? s.errorInput : s.input}
+            type="lookingForAJobDescription"
+            {...formik.getFieldProps('lookingForAJobDescription')}
+          />
+          {formik.touched.lookingForAJobDescription && formik.errors.lookingForAJobDescription &&
+              <span className={s.errorText}>{formik.errors.lookingForAJobDescription}</span>}
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>facebook</p>
+          <input
+            className={formik.touched?.contacts?.facebook && formik.errors?.contacts?.facebook ? s.errorInput : s.input}
+            type="facebook"
+            {...formik.getFieldProps('contacts.facebook')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>website</p>
+          <input
+            className={formik.touched?.contacts?.website && formik.errors?.contacts?.website ? s.errorInput : s.input}
+            type="website"
+            {...formik.getFieldProps('contacts.website')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>vk</p>
+          <input
+            className={formik.touched?.contacts?.vk && formik.errors?.contacts?.vk ? s.errorInput : s.input}
+            type="vk"
+            {...formik.getFieldProps('contacts.vk')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>twitter</p>
+          <input
+            className={formik.touched?.contacts?.twitter && formik.errors?.contacts?.twitter ? s.errorInput : s.input}
+            type="twitter"
+            {...formik.getFieldProps('contacts.twitter')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>instagram</p>
+          <input
+            className={formik.touched?.contacts?.instagram && formik.errors?.contacts?.instagram ? s.errorInput : s.input}
+            type="instagram"
+            {...formik.getFieldProps('contacts.instagram')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>youtube</p>
+          <input
+            className={formik.touched?.contacts?.youtube && formik.errors?.contacts?.youtube ? s.errorInput : s.input}
+            type="youtube"
+            {...formik.getFieldProps('contacts.youtube')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>github</p>
+          <input
+            className={formik.touched?.contacts?.github && formik.errors?.contacts?.github ? s.errorInput : s.input}
+            type="github"
+            {...formik.getFieldProps('contacts.github')}
+          />
+        </div>
+        <div className={s.profileDataFormItem}>
+          <p className={s.titleProfileData}>mainLink</p>
+          <input
+            className={formik.touched?.contacts?.mainLink && formik.errors?.contacts?.mainLink ? s.errorInput : s.input}
+            type="mainLink"
+            {...formik.getFieldProps('contacts.mainLink')}
+          />
         </div>
       </div>
+      <button type={'submit'} className={s.saveProfileDataBtn}>Save</button>
     </form>
   </div>
 }

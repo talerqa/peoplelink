@@ -1,0 +1,55 @@
+
+.profileStatus {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  .inputChangeStatus {
+    width: 60%;
+    outline: none;
+    border: 1px solid rgba(183, 183, 183, 0.6);
+    border-radius: 6px;
+  }
+
+  .statusChangeBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .buttonSaveStatus {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      list-style-type: none;
+      background: transparent;
+      font-size: 16px;
+      padding: 2px 20px;;
+      border: 1px solid #0a66c2;
+      border-radius: 40px;
+      cursor: pointer;
+      margin: 0 auto;
+      align-self: flex-start;
+
+      &:hover {
+        box-shadow: 0 0 0 1px;
+        background-color: rgba(112, 181, 249, 0.1);
+        scroll-behavior: smooth;
+      }
+    }
+  }
+
+  .status {
+    font-size: 16px;
+    color: rgba(86, 81, 81, 0.82);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+}
+
