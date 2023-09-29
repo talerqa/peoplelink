@@ -1,13 +1,17 @@
 
 .paginatorBlock {
-  margin: 0 auto;
+  margin: 0 auto 10px;
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-right: 10px;
   padding-left: 10px;
+
+  .title {
+    font-size: 40px;
+    margin: 0 auto;
+  }
 }
 
 .input {

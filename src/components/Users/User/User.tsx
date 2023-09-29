@@ -1,5 +1,5 @@
 import * as React from 'react';
-import s from './User.module.css';
+import s from './User.module.scss';
 import profileLogo from './../../../img/profileLogo.png'
 import {UserType} from '../../../type';
 import {NavLink} from 'react-router-dom';
@@ -22,9 +22,8 @@ const User = (props: UserPropsType) => {
     let userId = props.user.id
     props.unfollow(userId)
   }
-
-  return (
-    <div key={props.user.id} className={s.friends_item}>
+  console.log(props.user.id  )
+  return (<div key={props.user.id} className={s.friends_item}>
       <NavLink to={'profile/' + props.user.id}>
         <img className={s.profileImg} src={props.user.photos.small != null ? props.user.photos.small : profileLogo}
              alt=""/>

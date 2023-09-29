@@ -4,8 +4,7 @@ import {Dispatch} from 'redux';
 import {profileApi} from '../../api/api';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
 import {setAppStatusAC} from "../../app/appReducer";
-import {ResultCode, setCurrentPageAC} from "../Users/usersReducer";
-import {getUsers} from "../Users/user-selector";
+import {ResultCode} from "../Users/usersReducer";
 import {AppRootStateType} from "../../app/store";
 
 export const initStateProfilePage: ProfilePageType = {
@@ -114,13 +113,14 @@ export const updateProfileAC = (data: any) => ({type: 'profile/UPDATE-DATA', dat
 
 //THUNK
 export const getProfileUserThunkCreator = (userId: string) => async (dispatch: Dispatch) => {
+
   dispatch(setAppStatusAC('loading'))
   try {
     dispatch(setPostsAC(initStateProfilePage.posts))
     const res = await profileApi.getProfileUser(userId)
     dispatch(getProfileUserAC(res.data))
     dispatch(setAppStatusAC('succeeded'))
-   // dispatch(setCurrentPageAC(page))
+// dispatch(setCurrentPageAC(page))
   } catch (e) {
     const error = e as { message: string }
     handleServerNetworkError(error, dispatch)
@@ -175,19 +175,18 @@ export const setPhotoThunkCreator = (photo: File) => async (dispatch: Dispatch) 
   }
 }
 
-export const updateProfileData = (data: any): any  => async (dispatch: Dispatch , getState: () => AppRootStateType)=> {
+export const updateProfileData = (data: any): any => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
 
   dispatch(setAppStatusAC('loading'))
   const res = await profileApi.putProfileData(data)
 
-  const userId= getState().authReducer.id
+  const userId = getState().authReducer.id
   try {
 
     if (res.data.resultCode === ResultCode.OK) {
       // dispatch(updateProfileAC(data))
-       // @ts-ignore
+      // @ts-ignore
       dispatch(getProfileUserThunkCreator(userId))
-
       dispatch(setAppStatusAC('succeeded'))
     } else {
       handleServerAppError(res.data, dispatch)

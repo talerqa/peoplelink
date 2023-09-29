@@ -62,14 +62,22 @@ export type ProfileType = {
 }
 
 export type ContactsProfileType = {
-  github: string | null
-  vk: string | null
-  facebook: string | null
-  instagram: string | null
-  twitter: string | null
-  website: string | null
-  youtube: string | null
-  mainLink: string | null
+  github?: string | null
+  vk?: string | null
+  facebook?: string | null
+  instagram?: string | null
+  twitter?: string | null
+  website?: string | null
+  youtube?: string | null
+  mainLink?: string | null
+}
+
+export type SubmitForm = {
+  aboutMe: string | null
+  contacts: ContactsProfileType | null
+  fullName: string | null
+  lookingForAJob: boolean | null
+  lookingForAJobDescription: string | null
 }
 
 export type PhotosProfileType = {

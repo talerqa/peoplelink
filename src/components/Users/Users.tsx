@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {UserType} from '../../type';
-import s from './Users.module.css';
+import s from './Users.module.scss';
 import User from './User/User';
 import Preloader from '../Preloader/Preloader';
 import {Paginator} from "../common/Paginator/Paginator";
@@ -25,11 +25,9 @@ export const Users = (props: UsersComponentPropsType) => {
   } = props
 
   return (
-    <div className={s.wrapper}>
-      <p className={s.title}>Friends:</p>
+    <div className={s.usersBlock}>
 
       <Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged}/>
-
       <div className={s.wrapper_item}>
         {isFetching
           ? <Preloader/>

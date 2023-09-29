@@ -21,6 +21,7 @@ class ProfileContainer extends React.Component<PropsType> {
   }
 
   refreshProfile() {
+    debugger
     let userId = this.props.match.params.userId
     if (!userId) {
       userId = `${this.props.userId}`
@@ -71,7 +72,7 @@ type MapStateToPropsProfileType = {
 
 export type MapDispatchToPropsProfileType = {
   getProfileUserAC: (profile: ProfileType) => void
-  getProfileUserThunkCreator: (userId: number | null | string) => void
+  getProfileUserThunkCreator: (userId: number | string) => void
   getStatusProfile: (userId: number | null | string) => void
   updateStatusProfile: (status: string) => void
   setPhotoProfile: (photo: File) => void

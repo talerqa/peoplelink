@@ -3,8 +3,12 @@ import {ContactsProfileType} from "../../../../type";
 import * as React from "react";
 import {Contacts} from "./Contacts/Contacts";
 
-type Props = {}
-export const ProfileData = (props: any) => {
+type Props = {
+  isOwner: boolean
+  profile: any
+  editMode: () => void
+}
+export const ProfileData = (props: Props) => {
   return <div className={s.profileData}>
     <div className={s.profileDataInfo}>
       <div className={`${s.fullName} ${s.itemProfileData}`}>
@@ -27,6 +31,7 @@ export const ProfileData = (props: any) => {
     <div className={s.contactsBlock}>
       <p className={s.contactsText}>Contacts:</p>
       {props.profile.contacts ? (
+
         Object.keys(props.profile.contacts).map((key) => (
           <Contacts
             key={key}

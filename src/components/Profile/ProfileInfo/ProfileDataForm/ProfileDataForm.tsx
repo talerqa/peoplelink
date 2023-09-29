@@ -9,12 +9,15 @@ type FormikType = {
   submitForm: (values: Partial<SubmitForm>) => void
   editMode: () => void
 }
-
+type FormikErrorType = Partial<{
+  fullName: string
+  aboutMe: string
+  lookingForAJobDescription: string
+}>
 export const ProfileDataForm = (props: FormikType) => {
 
   const {profile} = props
 
-  console.log(props.profile)
   const formik = useFormik({
     initialValues: {
       aboutMe: profile?.aboutMe,
@@ -33,7 +36,7 @@ export const ProfileDataForm = (props: FormikType) => {
       }
     },
     validate: (values) => {
-      let errors: any = {}
+      let errors: FormikErrorType = {}
       if (!values.fullName) {
         errors.fullName = 'Required'
       }
@@ -159,7 +162,9 @@ export const ProfileDataForm = (props: FormikType) => {
           />
         </div>
       </div>
-      <button type={'submit'} className={s.saveProfileDataBtn}>Save</button>
+      <button type={'submit'}
+              className={s.saveProfileDataBtn}>Save
+      </button>
     </form>
   </div>
 }
