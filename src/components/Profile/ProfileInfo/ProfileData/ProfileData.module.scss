@@ -1,0 +1,27 @@
+.profileData {
+
+
+  .profileDataInfo {
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+
+    .itemProfileData {
+      display: flex;
+      width: 100%;
+
+      align-items: flex-start;
+      .titleProfileData {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .valueProfileData {
+        padding-left: 5px;
+        font-weight: 400;
+        text-align: left;
+      }
+    }
+  }
+}
