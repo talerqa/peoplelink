@@ -1,18 +1,52 @@
-.friends_item {
+.friendsItem {
   display: flex;
   flex-direction: column;
   width: 250px;
   height: 120px;
+  margin-bottom: 15px;
+
+  .link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .profileImg {
     width: 60px;
     height: 60px;
     border-radius: 50%;
   }
+
   .statusOnline {
     color: #b3ffb3;
   }
 
   .statusOffline {
     color: red;
+  }
+
+  .button {
+    list-style-type: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 1px solid #0a66c2;
+    border-radius: 20px;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 0 1px;
+      background-color: rgba(112, 181, 249, 0.1);
+      scroll-behavior: smooth;
+    }
+  }
+
+  .follow {
+    color: gray;
+  }
+
+  .unfollow {
+    color: rgba(10, 102, 194, 0.8);
   }
 }

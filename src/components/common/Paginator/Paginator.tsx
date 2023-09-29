@@ -10,7 +10,7 @@ type PaginatorType = {
 }
 
 export const Paginator = (props: PaginatorType) => {
-  const {totalCount, pageSize, currentPage = 1 , onPageChanged} = props
+  const {totalCount, pageSize, currentPage = 1, onPageChanged} = props
   const [portionNumber, serPortionNumber] = useState(1)
   let portionSize = 10
 
@@ -36,19 +36,19 @@ export const Paginator = (props: PaginatorType) => {
         {portionNumber > 1 && <button className={s.buttonPrev} onClick={() => {
           serPortionNumber(portionNumber - 1)
         }}>PREV </button>}
-        <div className={s.pages}>
-          {pages
-            .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-            .map((page, index) => {
-              return <span className={currentPage === page ? s.selectedPage : s.page}
-                           key={index}
-                           onClick={() => onPageChanged(page)}>{page}</span>
-            })}
-        </div>
         {portionCount > portionNumber && <button className={s.buttonNext} onClick={() => {
           serPortionNumber(portionNumber + 1)
         }}>NEXT
         </button>}
+      </div>
+      <div className={s.pages}>
+        {pages
+          .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+          .map((page, index) => {
+            return <span className={currentPage === page ? s.selectedPage : s.page}
+                         key={index}
+                         onClick={() => onPageChanged(page)}>{page}</span>
+          })}
       </div>
     </div>
   );

@@ -22,16 +22,16 @@ const User = (props: UserPropsType) => {
     let userId = props.user.id
     props.unfollow(userId)
   }
-  console.log(props.user.id  )
-  return (<div key={props.user.id} className={s.friends_item}>
-      <NavLink to={'profile/' + props.user.id}>
+
+  return (<div key={props.user.id} className={s.friendsItem}>
+      <NavLink to={'profile/' + props.user.id} className={s.link}>
         <img className={s.profileImg} src={props.user.photos.small != null ? props.user.photos.small : profileLogo}
              alt=""/>
         <span>{props.user.name}</span>
       </NavLink>
-      <div>{props.user.followed
-        ? <button onClick={onClickUnFollowHandler}>Unfollow</button>
-        : <button onClick={onClickFollowHandler}>Follow</button>
+      <div className={s.buttons}>{props.user.followed
+        ? <button className={s.button + ' ' + s.follow} onClick={onClickUnFollowHandler}>Unfollow</button>
+        : <button className={s.button + ' ' + s.unfollow} onClick={onClickFollowHandler}>Follow</button>
       } </div>
     </div>
   );
