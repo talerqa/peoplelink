@@ -49,7 +49,6 @@ export const ProfileDataForm = (props: FormikType) => {
       return errors
     },
     onSubmit: values => {
-      console.log(values)
       props.editMode()
       props.submitForm(values)
     },

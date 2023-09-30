@@ -5,6 +5,7 @@ import s from './ProfileStatus.module.scss'
 type ProfileStatusType = {
   status: string
   updateStatus: (status: string) => void
+  isOwner: boolean
 }
 
 export const ProfileStatus = (props: ProfileStatusType) => {
@@ -15,7 +16,7 @@ export const ProfileStatus = (props: ProfileStatusType) => {
   useEffect(() => setStatus(props.status), [props.status])
 
   const activateEditMode = () => {
-    setEditMode(true)
+    props.isOwner && setEditMode(true)
   }
 
   const deactivateEditMode = () => {
@@ -39,8 +40,8 @@ export const ProfileStatus = (props: ProfileStatusType) => {
   }
 
   return (<div className={s.profileStatus}>
-    {!editMode
-      ? <span className={s.status} onDoubleClick={activateEditMode}>{props.status ? props.status : '......'} </span>
+    { !editMode
+      ? <span className={s.status} onDoubleClick={ activateEditMode}>{props.status ? props.status : '......'} </span>
       : <div className={s.statusChangeBlock}>
         <input
           className={s.inputChangeStatus}

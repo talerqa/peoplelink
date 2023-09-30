@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 import s from "./Paginator.module.scss";
 
 type PaginatorType = {
@@ -27,6 +27,8 @@ export const Paginator = (props: PaginatorType) => {
   const portionCount = Math.ceil(pagesCount / portionSize)
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
   const rightPortionPageNumber = portionNumber * portionSize
+
+  const [value, setValue] = useState(currentPage)
 
   return (
     <div className={s.paginatorBlock}>
