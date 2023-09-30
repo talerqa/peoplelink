@@ -18,7 +18,7 @@ type HeaderProps = {
     <div className={s.headerContainer}>
       <NavLink className={s.logo} to={'/profile/'}>
         <img className={s.logo_img} src={logo} alt="logo"/>
-        <p className={s.headerTitle}>ConnectHub</p>
+        <p className={s.headerTitle}>People Link</p>
       </NavLink>
       {props.isAuth && <Navbar/>}
       <nav className={s.navMenu}>
