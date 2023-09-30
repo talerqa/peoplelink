@@ -78,9 +78,33 @@
     }
   }
 
-  .navLink:not(last-child) {
+  .navLink:not(:last-child) {
     margin-right: 5px;
   }
 }
+
+@media (max-width: 420px) {
+  .header {
+    font-size: 14px;
+  }
+  .headerTitle {
+    font-size: 16px;
+  }
+  .logo_img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 330px) {
+  .header {
+    .navLink {
+      padding: 5px 8px;
+      font-size: 12px;
+    }
+  }
+}
+
+
 
 
