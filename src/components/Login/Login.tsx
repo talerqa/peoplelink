@@ -23,15 +23,15 @@ export const Login = (props: LoginPropsType) => {
   return (<div className={s.loginBlock}>
     <div className={s.loginContainer}>
       <div className={s.login}>
+        <LoginInfo/>
         <LoginForm
           onSubmit={onSubmitHandler}
           error={props.error}
           status={props.status}
           captcha={props.getCaptcha}/>
-        <LoginInfo/>
       </div>
       <div className={s.background}>
-        <img src={background} alt='backround-image' className={s.backgroundImg}/>
+        <img src={background} alt="backround-image" className={s.backgroundImg}/>
       </div>
     </div>
   </div>);

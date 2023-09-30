@@ -49,7 +49,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
   return (
     <div className={s.contactForm}>
       <form action="" onSubmit={formik.handleSubmit} className={props.captcha ? s.formWithCaptcha : s.form}>
-        <div className={s.inputName}>
+        <div className={s.contactBlock}>
           <div className={s.loginBlock}>
             <p className={s.loginText}>Login</p>
             <input
@@ -71,21 +71,19 @@ export const LoginForm = (props: LoginPropsFormType) => {
             />
             <div className={s.errorTextPassword}>
               {formik.touched.password && formik.errors.password &&
-                <span className={s.errorText}>{formik.errors.password}</span>}
+                  <span className={s.errorText}>{formik.errors.password}</span>}
             </div>
           </div>
           <div className={s.submitBlock}>
-            <div className={s.rememberMe}>
-              <label>
-                <input
-                  className={s.checkbox}
-                  type="checkbox"
-                  checked={formik.values.rememberMe}
-                  {...formik.getFieldProps('rememberMe')}
-                />
-                Remember me
-              </label>
-            </div>
+            <label className={s.rememberMe}>
+              <input
+                className={s.checkbox}
+                type="checkbox"
+                checked={formik.values.rememberMe}
+                {...formik.getFieldProps('rememberMe')}
+              />
+              <span className={s.textRememberMe}>Remember me</span>
+            </label>
             <button className={s.buttonSend} type={'submit'}>
               <span className={s.buttonSendLink}>
                 Submit</span>
@@ -94,22 +92,21 @@ export const LoginForm = (props: LoginPropsFormType) => {
           <div className={s.errorLoginOrPass}>
             {props.error}
           </div>
-          <div>
-            <div className={s.setCaptcha}>
-              {props.captcha &&
-                  <>
-                      <img className={s.captchaImg} src={props.captcha} alt=""/>
-                      <input
-                          className={s.captcha}
-                          placeholder={'enter symbols on image'}
-                          type="text"
-                          {...formik.getFieldProps('captcha')}
-                      />
-                  </>
-              }
-            </div>
+          <div className={s.setCaptcha}>
+            {props.captcha &&
+                <>
+                    <img className={s.captchaImg} src={props.captcha} alt=""/>
+                    <input
+                        className={s.captcha}
+                        placeholder={'enter symbols on image'}
+                        type="text"
+                        {...formik.getFieldProps('captcha')}
+                    />
+                </>
+            }
           </div>
         </div>
+
       </form>
     </div>
   );

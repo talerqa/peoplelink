@@ -40,17 +40,8 @@ input {
   }
 }
 
-.errorInput {
-  display: block;
-  font-size: 20px;
-  font-weight: 400;
-  outline: 1px solid red;
-  flex: 0 0 auto;
-  flex-grow: 1;
-  border: none;
-}
 
-.passwordError {
+.passwordError, .emailError {
   display: block;
   font-size: 20px;
   font-weight: 400;
@@ -80,7 +71,7 @@ input {
   font-size: 20px;
 }
 
-.inputName {
+.contactBlock {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -114,49 +105,59 @@ input {
 
 .errorText {
   margin: 0;
-  font-size: 20px;
+  font-size: 14px;
 }
 
-.errorTextEmail {
-  color: red;
-  height: 30px;
-}
-
-.errorTextBlock {
+.errorTextEmail,.errorTextPassword {
   color: red;
   height: 30px;
 }
 
 .submitBlock {
   display: flex;
+  height: 60px;
+  align-items: center;
   flex-direction: row;
   justify-content: space-between;
+
+  .rememberMe {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: start;
+
+    .checkbox {
+      align-self: center;
+      width: 20px;
+      height: 20px;
+    }
+
+    .textRememberMe {
+
+    }
+  }
+
+
 }
 
-.rememberMe {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: start;
-}
-
-.checkbox {
-  align-self: center;
-  width: 20px;
-}
 
 .loginBlock {
-  font-size: 16px;
+  font-size: 20px;
 
-  .loginText {
-    margin: 0;
-    text-align: left;
+  .loginText, {
+    margin: 0 auto;
+    text-align: center;
   }
 
 }
 
 .passwordBlock {
-  font-size: 16px;
+  font-size: 20px;
+
+  .loginPassword {
+    margin: 0 auto;
+    text-align: center;
+  }
 
   .titleProfileData {
     margin: 0;
@@ -169,7 +170,8 @@ input {
   height: 100px;
 
   .captchaImg {
-
+    width: 180px;
+    height: auto;
   }
 
   .captcha {
@@ -191,18 +193,19 @@ input {
 }
 
 .errorLoginOrPass {
-  padding-top: 10px;
+  padding: 10px 0;
   margin: 0 auto;
   color: red;
+
 }
 
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
-input:-webkit-autofill:focus
+input:-webkit-autofill:focus,
 input:-webkit-autofill,
 textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,

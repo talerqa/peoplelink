@@ -11,12 +11,12 @@
 .loginContainer {
   display: flex;
   max-width: 100%;
-  padding: 100px 5px 0;
+  padding: 50px 5px 0;
 }
 
 .login {
   display: flex;
-  padding-top: 45px;
+
   flex-direction: column;
   width: 100%;
 }
@@ -26,6 +26,7 @@
 }
 
 .backgroundImg{
-  width: 520px;
 
+  width: 550px;
+  height: auto;
 }
