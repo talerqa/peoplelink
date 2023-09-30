@@ -63,7 +63,7 @@ export const LoginForm = (props: LoginPropsFormType) => {
             </div>
           </div>
           <div className={s.passwordBlock}>
-            <p className={s.loginPassword}>Password</p>
+            <p className={s.passwordText}>Password</p>
             <input
               className={formik.touched.password && formik.errors.password ? s.passwordError : s.password}
               type="password"

@@ -5,7 +5,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   box-sizing: border-box;
-  width: 350px;
+  max-width: 350px;
 }
 
 input {
@@ -108,7 +108,7 @@ input {
   font-size: 14px;
 }
 
-.errorTextEmail,.errorTextPassword {
+.errorTextEmail, .errorTextPassword {
   color: red;
   height: 30px;
 }
@@ -124,22 +124,15 @@ input {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: start;
-
+    align-items: center;
+    justify-content: center;
     .checkbox {
       align-self: center;
       width: 20px;
       height: 20px;
     }
-
-    .textRememberMe {
-
-    }
   }
-
-
 }
-
 
 .loginBlock {
   font-size: 20px;
@@ -154,7 +147,7 @@ input {
 .passwordBlock {
   font-size: 20px;
 
-  .loginPassword {
+  .passwordText {
     margin: 0 auto;
     text-align: center;
   }
@@ -215,4 +208,20 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.07) inset;
   transition: background-color 5000s ease-in-out 0s;
   background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);
+}
+
+@media (max-width: 350px) {
+  .contactForm {
+
+    width: 100%;
+
+    .contactBlock, .loginText, .passwordText {
+      font-size: 14px;
+    }
+    input {
+      font-size: 14px;
+      width: 100%;
+    }
+  }
+
 }

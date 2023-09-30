@@ -7,20 +7,22 @@
   font-size: 20px;
   text-align: center;
 
-
   .infoAboutData {
     display: flex;
     flex-direction: column;
-    align-items: flex-start
+    align-items: center;
+    width: 100%;
   }
 
   .info {
-    margin: 0 auto;
-    padding-bottom: 15px;
-  }
-
-  .link {
-    color: #449fff;
+    width: 100%;
+    .infoText {
+      margin: 0 auto;
+      padding-bottom: 15px;
+      .link {
+        color: #449fff;
+      }
+    }
   }
 
   .email {
@@ -36,7 +38,12 @@
   }
 }
 
-
+@media (max-width: 420px) {
+  .infoBlock {
+    font-size: 14px;
+    width: 100%;
+  }
+}
 
 
 
