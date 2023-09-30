@@ -18,14 +18,14 @@ type HeaderProps = {
     <div className={s.headerContainer}>
       <NavLink className={s.logo} to={'/profile/'}>
         <img className={s.logo_img} src={logo} alt="logo"/>
-        <p className={s.headerTitle}> Social Network</p>
+        <p className={s.headerTitle}>ConnectHub</p>
       </NavLink>
       {props.isAuth && <Navbar/>}
       <nav className={s.navMenu}>
         <ul className={s.navItems}>
           {!props.isAuth ?
             <>
-              <a href='https://social-network.samuraijs.com/' target='_blank' className={s.navLink}>
+              <a href='https://social-network.samuraijs.com/' target='_blank' className={s.navLink} rel="noreferrer">
                 Join in
               </a>
               <NavLink to={'/login'} className={s.navLink}> Log in</NavLink>

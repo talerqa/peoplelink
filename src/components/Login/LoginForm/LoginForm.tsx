@@ -92,9 +92,8 @@ export const LoginForm = (props: LoginPropsFormType) => {
           <div className={s.errorLoginOrPass}>
             {props.error}
           </div>
-          <div className={s.setCaptcha}>
             {props.captcha &&
-                <>
+                <div className={s.setCaptcha}>
                     <img className={s.captchaImg} src={props.captcha} alt=""/>
                     <input
                         className={s.captcha}
@@ -102,11 +101,9 @@ export const LoginForm = (props: LoginPropsFormType) => {
                         type="text"
                         {...formik.getFieldProps('captcha')}
                     />
-                </>
+                </div>
             }
-          </div>
         </div>
-
       </form>
     </div>
   );

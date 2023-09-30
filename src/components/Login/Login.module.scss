@@ -1,32 +1,39 @@
 .loginBlock {
-  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 90vh;
   justify-content: flex-start;
+
+  .loginContainer {
+    display: flex;
+    max-width: 1440px;
+    flex-direction: row;
+    width: 100%;
+    padding: 50px 5px 0;
+    flex-wrap: wrap;
+
+    .login {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+  }
+
+  .background {
+    margin: 30px auto;
+
+    .backgroundImg {
+      margin: 0 auto;
+      max-width: 450px;
+      height: auto;
+    }
+  }
 }
 
-.loginContainer {
-  display: flex;
-  max-width: 100%;
-  padding: 50px 5px 0;
-}
 
-.login {
-  display: flex;
 
-  flex-direction: column;
-  width: 100%;
-}
 
-.background {
-  width: 100%;
-}
 
-.backgroundImg{
 
-  width: 550px;
-  height: auto;
-}
