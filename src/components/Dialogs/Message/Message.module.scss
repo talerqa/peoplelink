@@ -27,9 +27,10 @@
   flex-direction: row;
   justify-content: flex-end;
   padding: 10px;
-
+  background-color: rgba(197, 197, 197, 0.66);
   &:first-child {
     justify-content: flex-start;
+    background-color: rgba(91, 91, 91, 0.6);
   }
 }
 
@@ -42,6 +43,7 @@
   background-color: #e8e8e8;
   border: 1px solid rgba(182, 182, 182, 0.82);
   border-radius: 5px;
+
 }
 
 

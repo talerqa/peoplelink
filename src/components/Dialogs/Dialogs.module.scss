@@ -1,5 +1,7 @@
 .dialogs {
   display: flex;
+
+  justify-content: center;
   max-width: 1440px;
   margin: 20px auto;
   font-family: 'Poppins', sans-serif;
@@ -10,7 +12,7 @@
   background-color: white;
   border-radius: 20px;
   border: 1px solid rgba(182, 182, 182, 0.82);
-  padding-top: 20px;
+  padding: 20px 0;
 
 
 }
@@ -42,8 +44,8 @@
   background-color: white;
   border: 1px solid rgba(182, 182, 182, 0.92);
   padding: 10px;
-  border-bottom-left-radius: 40px;
-  border-top-left-radius: 40px;
+  border-radius: 20px;
+
   width: 100%;
   word-wrap: break-word;
   overflow-y: scroll;
@@ -51,7 +53,7 @@
 
 .addMessage {
   min-height: 160px;
-  height: 200px;
+
   width: 100%;
   border-radius: 20px;
   padding-left: 20px;
@@ -61,12 +63,13 @@
   border: 1px solid rgba(182, 182, 182, 0.82);
   display: flex;
   justify-content: center;
+
 }
 
 .textarea {
   margin: 30px auto 5px;
   display: block;
-  width: 400px;
+  max-width: 400px;
   height: auto;
   border: 1px solid rgba(182, 182, 182, 0.92);
   border-radius: 40px;
@@ -74,7 +77,7 @@
   resize: none;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
-  padding: 10px 20px 0 20px;
+  padding: 10px 100px 0 15px;
   font-size: 20px;
 }
 
@@ -118,5 +121,26 @@
     background-color: rgba(112, 181, 249, 0.1);
     scroll-behavior: smooth;
   }
+}
+
+@media (max-width: 912px) {
+  .dialogs {
+    flex-wrap: wrap;
+  }
+  .dialogsItem {
+    display: flex;
+    flex-direction: column;
+
+    width: 70%;
+  }
+}
+
+@media (max-width:480px) {
+ .addMessage {
+   flex-wrap: wrap;
+ }
+.textarea {
+  width: 100%;
+}
 }
 
