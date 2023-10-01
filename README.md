@@ -1,26 +1,22 @@
-В этом стартовом проекте установлены следующие библиотеки
+# People Link
 
-- **antd** 
-- **axios** 
-- **classnames**
-- **formik**
-- **gh-pages**
-- **jest**
-- **react** and **@types/react**
-- **react-dom** and **@types/react-dom**
-- **react-redux** and **@types/react-redux**
-- **react-router-dom** and **@types/react-router-dom**
-- **react-scripts** 
-- **react-test-renderer** and **@types/react-test-renderer**
-- **redux**
-- **redux-form** and **@types/redux-form**
-- **redux-thunk**
-- **reselect**
-- **typescript** 
-- **uuid** and **@types/uuid**
+### The project is under development. Some features may be unavailable.
 
-После git clone 'link' установите все зависимости из package.json:
-### `yarn`
+https://talerqa.github.io/peoplelink/
 
-а потом запустите проект:
-### `yarn start`
+An online platform that is used for communication, dating, creating social relationships between people who have similar
+interests or offline connections, as well as for entertainment (music, movies) and work.
+
+The project is under development. Some features may be unavailable.
+If you have questions or want to know something, you can write to [me](https://www.linkedin.com/in/talerqa/)).
+
+### Technologies:
+- React (class components)
+- TypeScript
+- Redux
+- React-Redux
+- React-Router-Dom
+- Redux-Thunk
+- Axios
+- Formik
+- SASS
