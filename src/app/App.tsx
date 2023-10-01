@@ -19,6 +19,7 @@ import {
 import Preloader from "../components/Preloader/Preloader";
 import HeaderContainer from "../components/Header/HeaderContainer";
 import { ErrorPage } from "../components/common/Error/ErrorPage/ErrorPage";
+import { ErrorMessage } from "../components/common/Error/ErrorMessage/ErrorMessage";
 
 class App extends React.Component<AppPropsType> {
   componentDidMount() {
@@ -38,10 +39,10 @@ class App extends React.Component<AppPropsType> {
       <div className={s.app}>
         <HeaderContainer />
         <main className={s.main}>
-          {/*<ErrorMessage*/}
-          {/*  error={this.props.error}*/}
-          {/*  closeErrorApp={this.props.closeErrorApp}*/}
-          {/*/>*/}
+          <ErrorMessage
+            error={this.props.error}
+            closeErrorApp={this.props.closeErrorApp}
+          />
           <div className={s.mainComponents}>
             <Switch>
               <Route exact path="/" render={() => <Redirect to={"/login"} />} />
