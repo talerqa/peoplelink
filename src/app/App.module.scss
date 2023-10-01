@@ -16,6 +16,13 @@
   width: 100%;
 }
 
+.preloader {
+  position: fixed;
+  top: 30%;
+  text-align: center;
+  width: 100%;
+}
+
 .main {
   position: relative;
   min-height: 90vh;
@@ -27,18 +34,3 @@
   padding-right: 5px;
 }
 
-
-.modalWrap {
-  margin: 0 auto;
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  color: red;
-  width: 80px;
-  border: 1px solid red;
-}
-
-.modalHidden{
- display: none;
-}

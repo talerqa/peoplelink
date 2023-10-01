@@ -29,6 +29,11 @@ export const ProfileStatus = (props: ProfileStatusType) => {
       setTimeout(() => {
         setError("");
       }, 2000);
+      clearTimeout(
+        setTimeout(() => {
+          setError("");
+        }, 2000),
+      );
     }
   };
 
