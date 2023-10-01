@@ -30,8 +30,10 @@ const Dialogs = (props: DialogsPropsType) => {
   }
 
   const addPost = () => {
-    props.addPost(props.newMessageText)
-    props.changeTextArea('')
+    if(props.newMessageText.trim() !== '')  {
+      props.addPost(props.newMessageText)
+      props.changeTextArea('')
+    }
   }
 
   return (<div className={s.dialogs}>
