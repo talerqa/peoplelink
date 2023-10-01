@@ -12,12 +12,13 @@
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .textarea {
   margin: 30px auto 5px;
   display: block;
-  max-width: 400px;
+  max-width: 320px;
   height: auto;
   border: 1px solid rgba(182, 182, 182, 0.92);
   border-radius: 40px;
@@ -76,8 +77,8 @@
   padding-bottom: 10px;
   display: block;
   background: none;
-  width: 60px;
-  height: 80px;
+  max-width: 10%;
+  height: 30%;
   border-radius: 50%;
   align-self: flex-start;
 }
@@ -87,4 +88,27 @@
   padding-top: 10px;
   padding-bottom: 10px;
   color: #ff001e;
+}
+
+@media (max-width: 520px) {
+  .addPostBlock {
+    min-height: 140px;
+
+    .formPost {
+      justify-content: center;
+
+
+    }
+
+    .avatar {
+      margin: 0 5px;
+      align-self: center;
+    }
+
+    .buttonAddPost {
+      align-self: center;
+      margin: 0 0 10px;
+    }
+  }
+
 }

@@ -4,7 +4,6 @@
   color: black;
   display: flex;
   flex-direction: column;
-
   width: 300px;
   min-height: 250px;
   background-color: rgb(255, 255, 255);
@@ -36,8 +35,12 @@
   }
 }
 
-@media (max-width: 1440px) {
-  
+
+
+@media (max-width: 1105px) {
+  .navUserProfileBlock {
+    display: none;
+  }
 }
 
 

@@ -16,7 +16,7 @@ type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
 
-  const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(!false);
+  const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);
 
   const toggleDrawer = (value: boolean) => setOpenBurgerMenu(value)
 

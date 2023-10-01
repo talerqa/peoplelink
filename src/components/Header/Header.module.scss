@@ -65,7 +65,9 @@
     text-align: center;
     padding-right: 10px;
     align-self: center;
-
+@media (max-width: 455px) {
+display: none;
+}
   }
 
 

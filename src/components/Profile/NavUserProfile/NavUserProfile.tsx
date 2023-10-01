@@ -17,8 +17,7 @@ export const NavUserProfile = (props: Props) => {
   const countUsers = 10
   const firstUsers = props.users.slice(0, countUsers)
 
-  return (
-    <div className={s.navUserProfileBlock}>
+  return (<div className={s.navUserProfileBlock}>
       <p className={s.titleNav} onClick={redirectToUsers}>User</p>
       {firstUsers.map((user, index) => <div className={s.user} key={index}>
         <img className={s.profileImg} src={user.photos.small != null ? user.photos.small : profileLogo}
