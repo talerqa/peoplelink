@@ -7,6 +7,7 @@
   align-items: center;
   padding-right: 10px;
   padding-left: 10px;
+  width: 100%;
 
   .title {
     font-size: 40px;
@@ -50,9 +51,12 @@
 }
 
 .pages {
-  width: 700px;
+  max-width: 700px;
   padding-left: 5px;
   padding-right: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .buttonPrev, .buttonNext {
@@ -63,6 +67,7 @@
   border-radius: 20px;
   cursor: pointer;
   margin: 2px;
+
   &:hover {
     box-shadow: 0 0 0 1px;
     background-color: rgba(112, 181, 249, 0.1);
