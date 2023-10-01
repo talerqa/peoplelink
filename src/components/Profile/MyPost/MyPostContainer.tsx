@@ -39,7 +39,6 @@ export type MapDispatchToPropsType = {
   decLikeCount: (id: string, likeCount: number) => void
 }
 
-
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsProfileType => {
   return {
     profilePost: state.profileReducer

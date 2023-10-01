@@ -14,7 +14,7 @@ a {
   text-align: center;
   padding-right: 10px;
   padding-left: 10px;
-  min-width: 550px;
+
 }
 
 .navbarItem {
@@ -50,3 +50,49 @@ a {
   text-align: center;
 }
 
+@media (max-width: 1060px) {
+  .navbarMenu {
+    justify-content: center;
+
+    .navbarItems {
+      display: flex;
+      justify-content: center;
+
+      .navbarItem {
+        &:not(:last-child) {
+          margin-right: 8px;
+        }
+      }
+
+      .link {
+        width: 100%;
+        height: 45px;
+
+      }
+    }
+  }
+}
+
+
+@media (max-width: 875px) {
+  .navbarMenu {
+    .navbarItems {
+      .navbarItem {
+
+        &:not(:last-child) {
+          margin-right: 4px;
+        }
+        .linkText {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .navbarMenu {
+    display: none;
+
+  }
+}

@@ -5,7 +5,8 @@ import {SvgSelectors} from "../common/SvGSelectors/SvgSelectors";
 
 const Navbar = () => {
   const conditionChangeColorLink = (isActive: boolean) => isActive ? s.active + ' ' + s.link : s.link
-  return (<nav className={s.navbarMenu}>
+  return (
+    <nav className={s.navbarMenu}>
       <ul className={s.navbarItems}>
         <li className={s.navbarItem}>
           <NavLink className={conditionChangeColorLink} to={`/profile/`}>
@@ -46,6 +47,10 @@ const Navbar = () => {
 
       </ul>
     </nav>
+
+
+
+
   )
 }
 
