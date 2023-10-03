@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ProfilePageType } from "../../../type";
 import { AddPost } from "./AddPost/AddPost";
-import Post from "./Post/Post";
+import { Post } from "./Post/Post";
 import { Preloader } from "../../Preloader/Preloader";
 import s from "./MyPosts.module.scss";
 import profileLogo from "../../../assets/img/profileLogo.png";
@@ -11,8 +11,6 @@ type MyPostProps = {
   addPost: (title: string) => void;
   deletePost: (id: string) => void;
   profileInfo: any;
-  incLike: (id: string, likeCount: number) => void;
-  decLike: (id: string, likeCount: number) => void;
   isOwner: boolean;
 };
 
@@ -56,8 +54,6 @@ export const MyPosts = (props: MyPostProps) => {
                 id={post.id}
                 status={props.profilePost.status}
                 deletePost={props.deletePost}
-                incLike={props.incLike}
-                decLike={props.decLike}
               />
             </div>
           );

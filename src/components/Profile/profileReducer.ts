@@ -53,8 +53,6 @@ export type CommonProfileType =
   | ReturnType<typeof setPostsAC>
   | ReturnType<typeof deletePostAC>
   | ReturnType<typeof setPhotoAC>
-  | ReturnType<typeof decLikeCountPostAC>
-  | ReturnType<typeof incLikeCountPostAC>
   | ReturnType<typeof updateProfileAC>;
 
 export const profileReducer = (
@@ -78,26 +76,6 @@ export const profileReducer = (
       return {
         ...state,
         posts: state.posts.filter((post) => post.id !== action.id),
-      };
-    }
-    case "profile/INC-LIKE": {
-      return {
-        ...state,
-        posts: [...state.posts].map((post) =>
-          post.id === action.id
-            ? { ...post, likesCount: action.likeCount }
-            : post,
-        ),
-      };
-    }
-    case "profile/DEC-LIKE": {
-      return {
-        ...state,
-        posts: [...state.posts].map((post) =>
-          post.id === action.id
-            ? { ...post, likesCount: action.likeCount }
-            : post,
-        ),
       };
     }
     case "profile/SET-POSTS": {
@@ -148,19 +126,6 @@ export const deleteDataProfileUserAC = () =>
   ({ type: "profile/DELETE-DATA-PROFILE" }) as const;
 export const setPhotoAC = (photos: PhotosProfileType) =>
   ({ type: "profile/SET-PHOTO", photos }) as const;
-export const decLikeCountPostAC = (id: string, likeCount: number) =>
-  ({
-    type: "profile/DEC-LIKE",
-    id,
-    likeCount,
-  }) as const;
-export const incLikeCountPostAC = (id: string, likeCount: number) =>
-  ({
-    type: "profile/INC-LIKE",
-    id,
-    likeCount,
-  }) as const;
-
 export const updateProfileAC = (data: any) =>
   ({ type: "profile/UPDATE-DATA", data }) as const;
 

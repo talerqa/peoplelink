@@ -18,7 +18,6 @@ export const ProfileStatus = (props: ProfileStatusType) => {
   const activateEditMode = () => {
     props.isOwner && setEditMode(true);
   };
-
   const deactivateEditMode = () => {
     setEditMode(false);
     if (status.length < 20) {

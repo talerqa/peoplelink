@@ -8,9 +8,9 @@ type Props = {
   users: UserType[];
 };
 export const NavUserProfile = (props: Props) => {
-  const history = useHistory(); // Get the history object
+  const history = useHistory();
   const redirectToUsers = () => {
-    history.push("/users"); // Use history.push to redirect to '/users'
+    history.push("/users");
   };
 
   const countUsers = 10;
