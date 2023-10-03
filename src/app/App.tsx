@@ -16,7 +16,7 @@ import {
   initializeApp,
   RequestStatusType,
 } from "./appReducer";
-import Preloader from "../components/Preloader/Preloader";
+import { Preloader } from "../components/Preloader/Preloader";
 import HeaderContainer from "../components/Header/HeaderContainer";
 import { ErrorPage } from "../components/common/Error/ErrorPage/ErrorPage";
 import { ErrorMessage } from "../components/common/Error/ErrorMessage/ErrorMessage";
@@ -46,7 +46,7 @@ class App extends React.Component<AppPropsType> {
           <div className={s.mainComponents}>
             <Switch>
               <Route exact path="/" render={() => <Redirect to={"/login"} />} />
-              <Route path={"/login/"} render={() => <LoginContainer />} />
+              <Route exact path={"/login/"} render={() => <LoginContainer />} />
               <Route
                 path={"/profile/:userId?"}
                 render={() => <ProfileContainer />}
@@ -56,8 +56,8 @@ class App extends React.Component<AppPropsType> {
               <Route path={"/music/"} component={Music} />
               <Route path={"/setting/"} component={Setting} />
               <Route path={"/news/"} component={News} />
-              <Route path={"/error404"} render={() => <ErrorPage />} />
-              <Route render={() => <Redirect to={"/error404"} />} />
+              <Route path={"/error"} render={() => <ErrorPage />} />
+              <Route render={() => <Redirect to={"/error"} />} />
             </Switch>
           </div>
         </main>

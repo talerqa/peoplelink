@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import s from "./ProfileInfo.module.scss";
-import Preloader from "../../Preloader/Preloader";
+import { Preloader } from "../../Preloader/Preloader";
 import { ProfileStatus } from "./ProfileStatus/ProfileStatus";
 import { ProfileNameAndPhoto } from "./ProfileNameAndPhoto/ProfileNameAndPhoto";
 import { ProfileType } from "../../../type";

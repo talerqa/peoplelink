@@ -2,7 +2,7 @@ import * as React from "react";
 import { ProfilePageType } from "../../../type";
 import { AddPost } from "./AddPost/AddPost";
 import Post from "./Post/Post";
-import Preloader from "../../Preloader/Preloader";
+import { Preloader } from "../../Preloader/Preloader";
 import s from "./MyPosts.module.scss";
 import profileLogo from "../../../assets/img/profileLogo.png";
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { postData, ProfileType, UserType } from "../../type";
+import { postData, ProfileType, SubmitForm, UserType } from "../../type";
 import {
   getProfileUserAC,
   getProfileUserThunkCreator,
@@ -85,7 +85,7 @@ export type MapDispatchToPropsProfileType = {
   updateStatusProfile: (status: string) => void;
   setPhotoProfile: (photo: File) => void;
   getUsers: (page: number, pageSize: number) => void;
-  updateProfileData: (data: any) => void;
+  updateProfileData: (data: SubmitForm) => void;
   closeErrorApp: () => void;
 };
 

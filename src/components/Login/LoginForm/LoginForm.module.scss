@@ -40,7 +40,6 @@ input {
   }
 }
 
-
 .passwordError, .emailError {
   display: block;
   font-size: 20px;
@@ -59,7 +58,6 @@ input {
   margin: 0 auto;
   font-size: 20px;
   width: 100%;
-
 }
 
 .formWithCaptcha {
@@ -141,7 +139,6 @@ input {
     margin: 0 auto;
     text-align: center;
   }
-
 }
 
 .passwordBlock {
@@ -182,16 +179,13 @@ input {
       outline: 1px solid black;
     }
   }
-
 }
 
 .errorLoginOrPass {
   padding: 10px 0;
   margin: 0 auto;
   color: red;
-
 }
-
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

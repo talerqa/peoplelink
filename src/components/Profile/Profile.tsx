@@ -3,7 +3,7 @@ import s from "./Profile.module.scss";
 
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 import MyPostContainer from "./MyPost/MyPostContainer";
-import { postData, ProfileType, UserType } from "../../type";
+import { postData, ProfileType, SubmitForm, UserType } from "../../type";
 import { NavUserProfile } from "./NavUserProfile/NavUserProfile";
 
 type ProfilePropsType = {
@@ -14,7 +14,7 @@ type ProfilePropsType = {
   updateStatus: (status: string) => void;
   savePhoto: (photo: File) => void;
   users: UserType[];
-  submitForm: any;
+  submitForm: (data: SubmitForm) => void;
   error: string | null;
   closeErrorApp: () => void;
 };

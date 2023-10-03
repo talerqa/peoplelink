@@ -2,7 +2,7 @@ import * as React from 'react';
 import {UserType} from '../../type';
 import s from './Users.module.scss';
 import User from './User/User';
-import Preloader from '../Preloader/Preloader';
+import { Preloader } from "../Preloader/Preloader";
 import {Paginator} from "../common/Paginator/Paginator";
 
 type UsersComponentPropsType = {

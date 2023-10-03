@@ -1,0 +1,56 @@
+.blockNamePhoto {
+  display: flex;
+  flex-direction: column;
+
+  .avatar {
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    background: none;
+    width: 100px;
+    height: 120px;
+    border-radius: 50%;
+  }
+
+
+  .addPhoto {
+    display: block;
+    position: relative;
+    border-radius: 50px;
+    background-color: rgba(128, 128, 128, 0.44);
+
+    .input {
+      display: none
+    }
+
+
+    .svgSelector {
+      margin: 0 auto;
+      padding: 5px;
+      top: -50px;
+      right: 99px;
+      position: absolute;
+      cursor: pointer;
+      border-radius: 50px;
+      background-color: rgba(128, 128, 128, 0.44);
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .firstName {
+    padding-top: 10px;
+    font-size: inherit;
+    color: #1f1f20;
+  }
+
+
+}
+
+
+
+
+
+
+

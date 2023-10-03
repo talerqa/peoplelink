@@ -3,6 +3,7 @@ import {
   postData,
   ProfilePageType,
   ProfileType,
+  SubmitForm,
 } from "../../type";
 import { v1 } from "uuid";
 import { Dispatch } from "redux";
@@ -231,7 +232,7 @@ export const setPhotoThunkCreator =
   };
 
 export const updateProfileData =
-  (data: any): any =>
+  (data: SubmitForm) =>
   async (dispatch: Dispatch, getState: () => AppRootStateType) => {
     dispatch(setAppStatusAC("loading"));
     const res = await profileApi.putProfileData(data);
