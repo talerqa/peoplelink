@@ -126,10 +126,9 @@ export const deleteDataProfileUserAC = () =>
   ({ type: "profile/DELETE-DATA-PROFILE" }) as const;
 export const setPhotoAC = (photos: PhotosProfileType) =>
   ({ type: "profile/SET-PHOTO", photos }) as const;
-export const updateProfileAC = (data: any) =>
+export const updateProfileAC = (data: SubmitForm) =>
   ({ type: "profile/UPDATE-DATA", data }) as const;
 
-//THUNK
 export const getProfileUserThunkCreator =
   (userId: string) => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC("loading"));

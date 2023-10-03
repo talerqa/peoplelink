@@ -17,7 +17,6 @@ beforeEach(() => {
     getCaptcha: null,
   };
 });
-
 describe("authReducer", () => {
   it("should set user data", () => {
     const action = setUserDataAC(1, "user@example.com", "username", true, null);

@@ -1,9 +1,11 @@
-import {MyUsersPageType, UserType} from '../../type';
-import {profileApi, userApi} from '../../api/api';
-import {Dispatch} from 'redux';
-import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils';
-import {setAppStatusAC} from "../../app/appReducer";
-import {AppRootStateType} from "../../app/store";
+import { MyUsersPageType, UserType } from "../../type";
+import { profileApi, userApi } from "../../api/api";
+import { Dispatch } from "redux";
+import {
+  handleServerAppError,
+  handleServerNetworkError,
+} from "../../utils/error-utils";
+import { setAppStatusAC } from "../../app/appReducer";
 
 const initState: MyUsersPageType = {
   users: [],
