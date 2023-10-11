@@ -32,7 +32,12 @@ export const Paginator = (props: PaginatorType) => {
   return (
     <div className={s.paginatorBlock}>
       <p className={s.title}>Friends:</p>
-      <input type="text" value={currentPage} className={s.input} />
+      <input
+        type="text"
+        value={currentPage}
+        className={s.input}
+        onChange={(e) => e}
+      />
       <div className={s.buttons}>
         {portionNumber > 1 && (
           <button

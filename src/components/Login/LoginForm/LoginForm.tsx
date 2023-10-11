@@ -51,7 +51,6 @@ export const LoginForm = (props: LoginPropsFormType) => {
   return (
     <div className={s.contactForm}>
       <form
-        action=""
         onSubmit={formik.handleSubmit}
         className={props.captcha ? s.formWithCaptcha : s.form}
       >

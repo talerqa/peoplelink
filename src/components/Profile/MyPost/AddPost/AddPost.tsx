@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import s from "./AddPost.module.scss";
 import profileLogo from "../../../../assets/img/profileLogo.png";
 import { PhotosProfileType } from "../../../../type";
@@ -30,6 +30,12 @@ export const AddPost = (props: Props) => {
     }
   };
 
+  const onKeyDownEnterHandler = (e: KeyboardEvent, title: string) => {
+    if (e.key === "Enter" && e.ctrlKey) {
+      addPostHandler(title);
+    }
+  };
+
   return (
     <div className={s.addPostBlock}>
       <div className={s.formPost}>
@@ -44,6 +50,7 @@ export const AddPost = (props: Props) => {
             placeholder={"Start a post"}
             value={title}
             onChange={onPostChange}
+            onKeyDown={(e) => onKeyDownEnterHandler(e, title)}
           ></textarea>
           <p className={s.error}>{error}</p>
         </div>
